@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\Users\alexa\Desktop\Projet_BaladeDansUnLabyrinthe\.metadata\.plugins\org.eclipse.jdt.core
+1106402371.index
