@@ -1,3 +1,12 @@
+Titre:Déplacement du héros
+Résumé:Le joueur appuie sur une touche directionnel pour faire bouger le personnage
+Auteur:
+Responsable:
+Date de creation:
+Acteurs concernés:Le joueur
+pré-condition:Aucune
+post-condition:Aucune
+
 1:L'utilisateur appuis sur une touche directionnel -> 2.le personnage peut se déplacer dans cette direction -> 3.le personnage se déplace dans cette direction
 A1:Le personnage ne peut pas se déplacer dans cette direction Cet enchainement démarre après le point 1 du scénario nominal-> 4.Rien ne se passe
 A2:L'utilisateur appuis sur plusieurs touche directionnel ->4.Rien ne se passe
