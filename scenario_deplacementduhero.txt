@@ -15,3 +15,4 @@ Scénarios alternatifs:
 A1:Le personnage ne peut pas se déplacer dans cette direction, cet enchainement démarre après le point 1 du scénario nominal-> 4.Rien ne se passe
 Scénario exceptionnel:
 E1:L'utilisateur appuis sur plusieurs touche directionnel ->4.Rien ne se passe
+E2:L'utilisateur appuis sur une touche qui n'est pas directionnel ->4.Rien ne se passe
