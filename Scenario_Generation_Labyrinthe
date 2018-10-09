@@ -16,8 +16,4 @@ A1:Le joueur veut choisir un autre niveau et tape sur une touche de direction dr
 A2:Le joueur choisit un labyrinthe dont il n'a pas le droit d'accès, cet enchainement démarre après le point 1. du scénario nominal.-->5:Rien ne se passe.
 Scénario Exceptionnel: 
 E1: Le joueur appuie sur une touche autre que les touches de direction droite et gauche, ou la touche Entrée.--> 5.
-B
-Date
 
-C
-Date de creation: 1
