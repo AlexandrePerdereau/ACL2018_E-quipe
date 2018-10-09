@@ -1,0 +1,2 @@
+Génération du Labyrinthe.
+Déplacement du Héros.
