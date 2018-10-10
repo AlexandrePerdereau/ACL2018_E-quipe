@@ -1,4 +1,4 @@
 Génération du Labyrinthe.
 Génération des Monstres.
-Déplacement du Héro.
-Attaque du Héro.
+Déplacement du Héros.
+Attaque du Héros.
