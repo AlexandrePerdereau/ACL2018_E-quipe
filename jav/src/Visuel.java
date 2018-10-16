@@ -2,6 +2,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Panel;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -49,12 +50,19 @@ public class Visuel extends JFrame {
 		contentPane.setLayout(null);
 		
 		Dessin panel = new Dessin();
-		panel.setBounds(100, 100, this.getWidth()-200, this.getHeight()-200);
-		contentPane.add(panel);
 		
 		JButton btnCommencerLeNiveau = new JButton("Commencer le niveau");
 		btnCommencerLeNiveau.setBounds(298, 13, 157, 54);
 		contentPane.add(btnCommencerLeNiveau);
+		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				Rectangle borders = new Rectangle(contentPane.getBounds());
+				Dessin panel=new Dessin();
+				panel.setBounds(100, 100,borders.width-200, borders.height-200);
+				contentPane.add(panel);
+				panel.repaint();
+			}
+		});
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(126, 29, 127, 22);
