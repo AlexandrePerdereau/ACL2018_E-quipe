@@ -1,10 +1,13 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Panel;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -62,6 +65,13 @@ public class Visuel extends JFrame {
 	public void anim(){
 		while (partieencours){
 			
+			this.repaint();
+			try {
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e){
+				e.printStackTrace();
+			}
 		}
 	}
 }
