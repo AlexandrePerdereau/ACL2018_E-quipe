@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 public class Visuel extends JFrame {
 
 	private JPanel contentPane;
-	deplacement.Heros perso = new deplacement.Heros(10,10,10);
+	deplacement.Heros perso = new deplacement.Heros(15,10,10);
 	ArrayList<Mur> batiment = new ArrayList<Mur>();
 	boolean partieencours = false ;
 
