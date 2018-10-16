@@ -48,8 +48,7 @@ public class Visuel extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		Dessin panel = new Dessin();
 		panel.setBounds(100, 100, this.getWidth()-200, this.getHeight()-200);
 		contentPane.add(panel);
 		
