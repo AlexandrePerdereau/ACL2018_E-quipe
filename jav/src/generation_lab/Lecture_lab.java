@@ -4,14 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import element.Heros;
+import element.Mur;
 
 public class Lecture_lab {
-	protected static String nom;
-	protected static int posx;
-	protected static int posy;
-	protected static int longx;
-	protected static int longy;
-	protected static int rayon;
+	
+	protected static ArrayList<Mur> listMur = new ArrayList<Mur>();
+	protected static Heros heros;
+	
 	
 	
 	public static void main(String[] arg) throws IOException {
@@ -29,10 +31,16 @@ public class Lecture_lab {
 			
 			champ = line.split(",");
 			if (champ != null) {
-				nom = champ[0];
 				
-				if (nom == "Mur") {
-					element.Mur mur = new element.Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
+				
+				if (champ[0] == "Mur") {
+					Mur mur = new Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
+					listMur.add(mur);
+				}
+				if (champ[0]== "Heros") {
+					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
+					heros = hero;
+					
 				}
 
 		
