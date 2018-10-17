@@ -1,4 +1,4 @@
-package deplacement;
+package element;
 
 public class Heros {
 private int x;

@@ -1,3 +1,4 @@
+package element;
 public class Mur {
 	
 	private int posx, posy, longx, longy;

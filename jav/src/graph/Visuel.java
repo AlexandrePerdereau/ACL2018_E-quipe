@@ -1,3 +1,4 @@
+package graph;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import element.Mur;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,10 +25,7 @@ import javax.swing.JComboBox;
 public class Visuel extends JFrame {
 
 	private JPanel contentPane;
-
-
-	deplacement.Heros perso = new deplacement.Heros(10, 10, 10);
-	
+	element.Heros perso = new element.Heros(10, 10, 10);
 	ArrayList<Mur> batiment = new ArrayList<Mur>();
 	boolean partieencours = false ;
 	Dessin panel = new Dessin(perso);
@@ -126,7 +126,7 @@ public class Visuel extends JFrame {
 		@Override
 		public void keyReleased(KeyEvent event) {
 			// TODO Auto-generated method stub
-			if (event.getKeyCode()==KeyEvent.VK_RIGHT){perso.setX(perso.getX()+10);panel.repaint();System.out.println("test");}
+			if (event. getKeyCode()==KeyEvent.VK_RIGHT){perso.setX(perso.getX()+10);panel.repaint();System.out.println("test");}
 		}
 
 		@Override

@@ -1,21 +1,24 @@
+package graph;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import element.Mur;
+
 public class Dessin extends JPanel {
 	
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
-	private deplacement.Heros perso;
+	private element.Heros perso;
 	
-	public Dessin(ArrayList<Mur> lMur,	deplacement.Heros perso){
+	public Dessin(ArrayList<Mur> lMur,	element.Heros perso){
 		setBackground(Color.WHITE);
 		this.lMur=lMur;
 		this.perso=perso;
 	}
 	
-	public Dessin(deplacement.Heros perso){
+	public Dessin(element.Heros perso){
 		//sa c'est le dessin sans donnee
 		setBackground(Color.WHITE);
 		Mur m = new Mur(100,100,10,50);

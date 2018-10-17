@@ -32,7 +32,7 @@ public class Lecture_lab {
 				nom = champ[0];
 				
 				if (nom == "Mur") {
-					Mur mur = new Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
+					element.Mur mur = new element.Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
 				}
 
 		
