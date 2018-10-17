@@ -1,4 +1,4 @@
-package generation_lab;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ public class Lecture_lab {
 		Fichier f = new Fichier();
 
 		f.ouvrir(fichier, "R");
-		String[] champ = new String[3];
+		String[] champ = new String[10];
 		String line = "";
 		
 		while((line= f.lire()).length() >= 2) {
@@ -33,6 +33,9 @@ public class Lecture_lab {
 				
 				if (nom == "Mur") {
 					Mur mur = new Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
+				}
+				if (nom == "Heros") {
+					deplacement.Heros heros = new deplacement.Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
 				}
 
 		
