@@ -44,19 +44,19 @@ public class Dessin extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("testestest");
+		System.out.println("clefpress");
 		 {
-		        if(e.getKeyCode()==KeyEvent.VK_Q)
-		            perso.setX(perso.getX()-10);
+		        if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_LEFT)
+		            perso.setX(perso.getX()-5);
 		       
-		        if(e.getKeyCode()==KeyEvent.VK_D)
-		        	perso.setX(perso.getX()+10);
+		        if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT)
+		        	perso.setX(perso.getX()+5);
 		       
-		        if(e.getKeyCode()==KeyEvent.VK_S)
-		        	perso.setY(perso.getY()+10);
+		        if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN)
+		        	perso.setY(perso.getY()+5);
 		       
-		        if(e.getKeyCode()==KeyEvent.VK_Z)
-		        	perso.setY(perso.getY()-10);
+		        if(e.getKeyCode()==KeyEvent.VK_Z || e.getKeyCode()==KeyEvent.VK_UP)
+		        	perso.setY(perso.getY()-5);
 		        
 		        repaint();
 		     }
@@ -65,13 +65,13 @@ public class Dessin extends JPanel implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("testestest");
+		System.out.println("clefrelach");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("testestest");
+		System.out.println("cleftap");
 		
 	}
 
