@@ -22,7 +22,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class Visuel extends JFrame {
+public class Visuel extends JFrame{
 
 	private JPanel contentPane;
 	element.Heros perso = new element.Heros(10, 10, 10);
@@ -31,16 +31,18 @@ public class Visuel extends JFrame {
 	Dessin panel = new Dessin(perso);
 	
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					Visuel frame = new Visuel();
+					
 					frame.setVisible(true);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +55,8 @@ public class Visuel extends JFrame {
 	 */
 	public Visuel() {
 		
-		this.addKeyListener(new LabyKeyListener());
+		
+		System.out.println("test");
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,6 +80,11 @@ public class Visuel extends JFrame {
 				contentPane.add(panel);
 				panel.repaint();
 				System.out.println("test2");
+				partieencours = true ;
+				System.out.println(panel.hasFocus());
+				panel.grabFocus();
+				System.out.println(panel.hasFocus());
+				panel.addKeyListener(panel);
 				
 				
 			}
@@ -87,6 +95,9 @@ public class Visuel extends JFrame {
 		comboBox.setBounds(126, 29, 127, 22);
 		contentPane.add(comboBox);
 		comboBox.addItem("niveau 1");
+		comboBox.addItem("niveau 2");
+		comboBox.addItem("niveau 3");
+		comboBox.addItem("niveau 4");
 		comboBox.addItemListener(new combo());
 		
 		
@@ -97,45 +108,9 @@ public class Visuel extends JFrame {
 	    }               
 	  }
 	
-	public void anim(){
-		while (partieencours){
-			
-			this.repaint();
-			try {
-				Thread.sleep(100);
-			}
-			catch (InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-	}
 	
-	public class LabyKeyListener implements KeyListener {
+	
 
-		@Override
-		public void keyPressed(KeyEvent event) {
-			System.out.println("test1");
-			// TODO Auto-generated method stub
-		
-			if (event.getKeyCode()==KeyEvent.VK_RIGHT){perso.setX(perso.getX()+10);panel.repaint();System.out.println("test");}
-			if (event.getKeyCode()==KeyEvent.VK_LEFT);
-			if (event.getKeyCode()==KeyEvent.VK_UP);
-			if (event.getKeyCode()==KeyEvent.VK_DOWN);}
-		
-
-		@Override
-		public void keyReleased(KeyEvent event) {
-			// TODO Auto-generated method stub
-			if (event. getKeyCode()==KeyEvent.VK_RIGHT){perso.setX(perso.getX()+10);panel.repaint();System.out.println("test");}
-		}
-
-		@Override
-		public void keyTyped(KeyEvent event) {
-			// TODO Auto-generated method stub
-			
-		}
-
-	}
 
 	
 }
