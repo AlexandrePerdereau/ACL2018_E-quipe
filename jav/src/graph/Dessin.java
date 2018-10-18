@@ -14,6 +14,12 @@ public class Dessin extends JPanel implements KeyListener {
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
 	private element.Heros perso;
 	
+	public Dessin(generation_lab.Lecture_lab lab){
+		setFocusable(true);
+		setBackground(Color.WHITE);
+		this.lMur = lab.getListMur();
+		this.perso = lab.getHeros();
+	}
 	
 	public Dessin(ArrayList<Mur> lMur,	element.Heros perso){
 		setFocusable(true);
@@ -24,6 +30,7 @@ public class Dessin extends JPanel implements KeyListener {
 	
 	public Dessin(element.Heros perso){
 		//sa c'est le dessin sans donnee
+		setFocusable(true);
 		setBackground(Color.WHITE);
 		Mur m = new Mur(100,100,10,50);
 		this.lMur.add(m);
@@ -38,6 +45,7 @@ public class Dessin extends JPanel implements KeyListener {
 		for (Mur m : lMur){
 			g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 		}
+		g.setColor(Color.BLUE);
 		g.fillOval(perso.getX(), perso.getY(), perso.getRayon(), perso.getRayon());
 	}
 

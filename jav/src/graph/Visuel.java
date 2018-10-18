@@ -31,15 +31,16 @@ public class Visuel extends JFrame {
 	ArrayList<Mur> batiment = new ArrayList<Mur>();
 	element.Heros heros;
 	static Lecture_lab lec;
+	static  String combochoix = "test-lect.txt";
 
 	boolean partieencours = false;
-	
 
-	Dessin panel = new Dessin(lec.getListMur(), perso);
+
+	Dessin panel;
 
 	public static void main(String[] args) throws IOException {
-		lec = new Lecture_lab("test-lect.txt");
-		System.out.println(lec.getListMur().get(0));
+
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -75,18 +76,27 @@ public class Visuel extends JFrame {
 		contentPane.add(btnCommencerLeNiveau);
 		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
+				try {
+					lec = new Lecture_lab(combochoix);
 
-				Rectangle borders = new Rectangle(contentPane.getBounds());
 
-				panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
-				contentPane.add(panel);
-				panel.repaint();
-				System.out.println("test2");
-				partieencours = true;
-				System.out.println(panel.hasFocus());
-				panel.grabFocus();
-				System.out.println(panel.hasFocus());
-				panel.addKeyListener(panel);
+					Rectangle borders = new Rectangle(contentPane.getBounds());
+					panel = new Dessin(lec);
+					panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
+					contentPane.add(panel);
+					panel.repaint();
+					System.out.println("test2");
+					partieencours = true;
+					System.out.println(panel.hasFocus());
+					panel.grabFocus();
+					System.out.println(panel.hasFocus());
+					panel.addKeyListener(panel);
+
+				}
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});
@@ -94,17 +104,19 @@ public class Visuel extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(126, 29, 127, 22);
 		contentPane.add(comboBox);
-		comboBox.addItem("niveau 1");
-		comboBox.addItem("niveau 2");
-		comboBox.addItem("niveau 3");
-		comboBox.addItem("niveau 4");
+		comboBox.addItem("test-lect.txt");
+		comboBox.addItem("niveau2.txt");
+		comboBox.addItem("niveau3.txt");
+		comboBox.addItem("niveau4.txt");
 		comboBox.addItemListener(new combo());
+
 
 	}
 
 	class combo implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			System.out.println("événement déclenché sur : " + e.getItem());
+			Visuel.combochoix= (String) e.getItem();
 		}
 	}
 
