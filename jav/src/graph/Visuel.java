@@ -27,9 +27,7 @@ import javax.swing.JComboBox;
 public class Visuel extends JFrame {
 
 	private JPanel contentPane;
-	element.Heros perso = new element.Heros(80, 80, 10);
-	ArrayList<Mur> batiment = new ArrayList<Mur>();
-	element.Heros heros;
+	
 	static Lecture_lab lec;
 	static  String combochoix = "test-lect";
 
