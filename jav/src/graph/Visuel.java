@@ -27,10 +27,8 @@ import javax.swing.JComboBox;
 public class Visuel extends JFrame {
 
 	private JPanel contentPane;
-	
 	static Lecture_lab lec;
-	static  String combochoix = "test-lect";
-
+	static  String combochoix = "niveau1";
 	boolean partieencours = false;
 
 
@@ -103,7 +101,7 @@ public class Visuel extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(126, 29, 127, 22);
 		contentPane.add(comboBox);
-		comboBox.addItem("test-lect");
+		comboBox.addItem("niveau1");
 		comboBox.addItem("niveau2");
 		comboBox.addItem("niveau3");
 		comboBox.addItem("niveau4");
