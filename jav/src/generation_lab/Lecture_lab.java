@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import element.Heros;
+import element.Monstre;
 import element.Mur;
 
 public class Lecture_lab{
@@ -16,6 +17,7 @@ public class Lecture_lab{
 	protected ArrayList<Mur> listMur = new ArrayList<Mur>();
 	protected Heros heros;
 	protected String fichier;
+	protected ArrayList<Monstre> listMonstre = new ArrayList<Monstre>();
 	
 	
 	
