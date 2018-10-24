@@ -1,4 +1,18 @@
-Génération du Labyrinthe.
+﻿Génération du Labyrinthe.
 Génération des Monstres.
 Déplacement du Héros.
+Déplacement des Monstres.
 Attaque du Héros.
+Attaque des Monstres.
+Mort du Héros.
+Génération des Pièges.
+Activation des Pièges.
+Génération des Passages.
+Activation des Passages.
+Génération des Magies.
+Activation des Magies
+Génération de l'arrivée.
+Message Victoire.
+
+
+
