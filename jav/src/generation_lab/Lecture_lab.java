@@ -17,6 +17,16 @@ public class Lecture_lab{
 	protected ArrayList<Mur> listMur = new ArrayList<Mur>();
 	protected Heros heros;
 	protected String fichier;
+	public ArrayList<Monstre> getListMonstre() {
+		return listMonstre;
+	}
+
+	public void setListMonstre(ArrayList<Monstre> listMonstre) {
+		this.listMonstre = listMonstre;
+	}
+
+
+
 	protected ArrayList<Monstre> listMonstre = new ArrayList<Monstre>();
 	
 	
@@ -48,6 +58,12 @@ public class Lecture_lab{
 					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
 					heros = hero;
 					
+				}
+				
+				if (champ[0].equals("Monstre")) {
+					Monstre monstre = new Monstre(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
+					listMonstre.add(monstre);
+					System.out.println("testmonstre");
 				}
 
 		

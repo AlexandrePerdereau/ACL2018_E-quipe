@@ -7,18 +7,22 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import element.Monstre;
 import element.Mur;
 
 public class Dessin extends JPanel implements KeyListener {
 	
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
 	private element.Heros perso;
+	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
+
 	
 	public Dessin(generation_lab.Lecture_lab lab){
 		setFocusable(true);
 		setBackground(Color.WHITE);
 		this.lMur = lab.getListMur();
 		this.perso = lab.getHeros();
+		this.lMonstre = lab.getListMonstre();
 	}
 	
 	public Dessin(ArrayList<Mur> lMur,	element.Heros perso){
@@ -44,6 +48,10 @@ public class Dessin extends JPanel implements KeyListener {
 		g.setColor(Color.RED);
 		for (Mur m : lMur){
 			g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
+		}
+		g.setColor(Color.MAGENTA);
+		for (Monstre monstre : lMonstre){
+			g.fillOval(monstre.getX(), monstre.getY(), monstre.getRayon(), monstre.getRayon());;
 		}
 		g.setColor(Color.BLUE);
 		g.fillOval(perso.getX(), perso.getY(), perso.getRayon(), perso.getRayon());
