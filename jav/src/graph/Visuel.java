@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import element.Heros;
 import element.Mur;
 import generation_lab.Lecture_lab;
 
@@ -84,10 +85,13 @@ public class Visuel extends JFrame {
 					panel.repaint();
 					System.out.println("test2");
 					partieencours = true;
+					
 					System.out.println(panel.hasFocus());
 					panel.grabFocus();
 					System.out.println(panel.hasFocus());
 					panel.addKeyListener(panel);
+					Heros perso = panel.perso;
+					
 
 				}
 				catch (IOException e1) {

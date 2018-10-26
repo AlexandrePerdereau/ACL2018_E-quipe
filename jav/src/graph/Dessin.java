@@ -13,7 +13,7 @@ import element.Mur;
 public class Dessin extends JPanel implements KeyListener {
 	
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
-	private element.Heros perso;
+	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 
 	
@@ -61,27 +61,32 @@ public class Dessin extends JPanel implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("clefpress");
-		 {
+		 
 		        if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_LEFT)
-		            perso.setX(perso.getX()-5);
+		            perso.setDirectionX(-1);;
 		       
 		        if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT)
-		        	perso.setX(perso.getX()+5);
+		        	perso.setDirectionX(1);
 		       
 		        if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN)
-		        	perso.setY(perso.getY()+5);
+		        	perso.setDirectionY(1);
 		       
 		        if(e.getKeyCode()==KeyEvent.VK_Z || e.getKeyCode()==KeyEvent.VK_UP)
-		        	perso.setY(perso.getY()-5);
+		        	perso.setDirectionY(-1);
 		        
-		        repaint();
-		     }
+			       perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
+			       perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
+			       this.repaint();
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("clefrelach");
+    	perso.setDirectionX(0);
+    	perso.setDirectionX(0);
+
 	}
 
 	@Override
