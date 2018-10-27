@@ -64,15 +64,19 @@ public abstract class Personnage {
 		this.rayon=rayon;
 	}
 	
-	public boolean peutAvancer( ArrayList<Mur> m ){
+	public boolean peutAvancer( ArrayList<Mur> m ){ //return true si on peut passer dans la direction de X , false sinon
 		for (Mur mur : m ){
 			if (this.directionX==1){
+				System.out.println("TESTBOUCLE");
 				if (this.y +this.rayon> mur.getPosy() && this.y -this.rayon<mur.getPosy()+mur.getLongy()){
-					if (this.x+this.rayon<=mur.getPosx() && this.x+this.rayon>mur.getPosx())
-						return false;
+					System.out.println("TESTCOMPA1");
+
+					if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+						System.out.println("BLOCAGE");return false;}
 				}
 			}
 		}
+		System.out.println("sa passe");
 		return true;
 	}
 }

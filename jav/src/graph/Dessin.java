@@ -55,7 +55,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	}
 
 	public void paintComponent(Graphics g)  { //appele lors du repaint(), on dessine le panneau
-		System.out.println("repaint");
+		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
 
@@ -90,10 +90,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			if(e.getKeyCode()==KeyEvent.VK_Z || e.getKeyCode()==KeyEvent.VK_UP)
 				perso.setDirectionY(-1);
-			if  (perso.peutAvancer( lMur ));
+			if  (perso.peutAvancer( lMur )){
 			perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
 			perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
-			
+			}
 
 	}
 
