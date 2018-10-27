@@ -67,30 +67,48 @@ public class Visuel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		// On initialise la fenêtre
 
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(126, 29, 127, 22);
+		contentPane.add(comboBox);
+		comboBox.addItem("niveau1");
+		comboBox.addItem("niveau2");
+		comboBox.addItem("niveau3");
+		comboBox.addItem("niveau4");
+		comboBox.addItemListener(new combo());
+		
+		//On ajoute le choix du niveau
+		
 		JButton btnCommencerLeNiveau = new JButton("Commencer le niveau");
 		btnCommencerLeNiveau.setBounds(298, 13, 157, 54);
 		contentPane.add(btnCommencerLeNiveau);
-		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() { 		//lorsque l'utilisateur clique sur le bouton : 
+
+			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
 				try {
 					String S= combochoix+".txt";
 					lec = new Lecture_lab(S);
+					
+					//On extrait d'abord les informations du fichiers
 
 
 					Rectangle borders = new Rectangle(contentPane.getBounds());
-					panel = new Dessin(lec);
+					panel = new Dessin(lec); // On utilise ses infos pour creer le dessin
 					panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
 					contentPane.add(panel);
-					panel.repaint();
+					panel.repaint();  //On affiche le dessin
 					System.out.println("test2");
-					partieencours = true;
+					partieencours = true; //booleen inutile maintenant , id : repeindre le paneau tout les 10 ms , mais fonctionne pas
 					
 					System.out.println(panel.hasFocus());
-					panel.grabFocus();
+					panel.grabFocus();	//le focus est necessaire pour que Dessin puisse entendre les touches
 					System.out.println(panel.hasFocus());
-					panel.addKeyListener(panel);
-					Heros perso = panel.perso;
+					panel.addKeyListener(panel); 
+					
+					
+					
 					
 
 				}
@@ -102,14 +120,7 @@ public class Visuel extends JFrame {
 			}
 		});
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(126, 29, 127, 22);
-		contentPane.add(comboBox);
-		comboBox.addItem("niveau1");
-		comboBox.addItem("niveau2");
-		comboBox.addItem("niveau3");
-		comboBox.addItem("niveau4");
-		comboBox.addItemListener(new combo());
+	
 
 
 	}
@@ -118,7 +129,7 @@ public class Visuel extends JFrame {
 		public void itemStateChanged(ItemEvent e) {
 			System.out.println("événement déclenché sur : " + e.getItem());
 			Visuel.combochoix= (String) e.getItem();
-		}
+		}  //lorsque on change de selection de niveau , on regarde le nouveau niveau, oblige d'initialiser au niveau 1 au debut de Visuel
 	}
 
 }

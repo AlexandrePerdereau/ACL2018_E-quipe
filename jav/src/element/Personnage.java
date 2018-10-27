@@ -1,5 +1,7 @@
 package element;
 
+import java.util.ArrayList;
+
 public abstract class Personnage {
 	private int x;
 	private int y;
@@ -60,5 +62,17 @@ public abstract class Personnage {
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
+	}
+	
+	public boolean peutAvancer( ArrayList<Mur> m ){
+		for (Mur mur : m ){
+			if (this.directionX==1){
+				if (this.y +this.rayon> mur.getPosy() && this.y -this.rayon<mur.getPosy()+mur.getLongy()){
+					if (this.x+this.rayon<=mur.getPosx() && this.x+this.rayon>mur.getPosx())
+						return false;
+				}
+			}
+		}
+		return true;
 	}
 }
