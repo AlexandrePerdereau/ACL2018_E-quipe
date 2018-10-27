@@ -58,10 +58,11 @@ public abstract class Personnage {
 		this.rayon = rayon;
 	}
 
-	public Personnage (int x, int y , int rayon){
+	public Personnage (int x, int y , int rayon , int facteurdevitesse){
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
+		this.facteurdevitesse=facteurdevitesse;
 	}
 	
 	public boolean peutAvancer( ArrayList<Mur> m ){ //return true si on peut passer dans la direction de X , false sinon
