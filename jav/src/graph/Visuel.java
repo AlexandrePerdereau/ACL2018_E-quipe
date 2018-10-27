@@ -30,7 +30,7 @@ public class Visuel extends JFrame {
 	private JPanel contentPane;
 	static Lecture_lab lec;
 	static  String combochoix = "niveau1";
-	boolean partieencours = false;
+	static boolean partieencours = false;
 
 
 	Dessin panel;
@@ -106,14 +106,9 @@ System.out.println("frame creer");
 					panel.grabFocus();	//le focus est necessaire pour que Dessin puisse entendre les touches
 					System.out.println("focus "+panel.hasFocus());
 					panel.addKeyListener(panel); 
+					Thread thread = new Thread(panel);
+					thread.start();
 					
-					/*while (true) {panel.repaint();System.out.print("!");try {
-						Thread.sleep(100);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}}
-					*/
 					
 					//Analyse probleme jusque present : le repaint appelle pas le paintcomponent
 					

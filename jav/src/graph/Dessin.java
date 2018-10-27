@@ -10,12 +10,25 @@ import javax.swing.JPanel;
 import element.Monstre;
 import element.Mur;
 
-public class Dessin extends JPanel implements KeyListener {
+public class Dessin extends JPanel implements KeyListener, Runnable {
 
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
 	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 
+	  @Override
+	  public void run(){
+	    System.out.println("Execution");
+	    while (Visuel.partieencours){
+	    	this.repaint();
+	    	try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
+	  }
 
 	public Dessin(generation_lab.Lecture_lab lab){
 		//On prend les info du lab, extraites elels meme du fichier auparavant
