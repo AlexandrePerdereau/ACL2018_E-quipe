@@ -43,7 +43,7 @@ public class Visuel extends JFrame {
 				try {
 
 					Visuel frame = new Visuel();
-
+System.out.println("frame creer");
 					frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -102,13 +102,20 @@ public class Visuel extends JFrame {
 					System.out.println("test2");
 					partieencours = true; //booleen inutile maintenant , id : repeindre le paneau tout les 10 ms , mais fonctionne pas
 					
-					System.out.println(panel.hasFocus());
+					System.out.println("focus "+panel.hasFocus());
 					panel.grabFocus();	//le focus est necessaire pour que Dessin puisse entendre les touches
-					System.out.println(panel.hasFocus());
+					System.out.println("focus "+panel.hasFocus());
 					panel.addKeyListener(panel); 
 					
+					/*while (true) {panel.repaint();System.out.print("!");try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}}
+					*/
 					
-					
+					//Analyse probleme jusque present : le repaint appelle pas le paintcomponent
 					
 
 				}

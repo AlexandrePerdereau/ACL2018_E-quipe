@@ -42,6 +42,7 @@ public class Dessin extends JPanel implements KeyListener {
 	}
 
 	public void paintComponent(Graphics g)  { //appele lors du repaint(), on dessine le panneau
+		System.out.println("repaint");
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
 
