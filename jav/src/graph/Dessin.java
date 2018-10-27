@@ -22,7 +22,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	    while (Visuel.partieencours){
 	    	this.repaint();
 	    	try {
-				Thread.sleep(500);
+				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -93,7 +93,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			if  (perso.peutAvancer( lMur ));
 			perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
 			perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
-			this.repaint();
+			
 
 	}
 

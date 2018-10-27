@@ -87,6 +87,8 @@ System.out.println("frame creer");
 		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() { 		//lorsque l'utilisateur clique sur le bouton : 
 
 			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
+				if (partieencours) { partieencours = false ; panel.setVisible(false);;}
+				else{
 				try {
 					String S= combochoix+".txt";
 					lec = new Lecture_lab(S);
@@ -117,7 +119,7 @@ System.out.println("frame creer");
 				catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}}
 
 			}
 		});
