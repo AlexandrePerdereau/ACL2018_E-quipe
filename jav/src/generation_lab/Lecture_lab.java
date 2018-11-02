@@ -55,13 +55,17 @@ public class Lecture_lab{
 					System.out.println("testmur");
 				}
 				if (champ[0].equals("Heros")) {
-					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
+					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]));
 					heros = hero;
 					
 				}
 				
 				if (champ[0].equals("Monstre")) {
-					Monstre monstre = new Monstre(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
+					ArrayList<Integer> carac = new ArrayList<Integer>();
+					for (int i =6 ; i<champ.length;i++)carac.add(Integer.parseInt(champ[i]));
+					int[] caracs = new int[carac.size()];
+					for (int i=0;i<carac.size();i++)caracs[i]=carac.get(i);
+					Monstre monstre = new Monstre(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Boolean.getBoolean(champ[5]),caracs);
 					listMonstre.add(monstre);
 					System.out.println("testmonstre");
 				}

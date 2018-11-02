@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import element.Heros;
 import element.Mur;
 import generation_lab.Lecture_lab;
 
@@ -29,7 +30,7 @@ public class Visuel extends JFrame {
 	private JPanel contentPane;
 	static Lecture_lab lec;
 	static  String combochoix = "niveau1";
-	boolean partieencours = false;
+	static boolean partieencours = false;
 
 
 	Dessin panel;
@@ -42,7 +43,7 @@ public class Visuel extends JFrame {
 				try {
 
 					Visuel frame = new Visuel();
-
+System.out.println("frame creer");
 					frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -66,37 +67,8 @@ public class Visuel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JButton btnCommencerLeNiveau = new JButton("Commencer le niveau");
-		btnCommencerLeNiveau.setBounds(298, 13, 157, 54);
-		contentPane.add(btnCommencerLeNiveau);
-		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				try {
-					String S= combochoix+".txt";
-					lec = new Lecture_lab(S);
-
-
-					Rectangle borders = new Rectangle(contentPane.getBounds());
-					panel = new Dessin(lec);
-					panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
-					contentPane.add(panel);
-					panel.repaint();
-					System.out.println("test2");
-					partieencours = true;
-					System.out.println(panel.hasFocus());
-					panel.grabFocus();
-					System.out.println(panel.hasFocus());
-					panel.addKeyListener(panel);
-
-				}
-				catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-			}
-		});
+		
+		// On initialise la fenêtre
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(126, 29, 127, 22);
@@ -106,6 +78,53 @@ public class Visuel extends JFrame {
 		comboBox.addItem("niveau3");
 		comboBox.addItem("niveau4");
 		comboBox.addItemListener(new combo());
+		
+		//On ajoute le choix du niveau
+		
+		JButton btnCommencerLeNiveau = new JButton("Commencer le niveau");
+		btnCommencerLeNiveau.setBounds(298, 13, 157, 54);
+		contentPane.add(btnCommencerLeNiveau);
+		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() { 		//lorsque l'utilisateur clique sur le bouton : 
+
+			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
+				if (partieencours) { partieencours = false ; panel.setVisible(false);;}
+				else{
+				try {
+					String S= combochoix+".txt";
+					lec = new Lecture_lab(S);
+					
+					//On extrait d'abord les informations du fichiers
+
+
+					Rectangle borders = new Rectangle(contentPane.getBounds());
+					panel = new Dessin(lec); // On utilise ses infos pour creer le dessin
+					panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
+					contentPane.add(panel);
+					panel.repaint();  //On affiche le dessin
+					System.out.println("test2");
+					partieencours = true; //booleen inutile maintenant , id : repeindre le paneau tout les 10 ms , mais fonctionne pas
+					
+					System.out.println("focus "+panel.hasFocus());
+					panel.grabFocus();	//le focus est necessaire pour que Dessin puisse entendre les touches
+					System.out.println("focus "+panel.hasFocus());
+					panel.addKeyListener(panel); 
+					Thread thread = new Thread(panel);
+					thread.start();
+					
+					
+					//Analyse probleme jusque present : le repaint appelle pas le paintcomponent
+					
+
+				}
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}}
+
+			}
+		});
+
+	
 
 
 	}
@@ -114,7 +133,7 @@ public class Visuel extends JFrame {
 		public void itemStateChanged(ItemEvent e) {
 			System.out.println("événement déclenché sur : " + e.getItem());
 			Visuel.combochoix= (String) e.getItem();
-		}
+		}  //lorsque on change de selection de niveau , on regarde le nouveau niveau, oblige d'initialiser au niveau 1 au debut de Visuel
 	}
 
 }
