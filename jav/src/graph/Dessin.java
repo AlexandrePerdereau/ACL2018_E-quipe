@@ -106,8 +106,11 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void keyReleased(KeyEvent e) { // lorsque on relache la touche , faut pas continuer a avancer
 		// TODO Auto-generated method stub
 		System.out.println("clefrelach");
+		if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_D)
 		perso.setDirectionX(0);
-		perso.setDirectionX(0);
+		
+		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN || e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_Z)
+		perso.setDirectionY(0);
 
 	}
 
