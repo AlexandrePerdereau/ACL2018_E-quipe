@@ -65,17 +65,34 @@ public abstract class Personnage {
 		this.rayon=rayon;
 		this.facteurdevitesse=facteurdevitesse;
 	}
-	
+
 	public boolean peutAvancer( ArrayList<Mur> m ){ //return true si on peut passer dans la direction de X , false sinon
 		for (Mur mur : m ){
-			if (this.directionX==1){
+			if (this.directionX==1){ 
 				System.out.println("TESTBOUCLE");
-				if (this.y +this.rayon> mur.getPosy() && this.y -this.rayon<mur.getPosy()+mur.getLongy()){
+				//geros le cas -> | |
+				if (this.directionY==0 && this.y +this.rayon> mur.getPosy() && this.y -this.rayon<mur.getPosy()+mur.getLongy()){
 					System.out.println("TESTCOMPA1");
 
 					if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
-						System.out.println("BLOCAGE");return false;}
+						System.out.println("BLOCAGE1");return false;}
 				}
+
+				//maintenant geros le cas droite mais on va en bas
+				if (this.directionY==1){
+					if (this.y+this.rayon+this.facteurdevitesse>mur.getPosy() && this.y-this.rayon+this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+						System.out.println("TESTCOMPA");
+
+						if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+							System.out.println("BLOCAGE11");return false;}
+				//maintenant droite et haut
+
+
+
+					}
+				}
+
+
 			}
 			if (this.directionX==-1){
 				if (this.y+this.rayon>mur.getPosy() && this.y-this.rayon<mur.getPosy()+mur.getLongy()){
@@ -84,6 +101,8 @@ public abstract class Personnage {
 					}
 				}
 			}
+
+
 		}
 		System.out.println("sa passe");
 		return true;
