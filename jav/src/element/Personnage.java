@@ -67,65 +67,92 @@ public abstract class Personnage {
 	}
 
 	public boolean peutAvancer( ArrayList<Mur> m ){ //return true si on peut passer dans la direction de X , false sinon
+		/* tres surement ameliorable : moyen de systematiser au lieu de cas par cas je pense*/
 		for (Mur mur : m ){
+			int X=mur.getPosx();
+			int Y=mur.getPosy();
+			int LX=mur.getLongx();
+			int LY=mur.getLongy();
+
+			//collision horizontale
 			if (this.directionX==1){ 
 				System.out.println("TESTBOUCLE");
-				//geros le cas -> | |
-				if (this.directionY==0 && this.y +this.rayon> mur.getPosy() && this.y -this.rayon<mur.getPosy()+mur.getLongy()){
+				//gerons le cas -> | |
+				if (this.directionY==0 && this.y +this.rayon> Y && this.y -this.rayon<Y+LY){
 					System.out.println("TESTCOMPA1");
 
-					if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+					if (this.x+this.rayon<=X && this.x+this.directionX*this.facteurdevitesse+this.rayon>X){
 						System.out.println("BLOCAGE1");return false;}
 				}
 
 				//maintenant geros le cas droite mais on va en bas
 				if (this.directionY==1){
-					if (this.y+this.rayon+this.facteurdevitesse>mur.getPosy() && this.y-this.rayon+this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+					if (this.y+this.rayon+this.facteurdevitesse>Y && this.y-this.rayon+this.facteurdevitesse<Y+LY){
 						System.out.println("TESTCOMPA");
 
-						if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+						if (this.x+this.rayon<=X && this.x+this.directionX*this.facteurdevitesse+this.rayon>X){
 							System.out.println("BLOCAGE11");return false;}
 
 					}
 				}
 				//maintenant droite et haut
 				if (this.directionY==-1){
-					if (this.y+this.rayon-this.facteurdevitesse>mur.getPosy() && this.y-this.rayon-this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+					if (this.y+this.rayon-this.facteurdevitesse>Y && this.y-this.rayon-this.facteurdevitesse<Y+LY){
 						System.out.println("TESTCOMPA");
 
-						if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+						if (this.x+this.rayon<=X && this.x+this.directionX*this.facteurdevitesse+this.rayon>X){
 							System.out.println("BLOCAGE12");return false;}
 
 					}
 				}
 
+
 			}
 			if (this.directionX==-1){
-				
+
 				//d'abord gauche tout court
-				if (this.directionY==0 && this.y+this.rayon>mur.getPosy() && this.y-this.rayon<mur.getPosy()+mur.getLongy()){
-					if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
+				if (this.directionY==0 && this.y+this.rayon>Y && this.y-this.rayon<Y+LY){
+					if (this.x-this.rayon>=X+LX && this.x-this.facteurdevitesse-this.rayon<X+LX){
 						System.out.println("BLOCAGE2");return false ;
 					}
 				}
 				//ensuite gauche bas
 				if (this.directionY==1){
-					if (this.y+this.rayon+this.facteurdevitesse>mur.getPosy() && this.y-this.rayon+this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
-						if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
+					if (this.y+this.rayon+this.facteurdevitesse>Y && this.y-this.rayon+this.facteurdevitesse<Y+LY){
+						if (this.x-this.rayon>=X+LX && this.x-this.facteurdevitesse-this.rayon<X+LX){
 							System.out.println("BLOCAGE21");return false ;
 						}
 					}
 				}
 				//maintenant gauche haut
 				if (this.directionY==-1){
-					if (this.y+this.rayon-this.facteurdevitesse>mur.getPosy() && this.y-this.rayon-this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
-						if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
-							System.out.println("BLOCAGE21");return false ;
+					if (this.y+this.rayon-this.facteurdevitesse>Y && this.y-this.rayon-this.facteurdevitesse<Y+LY){
+						if (this.x-this.rayon>=X+LX && this.x-this.facteurdevitesse-this.rayon<X+LX){
+							System.out.println("BLOCAGE22");return false ;
 						}
 					}
 				}
 			}
+			//collision verticale
+			if (this.directionY==1){ // vers le bas
 
+				if (this.x+this.rayon+this.directionX*this.facteurdevitesse>X && this.x-this.rayon+this.facteurdevitesse*this.directionX<X+LX){
+					if (this.y+this.rayon<=Y && this.y+this.facteurdevitesse+this.rayon>Y){
+						System.out.println("BLOCAGEV1");return false ;
+					}
+
+				}
+
+			}
+			
+			if (this.directionY==-1){ //vers le haut
+				if (this.x+this.rayon+this.directionX*this.facteurdevitesse>X && this.x-this.rayon+this.facteurdevitesse*this.directionX<X+LX){
+					if (this.y-this.rayon>=Y+LY && this.y-this.facteurdevitesse-this.rayon<Y+LY){
+						System.out.println("BLOCAGEV1");return false ;
+					}
+
+				}
+			}
 
 		}
 		System.out.println("sa passe");
