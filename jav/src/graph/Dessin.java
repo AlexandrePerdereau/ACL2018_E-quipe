@@ -70,10 +70,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		}
 		g.setColor(Color.RED);
 		for (Monstre monstre : lMonstre){
-			g.fillOval(monstre.getX(), monstre.getY(), monstre.getRayon(), monstre.getRayon());;
+			g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
 		}
 		g.setColor(Color.BLUE);
-		g.fillOval(perso.getX(), perso.getY(), perso.getRayon(), perso.getRayon());
+		g.fillOval(perso.getX()-perso.getRayon(), perso.getY()-perso.getRayon(), 2*perso.getRayon(), 2*perso.getRayon());
 	}
 
 	@Override

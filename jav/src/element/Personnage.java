@@ -77,6 +77,13 @@ public abstract class Personnage {
 						System.out.println("BLOCAGE");return false;}
 				}
 			}
+			if (this.directionX==-1){
+				if (this.y+this.rayon>mur.getPosy() && this.y-this.rayon<mur.getPosy()+mur.getLongy()){
+					if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
+						System.out.println("BLOCAGE2");return false ;
+					}
+				}
+			}
 		}
 		System.out.println("sa passe");
 		return true;
