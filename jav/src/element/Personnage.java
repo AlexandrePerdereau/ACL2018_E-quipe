@@ -85,19 +85,43 @@ public abstract class Personnage {
 
 						if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
 							System.out.println("BLOCAGE11");return false;}
+
+					}
+				}
 				//maintenant droite et haut
+				if (this.directionY==-1){
+					if (this.y+this.rayon-this.facteurdevitesse>mur.getPosy() && this.y-this.rayon-this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+						System.out.println("TESTCOMPA");
 
-
+						if (this.x+this.rayon<=mur.getPosx() && this.x+this.directionX*this.facteurdevitesse+this.rayon>mur.getPosx()){
+							System.out.println("BLOCAGE12");return false;}
 
 					}
 				}
 
-
 			}
 			if (this.directionX==-1){
-				if (this.y+this.rayon>mur.getPosy() && this.y-this.rayon<mur.getPosy()+mur.getLongy()){
+				
+				//d'abord gauche tout court
+				if (this.directionY==0 && this.y+this.rayon>mur.getPosy() && this.y-this.rayon<mur.getPosy()+mur.getLongy()){
 					if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
 						System.out.println("BLOCAGE2");return false ;
+					}
+				}
+				//ensuite gauche bas
+				if (this.directionY==1){
+					if (this.y+this.rayon+this.facteurdevitesse>mur.getPosy() && this.y-this.rayon+this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+						if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
+							System.out.println("BLOCAGE21");return false ;
+						}
+					}
+				}
+				//maintenant gauche haut
+				if (this.directionY==-1){
+					if (this.y+this.rayon-this.facteurdevitesse>mur.getPosy() && this.y-this.rayon-this.facteurdevitesse<mur.getPosy()+mur.getLongy()){
+						if (this.x-this.rayon>=mur.getPosx()+mur.getLongx() && this.x-this.facteurdevitesse-this.rayon<mur.getPosx()+mur.getLongx()){
+							System.out.println("BLOCAGE21");return false ;
+						}
 					}
 				}
 			}
