@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import element.Magique;
 import element.Monstre;
 import element.Mur;
 import element.Tresor;
@@ -17,11 +18,16 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 	private Tresor arivee;
+	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
 
 	  @Override
 	  public void run(){
 	    System.out.println("Execution");
 	    while (Visuel.partieencours){
+	    	if (this.arivee.pietine_par_heros(perso)){
+	    		Visuel.partieencours=false;
+	    		this.repaint();
+	    	}
 	    	for (Monstre m:lMonstre){
 	    		//ici on fera bouger les monstres patrouilleurs
 	    		int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
@@ -54,6 +60,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		this.lMur = lab.getListMur();
 		this.perso = lab.getHeros();
 		this.lMonstre = lab.getListMonstre();
+		this.lMagique=lab.getlMagique();
+		this.arivee=lab.getArrivee();
 	}
 
 	public Dessin(ArrayList<Mur> lMur,	element.Heros perso){ //utile pour des tests,

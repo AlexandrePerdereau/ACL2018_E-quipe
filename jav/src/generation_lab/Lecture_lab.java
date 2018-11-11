@@ -20,6 +20,24 @@ public class Lecture_lab{
 	protected Heros heros;
 	protected String fichier;
 	protected Tresor arrivee;
+	public Tresor getArrivee() {
+		return arrivee;
+	}
+
+	public void setArrivee(Tresor arrivee) {
+		this.arrivee = arrivee;
+	}
+
+	public ArrayList<Magique> getlMagique() {
+		return lMagique;
+	}
+
+	public void setlMagique(ArrayList<Magique> lMagique) {
+		this.lMagique = lMagique;
+	}
+
+
+
 	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	
 	public ArrayList<Monstre> getListMonstre() {

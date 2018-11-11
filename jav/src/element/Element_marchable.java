@@ -32,7 +32,7 @@ public abstract class Element_marchable {
 	}
 
 
-	public Element_marchable(int x, int y, int rayon) {
+	public Element_marchable(int x, int y, int rayon, boolean est_pietine) {
 		this.x = x;
 		this.y = y;
 		this.rayon = rayon;
