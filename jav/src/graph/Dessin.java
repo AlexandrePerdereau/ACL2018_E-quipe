@@ -24,9 +24,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	    		//ici on fera bouger les monstres patrouilleurs
 	    		int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
 	    		int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
-	    		if (m.peutAvancer(lMur) && Math.abs(newX-m.getPoint()[0])<Math.abs(m.getDistance()[0]) && Math.abs(newY-m.getPoint()[1])<Math.abs(m.getDistance()[1])){
+	    		if (m.peutAvancer(lMur) ){
 	    			m.setX(newX);
 	    			m.setY(newY);
+	    			System.out.println("TEST");
 	    		}
 	    		else{
 	    			m.setDirectionX(-1*m.getDirectionX());

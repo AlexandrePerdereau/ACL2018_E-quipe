@@ -44,15 +44,13 @@ public class Lecture_lab{
 		while((line= f.lire()).length() >= 2) {
 			
 			//chaine = f.lire();
-			
+			System.out.println(line);
 			champ = line.split(",");
 			if (champ != null) {
-				System.out.println("testchamp");
-				System.out.println(champ[0]);
 				if (champ[0].equals("Mur")) {
 					Mur mur = new Mur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
 					listMur.add(mur);
-					System.out.println("testmur");
+					
 				}
 				if (champ[0].equals("Heros")) {
 					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]));
@@ -61,17 +59,24 @@ public class Lecture_lab{
 				}
 				
 				if (champ[0].equals("Monstre")) {
-					ArrayList<Integer> carac = new ArrayList<Integer>();
-					for (int i =6 ; i<champ.length;i++)carac.add(Integer.parseInt(champ[i]));
-					int[] caracs = new int[carac.size()];
-					for (int i=0;i<carac.size();i++)caracs[i]=carac.get(i);
-					Monstre monstre = new Monstre(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Boolean.getBoolean(champ[5]),caracs);
+					ArrayList<Integer> pointA = new ArrayList<Integer>();
+					for (int i =3 ; i<5;i++)pointA.add(Integer.parseInt(champ[i]));
+					int[] point = new int[pointA.size()];
+					for (int i=0;i<pointA.size();i++)point[i]=pointA.get(i);
+					
+					ArrayList<Integer> distaA = new ArrayList<Integer>();
+					for (int i =5 ; i<7;i++)distaA.add(Integer.parseInt(champ[i]));
+					int[] dista = new int[distaA.size()];
+					
+
+					for (int i=0;i<distaA.size();i++){dista[i]=distaA.get(i);System.out.println("a"+dista[i]);}
+					
+					Monstre monstre = new Monstre( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
 					listMonstre.add(monstre);
 					System.out.println("testmonstre");
 				}
 
 		
-			System.out.println(champ[0] + "," + champ[1] + "," + champ[2] + "," + champ[3]);
 
 		}
 	}

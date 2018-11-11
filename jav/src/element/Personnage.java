@@ -87,10 +87,10 @@ public abstract class Personnage {
 
 
 				if (this.y+this.rayon+this.directionY*this.facteurdevitesse>Y && this.y-this.rayon+this.directionY*this.facteurdevitesse<Y+LY){
-					System.out.println("TESTCOMPA");
+					
 
 					if (this.x+this.rayon<=X && this.x+this.directionX*this.facteurdevitesse+this.rayon>X){
-						System.out.println("BLOCAGE11");return false;}
+						return false;}
 
 				}
 
@@ -102,7 +102,7 @@ public abstract class Personnage {
 				
 					if (this.y+this.rayon+this.directionY*this.facteurdevitesse>Y && this.y-this.rayon+this.directionY*this.facteurdevitesse<Y+LY){
 						if (this.x-this.rayon>=X+LX && this.x-this.facteurdevitesse-this.rayon<X+LX){
-							System.out.println("BLOCAGE21");return false ;
+							return false ;
 						}
 					}
 				
@@ -112,7 +112,7 @@ public abstract class Personnage {
 
 				if (this.x+this.rayon+this.directionX*this.facteurdevitesse>X && this.x-this.rayon+this.facteurdevitesse*this.directionX<X+LX){
 					if (this.y+this.rayon<=Y && this.y+this.facteurdevitesse+this.rayon>Y){
-						System.out.println("BLOCAGEV1");return false ;
+						return false ;
 					}
 
 				}
@@ -122,14 +122,14 @@ public abstract class Personnage {
 			if (this.directionY==-1){ //vers le haut
 				if (this.x+this.rayon+this.directionX*this.facteurdevitesse>X && this.x-this.rayon+this.facteurdevitesse*this.directionX<X+LX){
 					if (this.y-this.rayon>=Y+LY && this.y-this.facteurdevitesse-this.rayon<Y+LY){
-						System.out.println("BLOCAGEV2");return false ;
+						return false ;
 					}
 
 				}
 			}
 
 		}
-		System.out.println("sa passe");
+		
 		return true;
 	}
 }
