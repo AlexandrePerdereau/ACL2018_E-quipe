@@ -4,7 +4,8 @@ public abstract class Element_marchable {
 
 	private int x;
 	private int y;
-	private int rayon;
+	private int longX;
+	private int longY;
 	
 
 	public int getX() {
@@ -23,27 +24,36 @@ public abstract class Element_marchable {
 		this.y = y;
 	}
 
-	public int getRayon() {
-		return rayon;
+	public int getLongX() {
+		return longX;
 	}
 
-	public void setRayon(int rayon) {
-		this.rayon = rayon;
+	public void setLongX(int larg) {
+		this.longX = larg;
+	}
+	
+	public void setLongY(int haut) {
+		this.longY = haut;
+	}
+	
+	public int getLongY() {
+		return longY;
 	}
 
-
-	public Element_marchable(int x, int y, int rayon, boolean est_pietine) {
+	public Element_marchable(int x, int y, int longX, int longY) {
 		this.x = x;
 		this.y = y;
-		this.rayon = rayon;
+		this.longX = longX;
+		this.longY = longY;
 		
 	}
 
-	public boolean pietine_par_heros(Heros h) {
-		if (this.x == h.getX() && this.y == h.getY()) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean pietinee(Heros Aventurier) {
+		//On détermine si le centre de la zone est sous le héros en abscisse.
+		boolean horizontal = (Aventurier.getX() + Aventurier.getRayon() >= (this.getX() + this.getLongX())/2) || (Aventurier.getX() - Aventurier.getRayon() <= (this.getX() + this.getLongX())/2);
+		//On détermine si le centre de la zone est sous le héros en ordonnée.
+		boolean vertical = (Aventurier.getY() + Aventurier.getRayon() >= (this.getY() + this.getLongY())/2) || (Aventurier.getY() - Aventurier.getRayon() <= (this.getY() + this.getLongY())/2);
+		//Si les deux sont vrais, alors le héros marche sur le centre de la zone.		
+		return (horizontal && vertical);
 	}
 }
