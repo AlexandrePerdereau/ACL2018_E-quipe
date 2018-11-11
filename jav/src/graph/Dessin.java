@@ -22,12 +22,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	    while (Visuel.partieencours){
 	    	this.repaint();
 	    	for (Monstre m:lMonstre){
-	    		//ici on fera bouger les monstres
-	    		 if (m.estPatrouilleur){//d'abord patrouilleur
-	    			 
-	    		 }
-	    		 //ensuite non patrouilleur
-	    		 else;
+	    		//ici on fera bouger les monstres patrouilleurs
 	    	}
 	    	try {
 				Thread.sleep(20);
