@@ -1,8 +1,12 @@
 
 Affichage
-Dévellopé par : Alexandre Perdereau
+Développé par : Alexandre Perdereau
 Test unitaire effectué par : non fait
 
 Le joueur déplace son personnage
-Dévellopé par : Alexandre Perdereau
+Développé par : Alexandre Perdereau
+Test unitaire effectué par : non fait
+
+Génération des différents objets sur lequel le héros peut marcher
+Developpé par : Guillaume Magnette
 Test unitaire effectué par : non fait
