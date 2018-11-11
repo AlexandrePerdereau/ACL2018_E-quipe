@@ -1,18 +1,14 @@
 package element;
 
 public class Monstre extends Personnage {
-	 private boolean estPatrouilleur;
-	 private int[] caracs; // liste les caracs du monstre , pas la meme sens si patrouilleurs ou tete chercheuse
-	//toutefois meme longueur ici plus pratique pour lecture_lab;
-	 //dans le cas patrouilleur:
-	 	//carac[0:1]=premier point
-	 	//carac[2:3]=deuxieme point
+	 private int[] point; // point de depart
+	 private int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
 	
 	 
-	public Monstre(int x, int y, int rayon ,int facteurdevitesse ,boolean b, int[] caracs) {
+	public Monstre(int x, int y, int rayon ,int facteurdevitesse ,boolean b, int[] point, int []distance) {
 		super(x, y, rayon , facteurdevitesse);
-		this.caracs=caracs;
-		estPatrouilleur=b;
+		this.point=point;
+		this.distance=distance;
 	}
 
 }

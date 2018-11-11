@@ -21,11 +21,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	    System.out.println("Execution");
 	    while (Visuel.partieencours){
 	    	this.repaint();
-	    	/*for (Monstre m:lMonstre){
+	    	for (Monstre m:lMonstre){
 	    		//ici on fera bouger les monstres
-	    		 if (m.estPatrouilleur);
+	    		 if (m.estPatrouilleur){//d'abord patrouilleur
+	    			 
+	    		 }
+	    		 //ensuite non patrouilleur
 	    		 else;
-	    	}*/
+	    	}
 	    	try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
