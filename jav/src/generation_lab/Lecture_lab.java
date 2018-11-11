@@ -70,9 +70,9 @@ public class Lecture_lab{
 			System.out.println(line);
 			champ = line.split(",");
 			if (champ != null) {
-				if (champ[0].equals("Tresor"))arrivee = new Tresor(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]));
+				if (champ[0].equals("Tresor"))arrivee = new Tresor(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
 				
-				if (champ[0].equals("Magique")){Magique m = new Magique(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),champ[4]);
+				if (champ[0].equals("Magique")){Magique m = new Magique(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),champ[4]);
 				lMagique.add(m);
 				}
 				if (champ[0].equals("Mur")) {

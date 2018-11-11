@@ -1,6 +1,6 @@
 package element;
 
-public class Magique extends Zone{
+public class Magique extends Element_marchable{
 private String effet;
 	public Magique(int x, int y, int longX, int longY, String effect) {
 		super(x, y, longX, longY);

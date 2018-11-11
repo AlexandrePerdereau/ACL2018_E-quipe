@@ -1,0 +1,19 @@
+Titre:Generation du Labyrinthe.
+Résumé:Le joueur choisit un niveau pour générer un labyrinthe.
+Auteur:E-Quipe
+Responsable:
+Date de creation:09/10/2018
+Acteurs concernés:Le joueur
+Pré-condition:Aucune
+Post-condition:Un labyrinthe est généré et affiché
+
+Scénario nominal:
+1:Le joueur choisit un labyrinthe et tape sur le bouton Entrée.
+2:Le joueur a le droit d'accès au niveau choisi.
+3:Générer le labyrinthe.
+Scénarios alternatifs:
+A1:Le joueur veut choisir un autre niveau et tape sur une touche de direction droite ou gauche, cet enchainement démarre avant le point 1 du scénario nomina --> 1.
+A2:Le joueur choisit un labyrinthe dont il n'a pas le droit d'accès, cet enchainement démarre après le point 1. du scénario nominal.-->5:Rien ne se passe.
+Scénario Exceptionnel: 
+E1: Le joueur appuie sur une touche autre que les touches de direction droite et gauche, ou la touche Entrée.--> 5.
+

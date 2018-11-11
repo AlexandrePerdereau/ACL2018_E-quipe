@@ -24,7 +24,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	  public void run(){
 	    System.out.println("Execution");
 	    while (Visuel.partieencours){
-	    	if (this.arivee.pietine_par_heros(perso)){
+	    	if (this.arivee.pietinee(perso)){
 	    		Visuel.partieencours=false;
 	    		this.repaint();
 	    	}
