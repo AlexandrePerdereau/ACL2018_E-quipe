@@ -1,9 +1,10 @@
 package element;
 
 public class Magique extends Element_marchable{
-
-	public Magique(int x, int y, int rayon) {
+private String effect = "";
+	public Magique(int x, int y, int rayon,String effect) {
 		super(x, y, rayon);
+		this.effect=effect;
 		
 	}
 	
