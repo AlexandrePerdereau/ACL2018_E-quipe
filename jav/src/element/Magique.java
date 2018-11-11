@@ -2,8 +2,8 @@ package element;
 
 public class Magique extends Element_marchable{
 
-	public Magique(int x, int y, int rayon, boolean est_pietine) {
-		super(x, y, rayon, est_pietine);
+	public Magique(int x, int y, int rayon) {
+		super(x, y, rayon);
 		
 	}
 	

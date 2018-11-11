@@ -5,7 +5,7 @@ public abstract class Element_marchable {
 	private int x;
 	private int y;
 	private int rayon;
-	private boolean est_pietine;
+	
 
 	public int getX() {
 		return x;
@@ -31,19 +31,12 @@ public abstract class Element_marchable {
 		this.rayon = rayon;
 	}
 
-	public boolean Est_pietine() {
-		return est_pietine;
-	}
 
-	public void setEst_pietine(boolean est_pietine) {
-		this.est_pietine = est_pietine;
-	}
-
-	public Element_marchable(int x, int y, int rayon, boolean est_pietine) {
+	public Element_marchable(int x, int y, int rayon) {
 		this.x = x;
 		this.y = y;
 		this.rayon = rayon;
-		this.est_pietine = est_pietine;
+		
 	}
 
 	public boolean pietine_par_heros(Heros h) {
