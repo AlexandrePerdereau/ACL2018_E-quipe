@@ -9,12 +9,14 @@ import javax.swing.JPanel;
 
 import element.Monstre;
 import element.Mur;
+import element.Tresor;
 
 public class Dessin extends JPanel implements KeyListener, Runnable {
 
 	private ArrayList<Mur> lMur=new ArrayList<Mur>();
 	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
+	private Tresor arivee;
 
 	  @Override
 	  public void run(){
@@ -72,7 +74,16 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 	public void paintComponent(Graphics g)  { //appele lors du repaint(), on dessine le panneau
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
+		
 		super.paintComponent(g);
+		
+		if (!Visuel.partieencours) {
+			g.setColor(Color.blue);
+			if (perso.getPointdevie()!=0)
+				g.drawString("VICTOIRE", 200, 200);
+			
+			else g.drawString("DEFAITE", 200, 200);
+		}
 		setBackground(Color.WHITE);
 
 		g.setColor(Color.BLACK);

@@ -10,6 +10,15 @@ public abstract class Personnage {
 	private int directionX;
 	private int directionY;
 	private int facteurdevitesse=5;
+	private int pointdevie=3;
+
+	public int getPointdevie() {
+		return pointdevie;
+	}
+
+	public void setPointdevie(int pointdevie) {
+		this.pointdevie = pointdevie;
+	}
 
 	public int getFacteurdevitesse() {
 		return facteurdevitesse;

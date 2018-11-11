@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import element.Heros;
+import element.Magique;
 import element.Monstre;
 import element.Mur;
+import element.Tresor;
 
 public class Lecture_lab{
 	
@@ -17,6 +19,9 @@ public class Lecture_lab{
 	protected ArrayList<Mur> listMur = new ArrayList<Mur>();
 	protected Heros heros;
 	protected String fichier;
+	protected Tresor arrivee;
+	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
+	
 	public ArrayList<Monstre> getListMonstre() {
 		return listMonstre;
 	}

@@ -89,7 +89,9 @@ System.out.println("frame creer");
 			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
 				if (partieencours) { partieencours = false ; panel.setVisible(false);;}
 				else{
+					
 				try {
+					partieencours = true;
 					String S= combochoix+".txt";
 					lec = new Lecture_lab(S);
 					
@@ -102,7 +104,6 @@ System.out.println("frame creer");
 					contentPane.add(panel);
 					panel.repaint();  //On affiche le dessin
 					System.out.println("test2");
-					partieencours = true; //booleen inutile maintenant , id : repeindre le paneau tout les 10 ms , mais fonctionne pas
 					
 					System.out.println("focus "+panel.hasFocus());
 					panel.grabFocus();	//le focus est necessaire pour que Dessin puisse entendre les touches
