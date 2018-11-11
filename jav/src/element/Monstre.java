@@ -9,6 +9,29 @@ public class Monstre extends Personnage {
 		super(x, y, rayon , facteurdevitesse);
 		this.point=point;
 		this.distance=distance;
+		this.setDirectionX(distance[0]/Math.abs(distance[0]));
+		this.setDirectionY(distance[1]/Math.abs(distance[1]));
+
+	}
+
+
+	public int[] getPoint() {
+		return point;
+	}
+
+
+	public void setPoint(int[] point) {
+		this.point = point;
+	}
+
+
+	public int[] getDistance() {
+		return distance;
+	}
+
+
+	public void setDistance(int[] distance) {
+		this.distance = distance;
 	}
 
 }
