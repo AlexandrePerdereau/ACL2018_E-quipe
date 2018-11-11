@@ -1,10 +1,10 @@
 package element;
 
-public class Tresor extends Element_marchable{
+public class Tresor extends Zone{
 	
 
-	public Tresor(int x, int y, int rayon) {
-		super(x, y, rayon);
+	public Tresor(int x, int y, int longX, int longY) {
+		super(x, y, longX, longY);
 		
 		
 	}
