@@ -63,11 +63,13 @@ public class Lecture_lab{
 		f.ouvrir(fichier, "R");
 		String[] champ = new String[10];
 		String line = "";
+	
 		
-		while((line= f.lire()).length() >= 2) {
+		while(line!=null && line.length() >= 2) {
 			
 			//chaine = f.lire();
 			System.out.println(line);
+			
 			champ = line.split(",");
 			if (champ != null) {
 				if (champ[0].equals("Tresor"))arrivee = new Tresor(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
@@ -106,7 +108,7 @@ public class Lecture_lab{
 
 		
 
-		}
+		}line = f.lire();System.out.println(line);
 	}
 		f.fermer();
 		

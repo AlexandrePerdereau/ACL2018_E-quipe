@@ -92,6 +92,7 @@ System.out.println("frame creer");
 					
 				try {
 					partieencours = true;
+					
 					String S= combochoix+".txt";
 					lec = new Lecture_lab(S);
 					
