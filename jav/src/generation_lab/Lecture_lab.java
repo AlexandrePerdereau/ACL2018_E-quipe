@@ -63,9 +63,9 @@ public class Lecture_lab{
 		f.ouvrir(fichier, "R");
 		String[] champ = new String[10];
 		String line = "";
-	
 		
-		while(line!=null && line.length() >= 2) {
+		
+		while((line= f.lire()).length() >= 2) {
 			
 			//chaine = f.lire();
 			System.out.println(line);
@@ -108,7 +108,7 @@ public class Lecture_lab{
 
 		
 
-		}line = f.lire();System.out.println(line);
+		}
 	}
 		f.fermer();
 		

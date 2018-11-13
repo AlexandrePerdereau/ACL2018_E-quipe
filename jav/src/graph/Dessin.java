@@ -24,10 +24,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	  public void run(){
 	    System.out.println("Execution");
 	    while (Visuel.partieencours){
-	    	if (this.arivee.pietinee(perso)){
+	    	/*if (this.arivee.pietinee(perso)){
 	    		Visuel.partieencours=false;
 	    		this.repaint();
-	    	}
+	    	}*/
 	    	for (Monstre m:lMonstre){
 	    		//ici on fera bouger les monstres patrouilleurs
 	    		int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
