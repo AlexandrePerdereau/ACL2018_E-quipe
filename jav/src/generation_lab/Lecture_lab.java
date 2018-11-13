@@ -52,7 +52,7 @@ public class Lecture_lab{
 			System.out.println(line);
 			champ = line.split(",");
 			if (champ != null) {
-				if (champ[0].equals("Tresor"))arrivee = new Tresor(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
+				if (champ[0].equals("Tresor") && arrivee == null)arrivee = new Tresor(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]), Integer.parseInt(champ[4]));
 
 				if (champ[0].equals("Magique")){Magique m = new Magique(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),champ[4]);
 				lMagique.add(m);
@@ -63,7 +63,7 @@ public class Lecture_lab{
 					listMur.add(mur);
 
 				}
-				if (champ[0].equals("Heros")) {
+				if (champ[0].equals("Heros") && heros == null) {
 					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]));
 					heros = hero;
 
