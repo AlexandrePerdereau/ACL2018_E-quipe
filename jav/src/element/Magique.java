@@ -9,8 +9,12 @@ String effect;
 	
 	public void appeffect(Heros h){
 		int t = this.effect.length();
+		String[] s = this.effect.split(this.effect,'*');
 		if (t>9){
-			if (this.effect.equals("vitesse*"))h.setFacteurdevitesse(h.getFacteurdevitesse()*2);
+			if (s[0].equals("vitesse")){
+				
+				h.setFacteurdevitesse(h.getFacteurdevitesse()*Integer.parseInt(s[1]));
+			}
 		}
 	}
 	
