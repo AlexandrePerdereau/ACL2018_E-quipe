@@ -54,11 +54,11 @@ public abstract class Element_marchable {
 	}
 
 	public boolean pietinee(Heros Aventurier) {
-		//On détermine si le centre de la zone est sous le héros en abscisse.
-		boolean horizontal = (Aventurier.getX() + Aventurier.getRayon() >= (this.getX() + this.getLongX())/2) || (Aventurier.getX() - Aventurier.getRayon() <= (this.getX() + this.getLongX())/2);
-		//On détermine si le centre de la zone est sous le héros en ordonnée.
-		boolean vertical = (Aventurier.getY() + Aventurier.getRayon() >= (this.getY() + this.getLongY())/2) || (Aventurier.getY() - Aventurier.getRayon() <= (this.getY() + this.getLongY())/2);
-		//Si les deux sont vrais, alors le héros marche sur le centre de la zone.		
-		return (horizontal && vertical);
+		int distancec=0;
+		distancec+=Math.pow(Aventurier.getX()-this.x+LongX/2,2);
+		distancec+=Math.pow(Aventurier.getY()-this.y+LongY/2,2);
+		return distancec<Aventurier.getRayon();
+		
+		
 	}
 }
