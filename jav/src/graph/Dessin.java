@@ -28,8 +28,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			if (arivee.pietinee(perso))
 				Visuel.partieencours=false;
 			for (Magique m:lMagique){
-				if (m.pietinee(perso)){m.appeffect(perso);
-				lMagiqueUsed.add(m);
+				if (m.pietinee(perso)){
+					m.appeffect(perso);
+					lMagiqueUsed.add(m);
 				}
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
@@ -43,7 +44,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
 					m.setX(newX);
 					m.setY(newY);
-					System.out.println("TEST");
+
 				}
 				else{
 					m.setDirectionX(-1*m.getDirectionX());
@@ -101,8 +102,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			else g.drawString("DEFAITE", 200, 200);
 		}
 		else{
-		setBackground(Color.WHITE);
-		
+			setBackground(Color.WHITE);
+
 
 			g.setColor(Color.BLACK);
 			for (Mur m : lMur){

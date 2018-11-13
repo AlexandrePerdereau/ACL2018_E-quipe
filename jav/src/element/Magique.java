@@ -8,14 +8,17 @@ String effect;
 	}
 	
 	public void appeffect(Heros h){
-		int t = this.effect.length();
-		String[] s = this.effect.split(this.effect,'*');
-		if (t>9){
+		System.out.println("effetapp:"+effect);
+		
+		String[] s = this.effect.split("E");
+		for (String so:s)System.out.println(so);
+		
 			if (s[0].equals("vitesse")){
 				
 				h.setFacteurdevitesse(h.getFacteurdevitesse()*Integer.parseInt(s[1]));
+				System.out.println("vitesse*"+s[1]);
 			}
-		}
+		
 	}
 	
 	public void changeVitesse(Heros h) {
