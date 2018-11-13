@@ -10,3 +10,11 @@ Test unitaire effectué par : non fait
 Génération des différents objets sur lequel le héros peut marcher
 Developpé par : Guillaume Magnette
 Test unitaire effectué par : non fait
+
+Le joueur gagne un bonus en marchant sur une case Magique
+Dévellopé par : Alexandre Perdereau
+Test unitaire effectué par : non fait
+
+Le joueur gagne en rejoignant le tresor
+Dévellopé par : Alexandre Perdereau
+Test unitaire effectué par : non fait
