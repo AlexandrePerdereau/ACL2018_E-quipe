@@ -7,6 +7,13 @@ String effect;
 		this.effect=s;
 	}
 	
+	public void appeffect(Heros h){
+		int t = this.effect.length();
+		if (t>9){
+			if (this.effect.equals("vitesse*"))h.setFacteurdevitesse(h.getFacteurdevitesse()*2);
+		}
+	}
+	
 	public void changeVitesse(Heros h) {
 		h.setFacteurdevitesse(h.getFacteurdevitesse() * 2);
 	}

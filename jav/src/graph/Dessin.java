@@ -19,6 +19,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 	private Tresor arivee;
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
+	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
 
 	  @Override
 	  public void run(){
@@ -26,6 +27,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	    while (Visuel.partieencours){
 	    	if (arivee.pietinee(perso))
 	    		Visuel.partieencours=false;
+	    	for (Magique m:lMagique){
+	    		if (m.pietinee(perso)){m.appeffect(perso);
+	    		lMagiqueUsed.add(m);
+	    		}
+	    		}
+    		for (Magique m :lMagiqueUsed)lMagique.remove(m);
+
 	    	for (Monstre m:lMonstre){
 	    		//ici on fera bouger les monstres patrouilleurs
 	    		int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
