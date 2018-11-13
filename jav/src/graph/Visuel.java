@@ -87,7 +87,7 @@ System.out.println("frame creer");
 		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() { 		//lorsque l'utilisateur clique sur le bouton : 
 
 			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
-				if (partieencours) { partieencours = false ; panel.setVisible(false);;}
+				if (partieencours) { panel.setVisible(false);partieencours = false ;}
 				else{
 					
 				try {
