@@ -1,29 +1,10 @@
 package element;
 
 public class Magique extends Element_marchable{
-private String effet;
-	public Magique(int x, int y, int longX, int longY, String effect) {
-		super(x, y, longX, longY);
-		this.effet=effect;
-		
-	}
-	public void setEffet(String type){
-		this.effet = type;
-	}
-	
-	public String getEffet(){
-		return this.effet;
-	}
-	
-	public void declenchement(String type, Heros Aventurier){
-		if (this.pietinee(Aventurier)){
-			String sort = this.getEffet();
-			if (sort == "vitesse") changeVitesse(Aventurier);
-			if (sort == "santé") HP(Aventurier);
-			if (sort == "foudre") tuerMonstre();
-			if (sort == "passe-muraille") traverseMurs(Aventurier);
-
-		}
+String effect;
+	public Magique(int x, int y, int LongX,int LongY,String s) {
+		super(x, y, LongX, LongY);
+		this.effect=s;
 	}
 	
 	public void changeVitesse(Heros h) {
@@ -34,11 +15,11 @@ private String effet;
 		// ajouter 1 point par exemple
 	}
 	
-	public void tuerMonstre() {
+	public void tuerMonstre(Monstre m) {
 		// parcourir une liste de monstres et en tuer un au hasard avec rand par exemple
 	}
 	
-	public void traverseMurs(Heros h) {
+	public void traverserMurs(Heros h) {
 		// creer un booleen gérant l'activation ou non de collisions ?
 	}
 	
