@@ -1,0 +1,5 @@
+Gestion des points de vie
+Attaque du joueur
+Monstre qui traque le joueur
+Monstre fantôme
+Le joueur gagne des bonus plus divers
