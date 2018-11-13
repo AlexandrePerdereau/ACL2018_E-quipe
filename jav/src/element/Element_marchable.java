@@ -57,7 +57,7 @@ public abstract class Element_marchable {
 		int distancec=0;
 		distancec+=Math.pow(Aventurier.getX()-this.x-LongX/2,2);
 		distancec+=Math.pow(Aventurier.getY()-this.y-LongY/2,2);
-		return distancec<Aventurier.getRayon();
+		return distancec<Math.pow(Aventurier.getRayon(),2);
 		
 		
 	}
