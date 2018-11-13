@@ -104,6 +104,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		}
 		g.setColor(Color.BLUE);
 		g.fillOval(perso.getX()-perso.getRayon(), perso.getY()-perso.getRayon(), 2*perso.getRayon(), 2*perso.getRayon());
+		
+		g.setColor(Color.YELLOW);
+		g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
 	}
 
 	@Override

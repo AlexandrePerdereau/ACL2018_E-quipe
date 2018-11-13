@@ -55,8 +55,8 @@ public abstract class Element_marchable {
 
 	public boolean pietinee(Heros Aventurier) {
 		int distancec=0;
-		distancec+=Math.pow(Aventurier.getX()-this.x+LongX/2,2);
-		distancec+=Math.pow(Aventurier.getY()-this.y+LongY/2,2);
+		distancec+=Math.pow(Aventurier.getX()-this.x-LongX/2,2);
+		distancec+=Math.pow(Aventurier.getY()-this.y-LongY/2,2);
 		return distancec<Aventurier.getRayon();
 		
 		
