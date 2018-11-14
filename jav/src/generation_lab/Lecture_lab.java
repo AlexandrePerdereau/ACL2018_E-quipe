@@ -64,7 +64,7 @@ public class Lecture_lab{
 
 				}
 				if (champ[0].equals("Heros") && heros == null) {
-					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]));
+					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5]));
 					heros = hero;
 
 				}
