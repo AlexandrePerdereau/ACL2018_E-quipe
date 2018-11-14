@@ -1,0 +1,10 @@
+Gestion point de vie et attaque / Affichage - Ap
+amelioration clavier - AP
+Ajouter Bonus - Dont les pièges -LG
+Affichage point de vie - MH
+Monstre à tete chercheurse - équivalent de A* - faireaplusieurs
+Monstres fantômes - GM
+Junit- TN
+Diagramme de classe
+
++Amélioration affichage
