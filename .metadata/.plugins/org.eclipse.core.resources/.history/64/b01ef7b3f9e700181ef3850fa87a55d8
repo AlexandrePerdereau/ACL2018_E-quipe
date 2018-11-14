@@ -30,6 +30,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for (Magique m:lMagique){
 				if (m.pietinee(perso)){
 					m.appeffect(perso);
+					if (m.getEffect().equals("tuerUnMonstre")){
+						lMonstre.remove(0);
+					}
 					lMagiqueUsed.add(m);
 				}
 			}
