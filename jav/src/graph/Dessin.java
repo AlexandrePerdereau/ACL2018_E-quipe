@@ -33,6 +33,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					lMagiqueUsed.add(m);
 				}
 			}
+			if  (perso.peutAvancer( lMur )){
+				perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
+				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
+			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
 
 			for (Monstre m:lMonstre){
@@ -144,10 +148,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			if(e.getKeyCode()==KeyEvent.VK_Z || e.getKeyCode()==KeyEvent.VK_UP)
 				perso.setDirectionY(-1);
-			if  (perso.peutAvancer( lMur )){
-				perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
-				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
-			}
+
 
 	}
 
