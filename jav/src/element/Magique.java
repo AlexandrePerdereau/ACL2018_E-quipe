@@ -1,7 +1,15 @@
 package element;
 
 public class Magique extends Element_marchable{
-	String effect;
+	private String effect;
+	public String getEffect() {
+		return effect;
+	}
+
+	public void setEffect(String effect) {
+		this.effect = effect;
+	}
+
 	public Magique(int x, int y, int LongX,int LongY,String s) {
 		super(x, y, LongX, LongY);
 		this.effect=s;
