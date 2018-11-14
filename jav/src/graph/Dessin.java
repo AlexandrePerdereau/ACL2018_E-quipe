@@ -137,31 +137,39 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 		//Avantage majeur : permet deplacement diagonal
 		//et en + , plus pratique pour eventuel deplacement tout les 10 ms ( pas reussi pour l'instant)
-		if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_LEFT)
-			perso.setDirectionX(-1);;
+		if(e.getKeyCode()==KeyEvent.VK_Q)
+			perso.setDirectionX(-1);
 
-			if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT)
-				perso.setDirectionX(1);
+		if(e.getKeyCode()==KeyEvent.VK_D)
+			perso.setDirectionX(1);
 
-			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN)
-				perso.setDirectionY(1);
+		if(e.getKeyCode()==KeyEvent.VK_S)
+			perso.setDirectionY(1);
 
-			if(e.getKeyCode()==KeyEvent.VK_Z || e.getKeyCode()==KeyEvent.VK_UP)
-				perso.setDirectionY(-1);
+		if(e.getKeyCode()==KeyEvent.VK_Z)
+			perso.setDirectionY(-1);
 
-
+		if (e.getKeyCode()==KeyEvent.VK_LEFT)perso.setAttaqueX(-1);
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT)perso.setAttaqueX(1);
+		if(e.getKeyCode()==KeyEvent.VK_DOWN)perso.setAttaqueY(1);
+		if(e.getKeyCode()==KeyEvent.VK_UP)perso.setAttaqueY(-1);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) { // lorsque on relache la touche , faut pas continuer a avancer
 		// TODO Auto-generated method stub
 		System.out.println("clefrelach");
-		if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_D)
+		if(e.getKeyCode()==KeyEvent.VK_Q || e.getKeyCode()==KeyEvent.VK_D)
 			perso.setDirectionX(0);
 
-		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN || e.getKeyCode()==KeyEvent.VK_UP || e.getKeyCode()==KeyEvent.VK_Z)
+		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_Z)
 			perso.setDirectionY(0);
-
+		
+		if (e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT)
+			perso.setAttaqueX(0);
+		
+		if(e.getKeyCode()==KeyEvent.VK_DOWN || e.getKeyCode()==KeyEvent.VK_UP)
+			perso.setAttaqueY(0);
 	}
 
 	@Override
