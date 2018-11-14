@@ -17,7 +17,7 @@ public class Magique extends Element_marchable{
 
 	public void appeffect(Heros h){
 		System.out.println("effetapp:"+effect);
-		if (!effect.contains("E")){
+		if (effect.contains("E")){
 			String[] s = this.effect.split("E"); // Sépare l'intitulé de l'effet de la valeur de son intensité : "{type d'effet} E {intensité de l'effet}"
 			for (String so:s)System.out.println(so);
 
