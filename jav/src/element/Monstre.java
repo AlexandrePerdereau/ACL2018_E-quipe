@@ -1,10 +1,10 @@
 package element;
 
 public class Monstre extends Personnage {
-	 private int[] point; // point de depart
-	 private int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
-	
-	 
+	private int[] point; // point de depart
+	private int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
+
+
 	public Monstre(int rayon ,int facteurdevitesse , int[] point, int []distance) {
 		super(point[0], point[1], rayon , facteurdevitesse);
 		this.point=point;
@@ -33,5 +33,7 @@ public class Monstre extends Personnage {
 	public void setDistance(int[] distance) {
 		this.distance = distance;
 	}
+
+
 
 }

@@ -20,6 +20,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private Tresor arivee;
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
+	private long temps=0;
 
 	@Override
 	public void run(){
@@ -41,23 +42,31 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
-
+			perso.attaque(lMonstre);
+			ArrayList<Monstre> monstresupprim = new ArrayList<Monstre>();
 			for (Monstre m:lMonstre){
-				//ici on fera bouger les monstres patrouilleurs
-				int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
-				int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
-				if (m.peutAvancer(lMur)
-						&& Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
-						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
-					m.setX(newX);
-					m.setY(newY);
+				//ici on fera bouger les monstres patrouilleurs...s ils survivent
+				if ((perso.getAttaqueX()!=0 || perso.getAttaqueY()!=0) && perso.monstredroite2points(m) < m.getRayon())m.perdPV(1);
 
-				}
+				if(m.getPointdevie()<=0)monstresupprim.add(m);
 				else{
-					m.setDirectionX(-1*m.getDirectionX());
-					m.setDirectionY(-1*m.getDirectionY());
+					int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
+					int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
+					if (m.peutAvancer(lMur)
+							&& Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
+							&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
+						m.setX(newX);
+						m.setY(newY);
+
+					}
+					else{
+						m.setDirectionX(-1*m.getDirectionX());
+						m.setDirectionY(-1*m.getDirectionY());
+					}
 				}
+
 			}
+			for (Monstre m:monstresupprim)lMonstre.remove(m);
 			this.repaint();
 			try {
 				Thread.sleep(20);
@@ -100,7 +109,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 
 		super.paintComponent(g);
-
+		
 		if (!Visuel.partieencours) {
 			g.setColor(Color.blue);
 			if (perso.getPointdevie()!=0)
@@ -110,9 +119,12 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		}
 		else{
 			setBackground(Color.WHITE);
-
+			
+			long t = System.currentTimeMillis();
+			
 
 			g.setColor(Color.BLACK);
+			if (t-temps<=100)g.drawLine(perso.getX(), perso.getY(), perso.getX()+perso.getAttaqueX()*perso.getPortee(), perso.getY()+perso.getAttaqueY()*perso.getPortee());
 			for (Mur m : lMur){
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
@@ -152,10 +164,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		if(e.getKeyCode()==KeyEvent.VK_Z)
 			perso.setDirectionY(-1);
 
-		if (e.getKeyCode()==KeyEvent.VK_LEFT)perso.setAttaqueX(-1);
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT)perso.setAttaqueX(1);
-		if(e.getKeyCode()==KeyEvent.VK_DOWN)perso.setAttaqueY(1);
-		if(e.getKeyCode()==KeyEvent.VK_UP)perso.setAttaqueY(-1);
+		if (e.getKeyCode()==KeyEvent.VK_LEFT){perso.setAttaqueX(-1);temps=System.currentTimeMillis();}
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT){perso.setAttaqueX(1);temps=System.currentTimeMillis();}
+		if(e.getKeyCode()==KeyEvent.VK_DOWN){perso.setAttaqueY(1);temps=System.currentTimeMillis();}
+		if(e.getKeyCode()==KeyEvent.VK_UP){perso.setAttaqueY(-1);temps=System.currentTimeMillis();}
 	}
 
 	@Override
@@ -167,10 +179,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_Z)
 			perso.setDirectionY(0);
-		
+
 		if (e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_RIGHT)
 			perso.setAttaqueX(0);
-		
+
 		if(e.getKeyCode()==KeyEvent.VK_DOWN || e.getKeyCode()==KeyEvent.VK_UP)
 			perso.setAttaqueY(0);
 	}

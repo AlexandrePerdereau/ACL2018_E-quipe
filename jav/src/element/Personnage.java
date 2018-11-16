@@ -11,7 +11,15 @@ public abstract class Personnage {
 	private int directionY;
 	private int facteurdevitesse=5;
 	private int pointdevie=3;
+	
+	public void perdPV(int p){
+		pointdevie-=1;
+	}
 
+	public int distanceaucarre(Personnage autre){
+		return (x-autre.x)*(x-autre.x)+(y-autre.y)*(y-autre.y);
+	}
+	
 	public int getPointdevie() {
 		return pointdevie;
 	}
