@@ -42,7 +42,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
-			
+
 			ArrayList<Monstre> monstresupprim = new ArrayList<Monstre>();
 			for (Monstre m:lMonstre){
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
@@ -109,7 +109,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 
 		super.paintComponent(g);
-		
+
 		if (!Visuel.partieencours) {
 			g.setColor(Color.blue);
 			if (perso.getPointdevie()!=0)
@@ -119,12 +119,23 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		}
 		else{
 			setBackground(Color.WHITE);
-			
+
 			long t = System.currentTimeMillis();
-			
+
 
 			g.setColor(Color.BLACK);
-			if (t-temps<=100)g.drawLine(perso.getX(), perso.getY(), perso.getX()+perso.getAttaqueX()*perso.getPortee(), perso.getY()+perso.getAttaqueY()*perso.getPortee());
+
+			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
+			int portee=perso.getPortee();
+			int rayon = perso.getRayon();
+			if (t-temps<=100){
+				if (attX!=0 && attY!=0)
+					g.drawLine(X, Y, X+ (int)(((double)(attX*portee))/1.4142),Y+(int)(((double)(attY*portee))/1.4142));
+				else
+					g.drawLine(X, Y, X+attX*portee,Y+attY*portee);
+
+			}
+
 			for (Mur m : lMur){
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
@@ -133,7 +144,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
 			}
 			g.setColor(Color.BLUE);
-			g.fillOval(perso.getX()-perso.getRayon(), perso.getY()-perso.getRayon(), 2*perso.getRayon(), 2*perso.getRayon());
+			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
 			g.setColor(Color.YELLOW);
 			g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
@@ -191,8 +202,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("cleftap");
-		
-		
+
+
 
 	}
 
