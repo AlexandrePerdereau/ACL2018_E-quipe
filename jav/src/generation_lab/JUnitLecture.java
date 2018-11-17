@@ -15,21 +15,21 @@ import generation_lab.Lecture_lab;
 
 public class JUnitLecture {
 
-	Lecture_lab lec; 
-	Heros h;
-	Tresor arrivee;
-	Mur md;
-	Mur mf;
-	Heros h2;
-	Tresor arrivee2;
+	static Lecture_lab lecs; 
+	static Heros h;
+	static Tresor arrivee;
+	static Mur md;
+	static Mur mf;
+	static Heros h2;
+	static Tresor arrivee2;
 	 
 	
 	int nouv = 100;
 
-	@Before
-	public  void SetUp() throws IOException {
+	@BeforeClass
+	public static void SetUpBeforeClass() throws IOException {
 		
-		lec = new Lecture_lab("fichierTest.txt");
+		lecs = new Lecture_lab("fichiertest.txt");
 		h = new Heros(201, 201, 4, 20, 10);
 		arrivee = new Tresor(200,300,20,20);
 		md = new Mur(205,200,1,1);
@@ -38,59 +38,73 @@ public class JUnitLecture {
 		arrivee2 = new Tresor(400,400,10,10);
 	} 
 	// Tests de lecture de fichier 
+	
+	// EXEMPLE pour Tarek, je compare les 4 attributs du mur lu avec celui que j'ai défini : md : donc Posx, Posy, Longx, Longy
 	@Test
-	public void testLectureLabMurDebut(){
-		assertEquals(lec.getListMur().get(0), md);
+	public void testLectureLabMurDebutPosx(){
+		assertEquals(lecs.getListMur().get(0).getPosx(), md.getPosx());
+	}
+	@Test
+	public void testLectureLabMurDebutPosy(){
+		assertEquals(lecs.getListMur().get(0).getPosy(), md.getPosy());
+	}
+	@Test
+	public void testLectureLabMurDebutLongx(){
+		assertEquals(lecs.getListMur().get(0).getLongx(), md.getLongx());
+	}
+	@Test
+	public void testLectureLabMurDebutLongy(){
+		assertEquals(lecs.getListMur().get(0).getLongy(), md.getLongy());
 	}
 	@Test
 	public void testLectureLabMurFin(){
-		assertEquals(lec.getListMur().get((lec.getListMur().size())), mf);
+		assertEquals(lecs.getListMur().get((lecs.getListMur().size()-1)), mf);
 	}
 	@Test
 	public void testLectureLabHeros() {
-		assertEquals(lec.getHeros(), h);
+		assertEquals(lecs.getHeros(), h);
 	}
 	//Nous ne voulons qu'un héros par niveau, si il y en a plusieurs par fichiers,
 	//nous prenons le premier uniquement
 	@Test
 	public void testLectureLabHerosMultiples() {   
-		assertNotEquals(lec.getHeros(), h2);	  
+		assertNotEquals(lecs.getHeros(), h2);	  
 	}
 	
 	//De même pour Tresor, il n'y en a qu'un seul
 	@Test 
 	public void testLectureLabTresor() {
-		assertEquals(lec.getArrivee(), arrivee);
+		assertEquals(lecs.getArrivee(), arrivee);
 	}
 	
 	@Test 
 	public void testLectureLabTresorsMultiples() {
-		assertNotEquals(lec.getArrivee(), arrivee2);
+		assertNotEquals(lecs.getArrivee(), arrivee2);
 	}
 	// Tests de collisions pour les quatres directions possibles
 	@Test
 	public void testPeutAvancerDroite() {
 		h.setDirectionX(1);
-		assertEquals(h.peutAvancer(lec.getListMur()),false);
+		assertEquals(h.peutAvancer(lecs.getListMur()),false);
 		 
 	}
 	@Test
 	public void testPeutAvancerGauche() {
 		h.setDirectionX(-1);
-		assertEquals(h.peutAvancer(lec.getListMur()),false);
+		assertEquals(h.peutAvancer(lecs.getListMur()),false);
 		 
 	}
 	
 	@Test
 	public void testPeutAvancerHaut() {
 		h.setDirectionY(1);
-		assertEquals(h.peutAvancer(lec.getListMur()),false);
+		assertEquals(h.peutAvancer(lecs.getListMur()),false);
 		 
 	}
 	@Test
 	public void testPeutAvancerBas() {
 		h.setDirectionY(-1);
-		assertEquals(h.peutAvancer(lec.getListMur()),false);
+		assertEquals(h.peutAvancer(lecs.getListMur()),false);
 		 
 	}
 	
