@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import element.Fantome_Patrouilleur;
 import element.Heros;
 import element.Magique;
 import element.Monstre;
@@ -33,6 +34,7 @@ public class Lecture_lab{
 
 
 	protected ArrayList<Monstre> listMonstre = new ArrayList<Monstre>();
+	protected ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
 
 
 
@@ -86,6 +88,23 @@ public class Lecture_lab{
 					Monstre monstre = new Monstre( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
 					listMonstre.add(monstre);
 					System.out.println("testmonstre");
+				}
+				if (champ[0].equals("Fantome patrouilleur")) {
+					ArrayList<Integer> pointA = new ArrayList<Integer>();
+					for (int i =3 ; i<5;i++)pointA.add(Integer.parseInt(champ[i]));
+					int[] point = new int[pointA.size()];
+					for (int i=0;i<pointA.size();i++)point[i]=pointA.get(i);
+
+					ArrayList<Integer> distaA = new ArrayList<Integer>();
+					for (int i =5 ; i<7;i++)distaA.add(Integer.parseInt(champ[i]));
+					int[] dista = new int[distaA.size()];
+
+
+					for (int i=0;i<distaA.size();i++){dista[i]=distaA.get(i);System.out.println("a"+dista[i]);}
+
+					Fantome_Patrouilleur fantomePat = new Fantome_Patrouilleur( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
+					listFantomePatrouilleur.add(fantomePat);
+					System.out.println("testfantomepat");
 				}
 
 
