@@ -41,7 +41,6 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 			}
 			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
-			int portee=perso.getPortee();
 			int rayon = perso.getRayon();
 			int dirX = perso.getDirectionX(), dirY = perso.getDirectionY();
 			int pas = perso.getFacteurdevitesse();
@@ -109,6 +108,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				
 
 			}
+			for (Monstre m : monstresupprim)lMonstre.remove(m);
 			
 			this.repaint();
 			try {
