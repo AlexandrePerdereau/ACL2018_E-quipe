@@ -42,7 +42,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
-			perso.attaque(lMonstre);
+			
 			ArrayList<Monstre> monstresupprim = new ArrayList<Monstre>();
 			for (Monstre m:lMonstre){
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent

@@ -42,14 +42,10 @@ public class Heros extends Personnage {
 	public int monstredroite2points(Monstre m){
 		int gx = this.getX();
 		int gy = this.getY();
+		if (this.distanceaucarre(m)>portee*portee)return m.distanceaucarre(gx+attaqueX*portee,gy+attaqueY*portee) ;
+		
 		return (int) distancedroite((double)gx,(double)gy,(double)(gx+attaqueX*portee),(double)(gy+attaqueY*portee),(double)m.getX(),(double)m.getY());
 	}
 	
-	public void attaque(ArrayList<Monstre> lMonstre){
-		for (Monstre m:lMonstre){
-			int dista = this.distanceaucarre(m);
-			int distancealepee = 1	;
-		}
-		
-	}
+	
 }

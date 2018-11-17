@@ -20,6 +20,10 @@ public abstract class Personnage {
 		return (x-autre.x)*(x-autre.x)+(y-autre.y)*(y-autre.y);
 	}
 	
+	public int distanceaucarre(int Px, int Py){
+		return (x-Px)*(x-Px)+(y-Py)*(y-Py);
+	}
+	
 	public int getPointdevie() {
 		return pointdevie;
 	}
