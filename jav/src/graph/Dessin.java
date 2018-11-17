@@ -35,7 +35,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				if (m.pietinee(perso)){
 					m.appeffect(perso);
 					if (m.getEffect().equals("tuerUnMonstre")){
-						lMonstre.remove(0);
+						if (lMonstre!=null && lMonstre.size()!=0)lMonstre.remove(0);
 					}
 					lMagiqueUsed.add(m);
 				}
@@ -43,10 +43,12 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
 			int portee=perso.getPortee();
 			int rayon = perso.getRayon();
+			int dirX = perso.getDirectionX(), dirY = perso.getDirectionY();
+			int pas = perso.getFacteurdevitesse();
 
 			if  (perso.peutAvancer( lMur )){
-				perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
-				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
+				perso.setX(X+dirX*pas);
+				perso.setY(Y+dirY*pas);
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
 
@@ -60,12 +62,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
-				if ((perso.getAttaqueX()!=0 || perso.getAttaqueY()!=0) && perso.monstredroite2points(m) < m.getRayon())m.perdPV(1);
+				if ((attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon())
+					m.perdPV(1);
 
 				if(m.getPointdevie()<=0)monstresupprim.add(m);
 				else{
-					int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
-					int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
+					int mVitesse = m.getFacteurdevitesse();
+					int newX=m.getX()+m.getDirectionX()*mVitesse;
+					int newY=m.getY()+m.getDirectionY()*mVitesse;
 					if (m.peutAvancer(lMur)
 							&& Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
 							&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
@@ -88,8 +92,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					Visuel.partieencours=false;
 					break;
 				}
-				int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
-				int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
+				int mVitesse = m.getFacteurdevitesse();
+				int newX=m.getX()+m.getDirectionX()*mVitesse;
+				int newY=m.getY()+m.getDirectionY()*mVitesse;
 				if (Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
 						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
 					m.setX(newX);
