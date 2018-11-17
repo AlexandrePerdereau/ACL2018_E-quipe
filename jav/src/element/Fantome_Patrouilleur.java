@@ -1,19 +1,17 @@
 package element;
 
-public class Monstre extends Personnage {
-	protected int[] point; // point de depart
-	protected int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
+import java.util.ArrayList;
 
+public class Fantome_Patrouilleur extends Monstre{
 
-	public Monstre(int rayon ,int facteurdevitesse , int[] point, int []distance) {
-		super(point[0], point[1], rayon , facteurdevitesse);
+	public Fantome_Patrouilleur(int rayon, int facteurdevitesse, int[] point, int[] distance) {
+		super(rayon, facteurdevitesse, point, distance);
 		this.point=point;
 		this.distance=distance;
 		if (distance[0]!=0)this.setDirectionX(distance[0]/Math.abs(distance[0]));
 		if (distance[1]!=1)this.setDirectionY(distance[1]/Math.abs(distance[1]));
-
 	}
-
+	
 
 	public int[] getPoint() {
 		return point;
@@ -33,7 +31,11 @@ public class Monstre extends Personnage {
 	public void setDistance(int[] distance) {
 		this.distance = distance;
 	}
-
-
+	
+	@Override
+	public boolean peutAvancer( ArrayList<Mur> m ) {
+		return true;
+	}
+	
 
 }
