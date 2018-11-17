@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import element.Fantome_Patrouilleur;
 import element.Magique;
 import element.Monstre;
 import element.Mur;
@@ -20,13 +21,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private Tresor arivee;
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
+	protected ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
 	private long temps=0;
 
 	@Override
 	public void run(){
 		System.out.println("Execution");
 		while (Visuel.partieencours){
-			
+
 			if (arivee.pietinee(perso))
 				Visuel.partieencours=false;
 			for (Magique m:lMagique){
@@ -41,7 +43,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
 			int portee=perso.getPortee();
 			int rayon = perso.getRayon();
-			
+
 			if  (perso.peutAvancer( lMur )){
 				perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
 				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
@@ -56,7 +58,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					Visuel.partieencours=false;
 					break;
 				}
-				
+
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
 				if ((perso.getAttaqueX()!=0 || perso.getAttaqueY()!=0) && perso.monstredroite2points(m) < m.getRayon())m.perdPV(1);
 
@@ -78,7 +80,31 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 
 			}
-			for (Monstre m:monstresupprim)lMonstre.remove(m);
+
+			for (Fantome_Patrouilleur m:listFantomePatrouilleur){
+				int mRayon = m.getRayon();
+				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
+					perso.setPointdevie(0);
+					Visuel.partieencours=false;
+					break;
+				}
+				int newX=m.getX()+m.getDirectionX()*m.getFacteurdevitesse();
+				int newY=m.getY()+m.getDirectionY()*m.getFacteurdevitesse();
+				if (Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
+						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
+					m.setX(newX);
+					m.setY(newY);
+
+				}
+				else{
+					m.setDirectionX(-1*m.getDirectionX());
+					m.setDirectionY(-1*m.getDirectionY());
+				}
+
+				
+
+			}
+			
 			this.repaint();
 			try {
 				Thread.sleep(20);
@@ -98,6 +124,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 		this.lMagique=lab.getlMagique();
 		this.arivee=lab.getArrivee();
+		this.listFantomePatrouilleur=lab.getListFantomePatrouilleur();
 
 	}
 
@@ -153,6 +180,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 			g.setColor(Color.RED);
 			for (Monstre monstre : lMonstre){
+				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
+			}
+			g.setColor(Color.GRAY);
+			for (Monstre monstre : listFantomePatrouilleur){
 				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
 			}
 			g.setColor(Color.BLUE);

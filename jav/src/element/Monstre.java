@@ -10,7 +10,7 @@ public class Monstre extends Personnage {
 		this.point=point;
 		this.distance=distance;
 		if (distance[0]!=0)this.setDirectionX(distance[0]/Math.abs(distance[0]));
-		if (distance[1]!=1)this.setDirectionY(distance[1]/Math.abs(distance[1]));
+		if (distance[1]!=0)this.setDirectionY(distance[1]/Math.abs(distance[1]));
 
 	}
 

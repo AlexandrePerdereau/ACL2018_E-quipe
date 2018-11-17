@@ -38,6 +38,14 @@ public class Lecture_lab{
 
 
 
+	public ArrayList<Fantome_Patrouilleur> getListFantomePatrouilleur() {
+		return listFantomePatrouilleur;
+	}
+
+	public void setListFantomePatrouilleur(ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur) {
+		this.listFantomePatrouilleur = listFantomePatrouilleur;
+	}
+
 	public Lecture_lab(String fichier)  throws IOException {
 
 
@@ -89,7 +97,7 @@ public class Lecture_lab{
 					listMonstre.add(monstre);
 					System.out.println("testmonstre");
 				}
-				if (champ[0].equals("Fantome patrouilleur")) {
+				if (champ[0].equals("Fantome_patrouilleur")) {
 					ArrayList<Integer> pointA = new ArrayList<Integer>();
 					for (int i =3 ; i<5;i++)pointA.add(Integer.parseInt(champ[i]));
 					int[] point = new int[pointA.size()];
