@@ -16,8 +16,8 @@ public class Heros extends Personnage {
 	public void setAttaqueY(int attaqueY) {
 		this.attaqueY = attaqueY;
 	}
-	public Heros (int x, int y , int rayon, int facteurdevitesse, int portee){
-		super(x,y,rayon,facteurdevitesse);
+	public Heros (int x, int y , int rayon, int facteurdevitesse, int portee ,int pv){
+		super(x,y,rayon,facteurdevitesse,pv);
 		this.portee=portee;
 	}
 	

@@ -30,11 +30,11 @@ public class JUnitLecture {
 	public static void SetUpBeforeClass() throws IOException {
 		
 		lecs = new Lecture_lab("fichiertest.txt");
-		h = new Heros(201, 201, 4, 20, 10);
+		h = new Heros(201, 201, 4, 20, 10,3);
 		arrivee = new Tresor(200,300,20,20);
 		md = new Mur(205,200,1,1);
 		mf = new Mur(200,205,1,1);
-		h2 = new Heros(250,250,10,10,10);
+		h2 = new Heros(250,250,10,10,10,2);
 		arrivee2 = new Tresor(400,400,10,10);
 	} 
 	// Tests de lecture de fichier 
