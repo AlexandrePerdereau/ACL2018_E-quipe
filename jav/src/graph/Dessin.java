@@ -191,6 +191,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("cleftap");
+		
+		
 
 	}
 
