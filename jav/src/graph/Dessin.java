@@ -26,6 +26,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void run(){
 		System.out.println("Execution");
 		while (Visuel.partieencours){
+			
 			if (arivee.pietinee(perso))
 				Visuel.partieencours=false;
 			for (Magique m:lMagique){
@@ -37,6 +38,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					lMagiqueUsed.add(m);
 				}
 			}
+			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
+			int portee=perso.getPortee();
+			int rayon = perso.getRayon();
+			
 			if  (perso.peutAvancer( lMur )){
 				perso.setX(perso.getX()+perso.getDirectionX()*perso.getFacteurdevitesse());
 				perso.setY(perso.getY()+perso.getDirectionY()*perso.getFacteurdevitesse());
@@ -45,6 +50,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			ArrayList<Monstre> monstresupprim = new ArrayList<Monstre>();
 			for (Monstre m:lMonstre){
+				int mRayon = m.getRayon();
+				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
+					perso.setPointdevie(0);
+					Visuel.partieencours=false;
+					break;
+				}
+				
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
 				if ((perso.getAttaqueX()!=0 || perso.getAttaqueY()!=0) && perso.monstredroite2points(m) < m.getRayon())m.perdPV(1);
 
@@ -113,9 +125,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		if (!Visuel.partieencours) {
 			g.setColor(Color.blue);
 			if (perso.getPointdevie()!=0)
-				g.drawString("VICTOIRE", 200, 200);
+				g.drawString("VICTOIRE", 180, 200);
 
-			else g.drawString("DEFAITE", 200, 200);
+			else {g.setColor(Color.red);g.drawString("DEFAITE", 180, 200);}
 		}
 		else{
 			setBackground(Color.WHITE);
