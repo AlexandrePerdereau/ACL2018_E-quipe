@@ -30,7 +30,7 @@ public class JUnitLecture {
 	public  void SetUp() throws IOException {
 		
 		lec = new Lecture_lab("fichierTest.txt");
-		h = new Heros(201, 201, 4, 20,10);
+		h = new Heros(201, 201, 4, 20, 10);
 		arrivee = new Tresor(200,300,20,20);
 		md = new Mur(205,200,1,1);
 		mf = new Mur(200,205,1,1);
