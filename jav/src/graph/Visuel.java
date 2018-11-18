@@ -84,8 +84,7 @@ System.out.println("frame creer");
 		JButton btnCommencerLeNiveau = new JButton("Commencer le niveau");
 		btnCommencerLeNiveau.setBounds(298, 13, 157, 54);
 		contentPane.add(btnCommencerLeNiveau);
-		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() {
-		//lorsque l'utilisateur clique sur le bouton : 
+		btnCommencerLeNiveau.addActionListener(new java.awt.event.ActionListener() { 		//lorsque l'utilisateur clique sur le bouton : 
 
 			public void actionPerformed(java.awt.event.ActionEvent e) { //alors
 				if (partieencours) { panel.setVisible(false);partieencours = false ;}

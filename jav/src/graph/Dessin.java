@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import element.Fantome_Patrouilleur;
-import element.Fantome_traqueur;
 import element.Magique;
 import element.Monstre;
 import element.Mur;
@@ -24,13 +23,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private Tresor arivee;
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
-<<<<<<< HEAD
-	protected ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
-	protected ArrayList<Fantome_traqueur> listFantomeTraqueur = new ArrayList<Fantome_traqueur>();
-	
-=======
 	private ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
->>>>>>> c3845b03df8a9e09ef0d391000daf9048176c6ff
 	private long temps=0;
 
 	@Override
@@ -39,10 +32,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		while (Visuel.partieencours){
 			
 
-			//Condition de victoire.
-			if (arivee.pietinee(perso)) Visuel.partieencours=false;
-			
-			//Déclenchement des magies.
+			if (arivee.pietinee(perso))
+				Visuel.partieencours=false;
 			for (Magique m:lMagique){
 				if (m.pietinee(perso)){
 					m.appeffect(perso);
@@ -52,33 +43,21 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					lMagiqueUsed.add(m);
 				}
 			}
-			
 			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
 			int rayon = perso.getRayon();
 			int dirX = perso.getDirectionX(), dirY = perso.getDirectionY();
 			int pas = perso.getFacteurdevitesse();
 
-			//Déplacement du Héros.
-			if  (perso.peutAvancer(lMur)){
+			if  (perso.peutAvancer( lMur )){
 				perso.setX(X+dirX*pas);
 				perso.setY(Y+dirY*pas);
 			}
-			
-			//Elimination des magies déjà utilisées.
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
 
-<<<<<<< HEAD
-			
-			ArrayList<Monstre> monstresupprim = new ArrayList<Monstre>();
-			
-			//Condition de défaite.
-			for (Monstre m:lMonstre){
-=======
 			ArrayList<Integer> monstresupprim = new ArrayList<Integer>();
 			
 			for (int i=0;i<lMonstre.size();i++){
 				Monstre m = lMonstre.get(i);
->>>>>>> c3845b03df8a9e09ef0d391000daf9048176c6ff
 				int mRayon = m.getRayon();
 				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
 					perso.setPointdevie(0);
@@ -88,17 +67,6 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				long t = System.currentTimeMillis();
 
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
-<<<<<<< HEAD
-				
-				//Perte de points de vie quand le héros attaque.
-				if ((attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon())
-					m.perdPV(1);
-
-				//Elimination des  vaincus.
-				if(m.getPointdevie()<=0)monstresupprim.add(m);
-				
-				else{ //Déplacement.
-=======
 				if (t-timermonstretouche.get(i)>100 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
 					m.perdPV(1);
 					perso.perdPV(1);
@@ -106,7 +74,6 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 				if(m.getPointdevie()<=0)monstresupprim.add(i);
 				else{
->>>>>>> c3845b03df8a9e09ef0d391000daf9048176c6ff
 					int mVitesse = m.getFacteurdevitesse();
 					int newX=m.getX()+m.getDirectionX()*mVitesse;
 					int newY=m.getY()+m.getDirectionY()*mVitesse;
@@ -117,7 +84,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 						m.setY(newY);
 
 					}
-					else{ // Si face à un mur.
+					else{
 						m.setDirectionX(-1*m.getDirectionX());
 						m.setDirectionY(-1*m.getDirectionY());
 					}
@@ -127,18 +94,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			for (Fantome_Patrouilleur m:listFantomePatrouilleur){
 				int mRayon = m.getRayon();
-				
-				//Condition de défaite.
 				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
 					perso.setPointdevie(0);
 					Visuel.partieencours=false;
 					break;
 				}
-				//Déplacement.
 				int mVitesse = m.getFacteurdevitesse();
 				int newX=m.getX()+m.getDirectionX()*mVitesse;
 				int newY=m.getY()+m.getDirectionY()*mVitesse;
-				// Je ne comprends pas à quoi sert ce code (Ludovic)
 				if (Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
 						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
 					m.setX(newX);
@@ -149,46 +112,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					m.setDirectionX(-1*m.getDirectionX());
 					m.setDirectionY(-1*m.getDirectionY());
 				}
-				
-			}
-			
-			for (Fantome_traqueur m:listFantomeTraqueur){
-				int mRayon = m.getRayon();
-				
-				//Condition de défaite.
-				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
-					perso.setPointdevie(0);
-					Visuel.partieencours=false;
-					break;
-				}
-				//Déplacement.
-				int mVitesse = m.getFacteurdevitesse();
-				m.traque(perso);
-				int newX=m.getX()+m.getDirectionX()*mVitesse;
-				int newY=m.getY()+m.getDirectionY()*mVitesse;
-				// Je ne comprends pas à quoi sert ce code (Ludovic)
-				if (Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
-						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
-					m.setX(newX);
-					m.setY(newY);
 
-				}
-				else{
-					m.setDirectionX(-1*m.getDirectionX());
-					m.setDirectionY(-1*m.getDirectionY());
-				}
 				
+
 			}
-<<<<<<< HEAD
-			
-			for (Monstre m : monstresupprim)lMonstre.remove(m);
-			
-=======
 			for (int i : monstresupprim){
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
 			}
->>>>>>> c3845b03df8a9e09ef0d391000daf9048176c6ff
 			this.repaint();
 			try {
 				Thread.sleep(20);

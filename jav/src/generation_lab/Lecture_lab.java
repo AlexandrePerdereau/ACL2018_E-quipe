@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import element.Fantome_Patrouilleur;
-import element.Fantome_traqueur;
 import element.Heros;
 import element.Magique;
 import element.Monstre;
@@ -32,26 +31,19 @@ public class Lecture_lab{
 		this.listMonstre = listMonstre;
 	}
 
+
+
 	protected ArrayList<Monstre> listMonstre = new ArrayList<Monstre>();
-	
 	protected ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
 
-	protected ArrayList<Fantome_traqueur> listFantomeTraqueur = new ArrayList<Fantome_traqueur>();
-	
+
+
 	public ArrayList<Fantome_Patrouilleur> getListFantomePatrouilleur() {
 		return listFantomePatrouilleur;
 	}
 
 	public void setListFantomePatrouilleur(ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur) {
 		this.listFantomePatrouilleur = listFantomePatrouilleur;
-	}
-	
-	public ArrayList<Fantome_traqueur> getListFantomeTraqueur() {
-		return listFantomeTraqueur;
-	}
-
-	public void setListFantomeTraqueur(ArrayList<Fantome_traqueur> listFantomeTraqueur) {
-		this.listFantomeTraqueur = listFantomeTraqueur;
 	}
 
 	public Lecture_lab(String fichier)  throws IOException {
@@ -121,23 +113,6 @@ public class Lecture_lab{
 					Fantome_Patrouilleur fantomePat = new Fantome_Patrouilleur( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
 					listFantomePatrouilleur.add(fantomePat);
 					System.out.println("testfantomepat");
-				}
-				if (champ[0].equals("Fantome_traqueur")) {
-					ArrayList<Integer> pointA = new ArrayList<Integer>();
-					for (int i =3 ; i<5;i++)pointA.add(Integer.parseInt(champ[i]));
-					int[] point = new int[pointA.size()];
-					for (int i=0;i<pointA.size();i++)point[i]=pointA.get(i);
-
-					ArrayList<Integer> distaA = new ArrayList<Integer>();
-					for (int i =5 ; i<7;i++)distaA.add(Integer.parseInt(champ[i]));
-					int[] dista = new int[distaA.size()];
-
-
-					for (int i=0;i<distaA.size();i++){dista[i]=distaA.get(i);System.out.println("a"+dista[i]);}
-
-					Fantome_traqueur fantomeTraq = new Fantome_traqueur( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
-					listFantomeTraqueur.add(fantomeTraq);
-					System.out.println("testfantomeTraq");
 				}
 
 
