@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import element.Fantome_Patrouilleur;
+import element.Fantome_Traqueur;
 import element.Magique;
 import element.Monstre;
 import element.Mur;
@@ -25,6 +26,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
 	private ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
 	private long temps=0;
+	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
+
 
 	@Override
 	public void run(){
@@ -116,6 +119,16 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				
 
 			}
+			
+			for (Fantome_Traqueur ft:lFTraqueur){
+				ft.pos(perso);
+				int ftRayon = ft.getRayon();
+				if (perso.distanceaucarre(ft)<(rayon+ftRayon)*(rayon+ftRayon)){
+					perso.setPointdevie(0);
+					Visuel.partieencours=false;
+					break;
+				}
+			}
 			for (int i : monstresupprim){
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
@@ -141,7 +154,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		this.lMagique=lab.getlMagique();
 		this.arivee=lab.getArrivee();
 		this.listFantomePatrouilleur=lab.getListFantomePatrouilleur();
-
+		this.lFTraqueur=lab.getlFTraqueur();
 	}
 
 	public Dessin(ArrayList<Mur> lMur,	element.Heros perso){ //utile pour des tests,
@@ -208,6 +221,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for (Monstre monstre : listFantomePatrouilleur){
 				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
 			}
+			for (Fantome_Traqueur ft : this.lFTraqueur)
+				g.fillOval(ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon());;
+
 			g.setColor(Color.BLUE);
 			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 

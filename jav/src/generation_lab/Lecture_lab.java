@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import element.Fantome_Patrouilleur;
+import element.Fantome_Traqueur;
 import element.Heros;
 import element.Magique;
 import element.Monstre;
@@ -22,10 +23,22 @@ public class Lecture_lab{
 	protected String fichier;
 	protected Tresor arrivee;
 	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
+	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
 
 	public ArrayList<Monstre> getListMonstre() {
 		return listMonstre;
 	}
+	
+
+	public ArrayList<Fantome_Traqueur> getlFTraqueur() {
+		return lFTraqueur;
+	}
+
+
+	public void setlFTraqueur(ArrayList<Fantome_Traqueur> lFTraqueur) {
+		this.lFTraqueur = lFTraqueur;
+	}
+
 
 	public void setListMonstre(ArrayList<Monstre> listMonstre) {
 		this.listMonstre = listMonstre;
@@ -77,6 +90,11 @@ public class Lecture_lab{
 				if (champ[0].equals("Heros") && heros == null) {
 					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5]),Integer.parseInt(champ[6]));
 					heros = hero;
+
+				}
+				if (champ[0].equals("Fantome_Traqueur")) {
+					Fantome_Traqueur fantometraqueur = new Fantome_Traqueur(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]));
+					lFTraqueur.add(fantometraqueur);
 
 				}
 
