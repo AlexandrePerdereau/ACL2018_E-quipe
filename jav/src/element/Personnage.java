@@ -80,19 +80,21 @@ public abstract class Personnage {
 		this.rayon = rayon;
 	}
 
-	public Personnage (int x, int y , int rayon , int facteurdevitesse){
+	public Personnage (int x, int y , int rayon , int facteurdevitesse,int pv){
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
 		this.facteurdevitesse=facteurdevitesse;
+		this.pointdevie=pv;
 	}
 	
-	public Personnage (int x, int y , int rayon , int facteurdevitesse,int directionX,	int directionY){ //utliser par monstre nottament qui a une direction par defaut
+	public Personnage (int x, int y , int rayon , int facteurdevitesse,int directionX,	int directionY,int pv){ //utliser par monstre nottament qui a une direction par defaut
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
 		this.facteurdevitesse=facteurdevitesse;
 		this.directionX=directionX; this.directionY=directionY;
+		this.pointdevie=pv;
 	}
 
 	public boolean peutAvancer( ArrayList<Mur> m ){ //return true si on peut passer dans la direction de X , false sinon

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Fantome_Patrouilleur extends Monstre{
 
 	public Fantome_Patrouilleur(int rayon, int facteurdevitesse, int[] point, int[] distance) {
-		super(rayon, facteurdevitesse, point, distance);
+		super(rayon, facteurdevitesse, point, distance,1);
 		this.point=point;
 		this.distance=distance;
 		if (distance[0]!=0)this.setDirectionX(distance[0]/Math.abs(distance[0]));

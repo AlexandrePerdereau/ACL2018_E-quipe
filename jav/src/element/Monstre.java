@@ -5,8 +5,8 @@ public class Monstre extends Personnage {
 	protected int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
 
 
-	public Monstre(int rayon ,int facteurdevitesse , int[] point, int []distance) {
-		super(point[0], point[1], rayon , facteurdevitesse);
+	public Monstre(int rayon ,int facteurdevitesse , int[] point, int []distance,int pv) {
+		super(point[0], point[1], rayon , facteurdevitesse,pv);
 		this.point=point;
 		this.distance=distance;
 		if (distance[0]!=0)this.setDirectionX(distance[0]/Math.abs(distance[0]));

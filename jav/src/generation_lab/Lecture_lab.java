@@ -83,7 +83,7 @@ public class Lecture_lab{
 
 				}
 				if (champ[0].equals("Heros") && heros == null) {
-					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5]));
+					Heros hero = new Heros(Integer.parseInt(champ[1]), Integer.parseInt(champ[2]), Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5]),Integer.parseInt(champ[6]));
 					heros = hero;
 
 				}
@@ -101,7 +101,7 @@ public class Lecture_lab{
 
 					for (int i=0;i<distaA.size();i++){dista[i]=distaA.get(i);System.out.println("a"+dista[i]);}
 
-					Monstre monstre = new Monstre( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista);
+					Monstre monstre = new Monstre( Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),point,dista,Integer.parseInt(champ[champ.length -1]));
 					listMonstre.add(monstre);
 					System.out.println("testmonstre");
 				}
