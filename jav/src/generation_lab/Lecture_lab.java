@@ -24,7 +24,7 @@ public class Lecture_lab{
 	protected Tresor arrivee;
 	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
-	int pixelX , pixelY ; //taille du dessin
+	int pixelX=400 , pixelY=400 ; //taille du dessin
 	
 	public ArrayList<Monstre> getListMonstre() {
 		return listMonstre;
