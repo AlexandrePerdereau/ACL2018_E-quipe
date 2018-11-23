@@ -33,6 +33,10 @@ public class Monstre extends Personnage {
 	public void setDistance(int[] distance) {
 		this.distance = distance;
 	}
+	
+	public void traque(Heros h){
+		
+	}
 
 
 
