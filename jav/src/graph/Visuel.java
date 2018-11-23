@@ -32,7 +32,6 @@ public class Visuel extends JFrame {
 	static  String combochoix = "niveau1";
 	static boolean partieencours = false;
 
-
 	Dessin panel;
 
 	public static void main(String[] args) throws IOException {
@@ -62,7 +61,7 @@ System.out.println("frame creer");
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,8 +98,7 @@ System.out.println("frame creer");
 
 
 					Rectangle borders = new Rectangle(contentPane.getBounds());
-					panel = new Dessin(lec); // On utilise ses infos pour creer le dessin
-					panel.setBounds(100, 100, borders.width - 200, borders.height - 200);
+					panel = new Dessin(lec,borders.width,borders.height); // On utilise ses infos pour creer le dessin
 					contentPane.add(panel);
 					panel.repaint();  //On affiche le dessin
 					System.out.println("test2");

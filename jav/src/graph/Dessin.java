@@ -35,7 +35,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
 	private long temps=0;
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
-
+	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
 
 	@Override
 	public void run(){
@@ -151,9 +151,11 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		}
 	}
 
-	public Dessin(generation_lab.Lecture_lab lab){
+	public Dessin(generation_lab.Lecture_lab lab,int visuelX, int visuelY){ //ViseulX,VisuelY=taillevisuel
 		//On prend les info du lab, extraites elels meme du fichier auparavant
 		setBackground(Color.WHITE);
+		this.pixelX=lab.getPixelX();
+		this.pixelY=lab.getPixelY();
 		this.lMur = lab.getListMur();
 		this.perso = lab.getHeros();
 		this.lMonstre = lab.getListMonstre();
@@ -163,6 +165,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		this.arivee=lab.getArrivee();
 		this.listFantomePatrouilleur=lab.getListFantomePatrouilleur();
 		this.lFTraqueur=lab.getlFTraqueur();
+		
+		this.setBounds((visuelX-pixelX)/2, (visuelY-pixelY)/2, pixelX, pixelY);
+
 
 		try {
 			coeurimage=ImageIO.read(new File("Pointdevie.png"));
@@ -308,6 +313,24 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 
 	}
+
+	public int getPixelX() {
+		return pixelX;
+	}
+
+	public void setPixelX(int pixelX) {
+		this.pixelX = pixelX;
+	}
+
+	public int getPixelY() {
+		return pixelY;
+	}
+
+	public void setPixelY(int pixelY) {
+		this.pixelY = pixelY;
+	}
+	
+	
 
 
 

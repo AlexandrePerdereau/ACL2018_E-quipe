@@ -24,7 +24,8 @@ public class Lecture_lab{
 	protected Tresor arrivee;
 	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
-
+	int pixelX , pixelY ; //taille du dessin
+	
 	public ArrayList<Monstre> getListMonstre() {
 		return listMonstre;
 	}
@@ -132,6 +133,10 @@ public class Lecture_lab{
 					listFantomePatrouilleur.add(fantomePat);
 					System.out.println("testfantomepat");
 				}
+				if (champ[0].equals("DefTaille")){
+					pixelX=Integer.parseInt(champ[1]);
+					pixelY=Integer.parseInt(champ[2]);
+				}
 
 
 
@@ -142,6 +147,26 @@ public class Lecture_lab{
 
 
 	}
+
+	public int getPixelX() {
+		return pixelX;
+	}
+
+
+	public void setPixelX(int pixelX) {
+		this.pixelX = pixelX;
+	}
+
+
+	public int getPixelY() {
+		return pixelY;
+	}
+
+
+	public void setPixelY(int pixelY) {
+		this.pixelY = pixelY;
+	}
+
 
 	public Tresor getArrivee() {
 		return arrivee;

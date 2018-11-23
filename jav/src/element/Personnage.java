@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import element.Mur;
 
 public abstract class Personnage {
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	private int rayon;
 	private int directionX;
 	private int directionY;
