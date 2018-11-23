@@ -1,38 +1,67 @@
 package aetoile;
 
+import java.util.LinkedList;
+
 import element.Heros;
 
 public class Noeud implements Comparable<Object>{
-    int x , y ; // position du noeud en pixel
-    int cout; //cout pour aller du depart vers le noeud
-    int heuristique;  // cout + distance au noeud d'arrive
+	int x , y ; // position du noeud en pixel
+	int cout; //cout pour aller du depart vers le noeud
+	int heuristique;  // cout + distance au noeud d'arrive
 	Noeud precedent; 
-	
-    public Noeud(int x, int y, int pas, Heros cible,Noeud precedent) {
-		
+
+	public Noeud(int x, int y, int pas, Heros cible,Noeud precedent) {
+
 		this.x = x;
 		this.y = y;
-		this.cout = precedent.cout+pas;
+		if (precedent!=null){
+			this.cout = precedent.cout+pas;}
+		else cout=0;
+
 		this.heuristique = cout + cible.distanceaucarre(x, y);
 		this.precedent=precedent;
 	}
-    
-    public int compareTo(Object autrenoeud){
-    	
-    	if (this.heuristique < ((Noeud)autrenoeud).heuristique)
-    		return 1 ;
-    	else if (this.heuristique == ((Noeud)autrenoeud).heuristique) return 0;
-    	return -1;
-    }
-    
-    public String toString(){
-    	return x+" , "+y+" , "+cout+" , "+heuristique; //pour voir
-    }
-    
-    @Override
-    public boolean equals(Object noeud){
-    	return ((Noeud)noeud).x == x && ((Noeud)noeud).y == y;
-    }
+
+	public Noeud(Noeud n){ // utilisation dans actualise()
+		x=n.x; y = n.y;
+		cout=n.cout;
+		heuristique=n.heuristique;
+		precedent=n.precedent;
+	}
+
+	public int compareTo(Object autrenoeud){
+
+		if (this.heuristique < ((Noeud)autrenoeud).heuristique)
+			return 1 ;
+		else if (this.heuristique == ((Noeud)autrenoeud).heuristique) return 0;
+		return -1;
+	}
+
+	public String toString(){
+		return x+" , "+y+" , "+cout+" , "+heuristique; //pour voir
+	}
+
+	@Override
+	public boolean equals(Object noeud){
+		return ((Noeud)noeud).x == x && ((Noeud)noeud).y == y;
+	}
+
+	public boolean rentredanslaliste(LinkedList<Noeud> closedlist){
+		/*retourne true si la liste ne contient pas le noeud
+		 * avec les meme coord mais avec heuristique plus faible
+		 * 
+		 * */
+		for (Noeud n:closedlist){
+			if (n.getX()==this.x && n.getY()==this.y)
+				if (this.heuristique>=n.getHeuristique())
+					return false;
+				else return true; //en effet on assurera unicite
+		}
+
+
+
+		return true;
+	}
 
 	public int getX() {
 		return x;
@@ -40,6 +69,12 @@ public class Noeud implements Comparable<Object>{
 
 	public void setX(int x) {
 		this.x = x;
+	}
+
+
+
+	public Noeud getPrecedent() {
+		return precedent;
 	}
 
 	public int getY() {
@@ -66,7 +101,7 @@ public class Noeud implements Comparable<Object>{
 		this.heuristique = heuristique;
 	}
 
-	
-	
-    
+
+
+
 }

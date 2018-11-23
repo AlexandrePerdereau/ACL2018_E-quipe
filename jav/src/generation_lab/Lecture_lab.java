@@ -11,6 +11,7 @@ import element.Fantome_Traqueur;
 import element.Heros;
 import element.Magique;
 import element.Monstre;
+import element.MonstreTraqueur;
 import element.Mur;
 import element.Tresor;
 
@@ -24,6 +25,10 @@ public class Lecture_lab{
 	protected Tresor arrivee;
 	protected ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
+	private ArrayList<Integer[]> lArgMonstreTraqueur = new ArrayList<Integer[]>();
+	//contient les argument du monstre traqueur , qui a besoin du dessin pour ce construire vraiment
+	//contient donc x,y,rayon,facteurdevitesse,pv
+	
 	int pixelX=400 , pixelY=400 ; //taille du dessin
 	
 	public ArrayList<Monstre> getListMonstre() {
@@ -98,6 +103,7 @@ public class Lecture_lab{
 					lFTraqueur.add(fantometraqueur);
 
 				}
+				
 
 				if (champ[0].equals("Monstre")) {
 					ArrayList<Integer> pointA = new ArrayList<Integer>();
@@ -133,6 +139,13 @@ public class Lecture_lab{
 					listFantomePatrouilleur.add(fantomePat);
 					System.out.println("testfantomepat");
 				}
+				
+				if (champ[0].equals("MonstreTraqueur")){
+					
+					Integer[] args = {Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5])};
+					lArgMonstreTraqueur.add(args);
+				}
+				
 				if (champ[0].equals("DefTaille")){
 					pixelX=Integer.parseInt(champ[1]);
 					pixelY=Integer.parseInt(champ[2]);
@@ -165,6 +178,13 @@ public class Lecture_lab{
 
 	public void setPixelY(int pixelY) {
 		this.pixelY = pixelY;
+	}
+	
+	
+
+
+	public ArrayList<Integer[]> getlArgMonstreTraqueur() {
+		return lArgMonstreTraqueur;
 	}
 
 

@@ -8,11 +8,22 @@ import generation_lab.Lecture_lab;
 import graph.Dessin;
 //je me suis inspirer du pseudo code fournit par wikipedia
 public class MonstreTraqueur extends Personnage{
-	ArrayList<Noeud> lNoeud = new ArrayList<Noeud>();
+	ArrayList<Integer[]> chemin; //le chemin des points
 	int pixelX , pixelY ; //taille de la map
 	ArrayList<Mur> lMur;
 	Heros cible;
+	long temps;
 	
+	
+
+
+	public long getTemps() {
+		return temps;
+	}
+
+	public void setTemps(long temps) {
+		this.temps = temps;
+	}
 
 	public MonstreTraqueur(int x, int y, int rayon, int facteurdevitesse, int pv ,Dessin dess) {
 		super(x, y, rayon, facteurdevitesse, pv);
@@ -23,35 +34,66 @@ public class MonstreTraqueur extends Personnage{
 
 	}
 
-	/*private void Aetoile(Noeud depart, Noeud arrivee){
+	public void actualise(){
+		Noeud n = Aetoile();
+		Noeud p = n.getPrecedent();
+		while (p!=null){
+			Integer[] pointsuivant ={n.getX(),n.getY()}; 
+			chemin.add(0,pointsuivant);
+		}
 
+	}
+
+
+
+	public void bouge(){
+		try{
+			Integer[] i = this.chemin.get(0);
+			this.setX(i[0]);
+			this.setY(i[1]);
+		}
+		catch(Exception e){
+			System.out.println("il faut actualiser plus vite");
+		}
+
+	}
+
+
+
+	private Noeud Aetoile(){
+		Noeud depart = new Noeud(x,y,facteurdevitesse,cible,null);
 		ListePriorite openList = new ListePriorite();
 		openList.add(depart);
-		while (!openList.isvide()){
-			Noeud n = openList.depile();
-			if (n.equals(arrivee)){
-				//ce sera la fin
-			}
-
-
+		Noeud n = depart;
+		LinkedList<Noeud> closedList = new LinkedList<Noeud>();
+		double contactcarre = Math.pow(this.getRayon()+cible.getRayon(),2);
+		while (Math.pow(n.getX()-cible.getX(),2)+Math.pow(n.getY()-cible.getY(),2)>contactcarre){
+			n=openList.depile();
+			ajoutAdjacent(n,openList,closedList);
 		}
-	}*/
+		temps=System.currentTimeMillis();
+		return n;
+	}
 
-	private void ajoutAdjacent(Noeud n,ListePriorite openList,LinkedList<Noeud> closeList){
+	private void ajoutAdjacent(Noeud n,ListePriorite openList,LinkedList<Noeud> closedList){
 		int x = n.getX() , y = n.getY();
 		for (int i=-1; i<=1; i++){
 			int xi = x+i*facteurdevitesse;
-			if ((xi<0)  || (xi>=pixelX))
-				break; //si en dehors de l'image abscisse , peut pas
 			for (int j=-1; j<=1; j++){
 				int yj = y+j*facteurdevitesse;
+				if (!((xi<0)  || (xi>=pixelX)))
 
-				if ((yj<0)  || (yj>=pixelY))
-					break; //si en dehors de l'image ordonnee, peut pas
-				if (i==0 && j==0)
-					break; //point central , pas adj
-				Noeud nouv = new Noeud(xi,yj,facteurdevitesse,cible,n);
+					if (!((yj<0)  || (yj>=pixelY)))
+						if (!(i==0 && j==0))
+							if (Mur.esthorsmur(xi,yj,this.getRayon(),lMur)){
+
+								Noeud nouv = new Noeud(xi,yj,facteurdevitesse,cible,n);
+								if (nouv.rentredanslaliste(closedList)){
+									openList.add(nouv);
+								}
+							}
 			}
+			closedList.add(n);
 		}
 
 

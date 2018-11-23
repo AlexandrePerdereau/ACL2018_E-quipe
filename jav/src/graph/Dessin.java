@@ -18,6 +18,7 @@ import element.Fantome_Traqueur;
 import element.Heros;
 import element.Magique;
 import element.Monstre;
+import element.MonstreTraqueur;
 import element.Mur;
 import element.Tresor;
 
@@ -37,6 +38,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private long temps=0;
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
 	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
+
+
+	private ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
 
 	@Override
 	public void run(){
@@ -142,6 +146,22 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
 			}
+			
+			for (MonstreTraqueur mT:lMTraqueur){
+				long tps = System.currentTimeMillis();
+				if(mT.getTemps()==0 || tps - mT.getTemps()>3000){
+					mT.actualise();
+					mT.setTemps(System.currentTimeMillis());
+				}
+				mT.bouge();
+				int mTRayon = mT.getRayon();
+				if (perso.distanceaucarre(mT)<(rayon+mTRayon)*(rayon+mTRayon)){
+					perso.setPointdevie(0);
+					Visuel.partieencours=false;
+					break;
+				}
+			}
+			
 			this.repaint();
 			try {
 				Thread.sleep(20);
@@ -166,13 +186,17 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		this.arivee=lab.getArrivee();
 		this.listFantomePatrouilleur=lab.getListFantomePatrouilleur();
 		this.lFTraqueur=lab.getlFTraqueur();
-		
+
 		this.setBounds((visuelX-pixelX)/2, (visuelY-pixelY)/2, pixelX, pixelY);
+		ArrayList<Integer[]> argmonstretraqueur =lab.getlArgMonstreTraqueur();
+		for (Integer[] args:argmonstretraqueur){
+			this.lMTraqueur.add(new MonstreTraqueur(args[0],args[1],args[2],args[3],args[4],this));
+		}
 
 
 		try {
 			coeurimage=ImageIO.read(new File("Pointdevie.png"));
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -234,32 +258,44 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for (Mur m : lMur){
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
-			g.setColor(Color.RED);
 			for (Monstre monstre : lMonstre){
+				g.setColor(Color.RED);
+
 				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());
 				g.setColor(Color.WHITE);
 				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
 			}
+			
+			for (MonstreTraqueur mT : lMTraqueur){
+				g.setColor(Color.RED);
+
+				int R = mT.getRayon();
+				g.fillOval(mT.getX()-R, mT.getY()-R, 2*R, 2*R);
+				g.setColor(Color.WHITE);
+				g.drawString(""+mT.getPointdevie(), mT.getX(), mT.getY());
+			}
+
 			g.setColor(Color.GRAY);
 			for (Monstre monstre : listFantomePatrouilleur){
 				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
 			}
 			for (Fantome_Traqueur ft : this.lFTraqueur)
-				g.fillOval(ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon());;
+				g.fillOval(ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon());
 
-				g.setColor(Color.BLUE);
-				g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
+			
+			g.setColor(Color.BLUE);
+			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
-				g.setColor(Color.YELLOW);
-				g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
+			g.setColor(Color.YELLOW);
+			g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
 
-				g.setColor(Color.GREEN);
-				for(Magique m:lMagique)
-					g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
-				
-				g.drawImage(coeurimage, 0, 0, null);
+			g.setColor(Color.GREEN);
+			for(Magique m:lMagique)
+				g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
+
+			g.drawImage(coeurimage, 0, 0, null);
 		}
-		
+
 
 	}
 
@@ -338,7 +374,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void setlMur(ArrayList<Mur> lMur) {
 		this.lMur = lMur;
 	}
-	
+
 	public Heros getPerso(){
 		return perso;
 	}

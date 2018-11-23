@@ -1,4 +1,7 @@
 package element;
+
+import java.util.ArrayList;
+
 public class Mur {
 	
 	private int posx, posy, longx, longy;
@@ -40,6 +43,21 @@ public class Mur {
 		this.posy = posy;
 		this.longx = longx;
 		this.longy = longy;
+	}
+	
+	public static boolean esthorsmur(int X,int Y ,int rayon, ArrayList<Mur> lM){
+		/*on va faire une approx comme quoi le monstre traqueur ne doit pas froler le mur
+		 * trop compliquer sinon
+		 * 
+		 * 
+		 * */
+		for (Mur m : lM){
+			if ((m.getPosx()<X+rayon && m.getPosx()+m.getLongx()>X-rayon)
+				&& (m.getPosy()<Y+rayon && m.getPosy()+m.getLongy()>Y-rayon))
+				return false;
+		}
+		
+		return true;
 	}
 	
 	
