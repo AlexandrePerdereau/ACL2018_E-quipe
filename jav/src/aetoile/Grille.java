@@ -25,12 +25,12 @@ public class Grille {
 		 * i*m.getFacteurdevitesse()][1] = n%(i*m.getFacteurdevitesse()); } }
 		 */
 
-		for (int i = 0; i < n; i++) {
+	/*	for (int i = 0; i < n; i++) {
 
 			lPoint[(i * m.getFacteurdevitesse())][0] = i*n%(lL.getPixelX()/m.getFacteurdevitesse());
 			lPoint[(i * m.getFacteurdevitesse())][1] = i*n/(lL.getPixelX()/m.getFacteurdevitesse());
 
-		}
+		} */
 	}
 
 }

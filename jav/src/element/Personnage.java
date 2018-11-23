@@ -6,10 +6,10 @@ import element.Mur;
 public abstract class Personnage {
 	protected int x;
 	protected int y;
-	private int rayon;
+	protected int rayon;
 	private int directionX;
 	private int directionY;
-	private int facteurdevitesse=5;
+	protected int facteurdevitesse=5;
 	private int pointdevie=3;
 	
 	public void perdPV(int p){
@@ -155,4 +155,7 @@ public abstract class Personnage {
 		
 		return true;
 	}
+	
+	
+	
 }

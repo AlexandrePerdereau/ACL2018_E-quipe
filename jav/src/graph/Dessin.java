@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import element.Fantome_Patrouilleur;
 import element.Fantome_Traqueur;
+import element.Heros;
 import element.Magique;
 import element.Monstre;
 import element.Mur;
@@ -329,8 +330,18 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	public void setPixelY(int pixelY) {
 		this.pixelY = pixelY;
 	}
+
+	public ArrayList<Mur> getlMur() {
+		return lMur;
+	}
+
+	public void setlMur(ArrayList<Mur> lMur) {
+		this.lMur = lMur;
+	}
 	
-	
+	public Heros getPerso(){
+		return perso;
+	}
 
 
 
