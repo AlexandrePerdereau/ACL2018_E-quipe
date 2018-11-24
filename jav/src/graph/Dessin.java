@@ -293,7 +293,18 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for(Magique m:lMagique)
 				g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
 
-			g.drawImage(coeurimage, 0, 0, null);
+			if (perso.getPointdevie()==3) {
+				g.drawImage(coeurimage, 0, 0, null);
+				g.drawImage(coeurimage, 25, 0, null);
+				g.drawImage(coeurimage, 50, 0, null);
+			}
+			else if (perso.getPointdevie()==2) {
+				g.drawImage(coeurimage, 0, 0, null);
+			    g.drawImage(coeurimage, 25, 0, null);
+			}
+			else if (perso.getPointdevie()==1) {
+				g.drawImage(coeurimage, 0, 0, null);
+			}
 		}
 
 
