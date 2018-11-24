@@ -14,6 +14,7 @@ public class ListePriorite {
 	public void add(Noeud n){
 		list.add(n);
 		Collections.sort(list);
+		//System.out.println(list);
 	}
 	
 	public boolean isvide(){

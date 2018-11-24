@@ -32,13 +32,13 @@ public class Noeud implements Comparable<Object>{
 	public int compareTo(Object autrenoeud){
 
 		if (this.heuristique < ((Noeud)autrenoeud).heuristique)
-			return 1 ;
+			return -1 ;
 		else if (this.heuristique == ((Noeud)autrenoeud).heuristique) return 0;
-		return -1;
+		return +1;
 	}
 
 	public String toString(){
-		return x+" , "+y+" , "+cout+" , "+heuristique; //pour voir
+		return x+" , "+y+" , "+cout+" , "+heuristique + " ; "; //pour voir
 	}
 
 	@Override

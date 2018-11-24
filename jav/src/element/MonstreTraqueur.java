@@ -74,7 +74,7 @@ public class MonstreTraqueur extends Personnage{
 		LinkedList<Noeud> closedList = new LinkedList<Noeud>();
 		double contactcarre = Math.pow(this.getRayon()+cible.getRayon(),2);
 		System.out.println("cc"+contactcarre);
-		while (Math.pow(n.getX()-cible.getX(),2)+Math.pow(n.getY()-cible.getY(),2)>contactcarre){
+		while (Math.pow(n.getX()-cible.getX(),2)+Math.pow(n.getY()-cible.getY(),2)>2*contactcarre){
 			n=openList.depile();
 			System.out.println(n);
 			ajoutAdjacent(n,openList,closedList);
