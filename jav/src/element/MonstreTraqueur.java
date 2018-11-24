@@ -35,9 +35,12 @@ public class MonstreTraqueur extends Personnage{
 	}
 
 	public void actualise(){
+		System.out.println("actualisation ou initialisation de notre chemin");
 		Noeud n = Aetoile();
+		System.out.println("n");
 		Noeud p = n.getPrecedent();
 		while (p!=null){
+			System.out.println("parcours");
 			Integer[] pointsuivant ={n.getX(),n.getY()}; 
 			chemin.add(0,pointsuivant);
 		}
@@ -67,8 +70,10 @@ public class MonstreTraqueur extends Personnage{
 		Noeud n = depart;
 		LinkedList<Noeud> closedList = new LinkedList<Noeud>();
 		double contactcarre = Math.pow(this.getRayon()+cible.getRayon(),2);
+		System.out.println("cc"+contactcarre);
 		while (Math.pow(n.getX()-cible.getX(),2)+Math.pow(n.getY()-cible.getY(),2)>contactcarre){
 			n=openList.depile();
+			System.out.println(n);
 			ajoutAdjacent(n,openList,closedList);
 		}
 		temps=System.currentTimeMillis();
