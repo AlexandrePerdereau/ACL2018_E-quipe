@@ -8,7 +8,7 @@ import generation_lab.Lecture_lab;
 import graph.Dessin;
 //je me suis inspirer du pseudo code fournit par wikipedia
 public class MonstreTraqueur extends Personnage{
-	ArrayList<Integer[]> chemin; //le chemin des points
+	ArrayList<Integer[]> chemin = new ArrayList<Integer[]>(); //le chemin des points
 	int pixelX , pixelY ; //taille de la map
 	ArrayList<Mur> lMur;
 	Heros cible;
@@ -43,6 +43,8 @@ public class MonstreTraqueur extends Personnage{
 			System.out.println("parcours");
 			Integer[] pointsuivant ={n.getX(),n.getY()}; 
 			chemin.add(0,pointsuivant);
+			n=p;
+			p=n.getPrecedent();
 		}
 
 	}
@@ -54,6 +56,7 @@ public class MonstreTraqueur extends Personnage{
 			Integer[] i = this.chemin.get(0);
 			this.setX(i[0]);
 			this.setY(i[1]);
+			chemin.remove(0);
 		}
 		catch(Exception e){
 			System.out.println("il faut actualiser plus vite");
@@ -93,12 +96,15 @@ public class MonstreTraqueur extends Personnage{
 							if (Mur.esthorsmur(xi,yj,this.getRayon(),lMur)){
 
 								Noeud nouv = new Noeud(xi,yj,facteurdevitesse,cible,n);
-								if (nouv.rentredanslaliste(closedList)){
+								if (nouv.rentredanslaliste(closedList) && nouv.rentredanslaliste(openList)){
 									openList.add(nouv);
 								}
 							}
 			}
-			closedList.add(n);
+			
+			if (n.rentredanslaliste(closedList)){
+			
+			closedList.add(n);}
 		}
 
 

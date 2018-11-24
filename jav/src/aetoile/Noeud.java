@@ -15,10 +15,10 @@ public class Noeud implements Comparable<Object>{
 		this.x = x;
 		this.y = y;
 		if (precedent!=null){
-			this.cout = precedent.cout+pas*pas;}
+			this.cout = precedent.cout+pas;}
 		else cout=0;
 
-		this.heuristique = cout + cible.distanceaucarre(x, y);
+		this.heuristique = cout + (int)Math.sqrt(cible.distanceaucarre(x, y));
 		this.precedent=precedent;
 	}
 
@@ -51,20 +51,32 @@ public class Noeud implements Comparable<Object>{
 		 * avec les meme coord mais avec heuristique plus faible
 		 * 
 		 * */
-		Noeud asupprimer = null;
 		for (Noeud n:closedlist){
 			if (n.getX()==this.x && n.getY()==this.y)
 				if (this.heuristique>=n.getHeuristique())
 					return false;
+			
+
+		}
+
+
+
+		return true;
+	}
+
+	public boolean rentredanslaliste(ListePriorite openList){
+
+		for (Noeud n:openList.list){
+			if (n.getX()==this.x && n.getY()==this.y){
+				if (this.heuristique>=n.getHeuristique())
+					return false;
 				else{ 
-					asupprimer=n;
-					break;
+					return true;
 				}
+			}
+			return true;
 		}
-		if (asupprimer!=null)
-		{
-			closedlist.remove(asupprimer);
-		}
+
 
 
 
