@@ -21,6 +21,7 @@ Test unitaire effectué par : non fait
 
 Gestion des points de vie
 Dévellopé par : Alexandre Perdereau
+Affichage par : Mohamed Hassane
 Test unitaire par :
 
 Attaque du joueur
