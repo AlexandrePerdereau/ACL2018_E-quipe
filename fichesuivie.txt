@@ -9,7 +9,7 @@ Test unitaire effectué par : non fait
 
 Génération des différents objets sur lequel le héros peut marcher
 Developpé par : Guillaume Magnette
-Test unitaire effectué par : non fait
+Test unitaire effectué par : 
 
 Le joueur gagne un bonus en marchant sur une case Magique
 Dévellopé par : Alexandre Perdereau
@@ -18,3 +18,19 @@ Test unitaire effectué par : non fait
 Le joueur gagne en rejoignant le tresor
 Dévellopé par : Alexandre Perdereau
 Test unitaire effectué par : non fait
+
+Gestion des points de vie
+Dévellopé par : Alexandre Perdereau
+Test unitaire par :
+
+Attaque du joueur
+Dévellopé par : Alexandre Perdereau
+
+Monstre qui traque le joueur (pas terminer)
+Développé par : Alexandre Perdereau
+
+Monstre fantôme
+Développé par :
+
+Le joueur gagne des bonus plus divers
+Développé par :
