@@ -1,25 +1,40 @@
 package element;
 
 public class Teleporteur extends Element_marchable{
-	Heros hero;
-	Teleporteur tpAutre;
+	private Teleporteur Tp;
 	
-	public Teleporteur(int x, int y,int LongX,int LongY) {
+	
+
+	private Teleporteur getTp() {
+		return Tp;
+	}
+
+	private void setTp(Teleporteur tp) {
+		Tp = tp;
+	}
+
+	private Teleporteur(int x, int y, int LongX, int LongY) {
 		super(x, y, LongX, LongY);
 		
 	}
 	
-	private Teleporteur(Teleporteur tp1,Teleporteur tp2) {
-		this.LierTP(tp2);
+	private void liertp(Teleporteur tp2){
+		tp2.setTp(this);
+		this.setTp(tp2);
+	}
+	
+	public Teleporteur[] creationTP(int x1, int y1, int x2, int y2, int LongX, int LongY){
+		/*creer 2 tp imbrique
+		 * (je suppose leurs taille egal)
+		 * */
+		Teleporteur tp1 = new Teleporteur(x1,y1,LongX,LongY);
+		Teleporteur tp2 = new Teleporteur(x2,y2,LongX,LongY);
+		tp1.liertp(tp2);
+		Teleporteur[] TP ={tp1,tp2};
+		return TP;
+
 	}
 	
 	
-	
-	public void LierTP(Teleporteur tp2) {
-		if (this.pietinee(hero)) {
-			hero.setX(tp2.getX());
-			hero.setY(tp2.getY());
-		}
-	}
 
 }
