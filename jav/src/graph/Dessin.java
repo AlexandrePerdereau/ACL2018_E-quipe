@@ -20,6 +20,7 @@ import element.Magique;
 import element.Monstre;
 import element.MonstreTraqueur;
 import element.Mur;
+import element.Teleporteur;
 import element.Tresor;
 
 public class Dessin extends JPanel implements KeyListener, Runnable {
@@ -38,6 +39,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private long temps=0;
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
 	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
+	
+	private ArrayList<Teleporteur[]> lTp = new ArrayList<Teleporteur[]>();
+
 
 
 	private ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
@@ -186,6 +190,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		this.arivee=lab.getArrivee();
 		this.listFantomePatrouilleur=lab.getListFantomePatrouilleur();
 		this.lFTraqueur=lab.getlFTraqueur();
+		this.lTp=lab.getlTp();
 
 		this.setBounds((visuelX-pixelX)/2, (visuelY-pixelY)/2, pixelX, pixelY);
 		ArrayList<Integer[]> argmonstretraqueur =lab.getlArgMonstreTraqueur();
@@ -300,6 +305,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.drawString(effect[0], m.getX(), m.getY());
 				g.setColor(Color.GREEN);
 
+			}
+			g.setColor(Color.CYAN);
+			for (Teleporteur[] paireTP : lTp){
+				g.fillRect(paireTP[0].getX(), paireTP[0].getY(), paireTP[0].getLongX(), paireTP[0].getLongY());
+				g.fillRect(paireTP[1].getX(), paireTP[1].getY(), paireTP[1].getLongX(), paireTP[1].getLongY());
+
+				
+				
 			}
 			if (perso.getPointdevie()==3) {
 				g.drawImage(coeurimage, 0, 0, null);

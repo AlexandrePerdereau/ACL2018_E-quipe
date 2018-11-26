@@ -13,5 +13,6 @@ DefTaille,500,500
 Magique,300,100,10,10,piegeE1
 Magique,100,400,10,10,soinE1
 Mur,400,300,15,200
+Teleporteur,400,100,450,450,10,10
 
  

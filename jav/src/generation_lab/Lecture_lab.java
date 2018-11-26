@@ -164,7 +164,7 @@ public class Lecture_lab{
 				}
 				
 				if (champ[0].equals("Teleporteur")){
-					
+					lTp.add(Teleporteur.creationTP(Integer.parseInt(champ[1]),Integer.parseInt(champ[2]),Integer.parseInt(champ[3]),Integer.parseInt(champ[4]),Integer.parseInt(champ[5]),Integer.parseInt(champ[6])));
 				}
 
 
