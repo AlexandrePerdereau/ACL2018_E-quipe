@@ -23,7 +23,7 @@ public class Teleporteur extends Element_marchable{
 		this.setTp(tp2);
 	}
 	
-	public Teleporteur[] creationTP(int x1, int y1, int x2, int y2, int LongX, int LongY){
+	public static Teleporteur[] creationTP(int x1, int y1, int x2, int y2, int LongX, int LongY){
 		/*creer 2 tp imbrique
 		 * (je suppose leurs taille egal)
 		 * */

@@ -13,6 +13,7 @@ import element.Magique;
 import element.Monstre;
 import element.MonstreTraqueur;
 import element.Mur;
+import element.Teleporteur;
 import element.Tresor;
 
 public class Lecture_lab{
@@ -28,9 +29,20 @@ public class Lecture_lab{
 	private ArrayList<Integer[]> lArgMonstreTraqueur = new ArrayList<Integer[]>();
 	//contient les argument du monstre traqueur , qui a besoin du dessin pour ce construire vraiment
 	//contient donc x,y,rayon,facteurdevitesse,pv
+	private ArrayList<Teleporteur[]> lTp = new ArrayList<Teleporteur[]>();
 	
 	int pixelX=400 , pixelY=400 ; //taille du dessin
 	
+	
+	
+	public ArrayList<Teleporteur[]> getlTp() {
+		return lTp;
+	}
+
+
+	
+
+
 	public ArrayList<Monstre> getListMonstre() {
 		return listMonstre;
 	}
@@ -149,6 +161,10 @@ public class Lecture_lab{
 				if (champ[0].equals("DefTaille")){
 					pixelX=Integer.parseInt(champ[1]);
 					pixelY=Integer.parseInt(champ[2]);
+				}
+				
+				if (champ[0].equals("Teleporteur")){
+					
 				}
 
 
