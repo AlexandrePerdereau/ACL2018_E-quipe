@@ -35,6 +35,12 @@ public class Teleporteur extends Element_marchable{
 
 	}
 	
+	public void teleportation(Heros h){
+		h.setX(Tp.getX()+Tp.getLongX()/2);
+		h.setY(Tp.getY()+Tp.getLongY()/2);
+
+	}
+	
 	
 
 }

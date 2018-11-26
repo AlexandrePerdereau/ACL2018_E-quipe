@@ -39,7 +39,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private long temps=0;
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
 	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
-	
+
 	private ArrayList<Teleporteur[]> lTp = new ArrayList<Teleporteur[]>();
 
 
@@ -73,6 +73,19 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				perso.setY(Y+dirY*pas);
 			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
+
+			ArrayList<Teleporteur[]> paireasupprimer = new ArrayList<Teleporteur[]>();
+			for (Teleporteur[] paireTP : lTp)
+				for(int i =0;i<=1;i++)
+					if (paireTP[i].pietinee(perso)){
+						paireTP[i].teleportation(perso);
+						paireasupprimer.add(paireTP);
+						break;
+					}
+			lTp.removeAll(paireasupprimer);
+
+
+
 
 			ArrayList<Integer> monstresupprim = new ArrayList<Integer>();
 
@@ -300,7 +313,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				String[] effect = effet.split("E");
 				if (effect[0].equals("piege"))
 					g.setColor(Color.RED);
-				
+
 				g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
 				g.drawString(effect[0], m.getX(), m.getY());
 				g.setColor(Color.GREEN);
@@ -311,8 +324,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.fillRect(paireTP[0].getX(), paireTP[0].getY(), paireTP[0].getLongX(), paireTP[0].getLongY());
 				g.fillRect(paireTP[1].getX(), paireTP[1].getY(), paireTP[1].getLongX(), paireTP[1].getLongY());
 
-				
-				
+
+
 			}
 			if (perso.getPointdevie()==3) {
 				g.drawImage(coeurimage, 0, 0, null);
