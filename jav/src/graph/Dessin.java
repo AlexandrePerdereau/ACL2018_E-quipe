@@ -146,7 +146,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
 			}
-			
+
 			for (MonstreTraqueur mT:lMTraqueur){
 				long tps = System.currentTimeMillis();
 				if(mT.getTemps()==0 || tps - mT.getTemps()>3000){
@@ -161,7 +161,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					break;
 				}
 			}
-			
+
 			this.repaint();
 			try {
 				Thread.sleep(20);
@@ -265,7 +265,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.setColor(Color.WHITE);
 				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
 			}
-			
+
 			for (MonstreTraqueur mT : lMTraqueur){
 				g.setColor(Color.RED);
 
@@ -282,7 +282,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for (Fantome_Traqueur ft : this.lFTraqueur)
 				g.fillOval(ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon());
 
-			
+
 			g.setColor(Color.BLUE);
 			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
@@ -290,9 +290,17 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
 
 			g.setColor(Color.GREEN);
-			for(Magique m:lMagique)
+			for(Magique m:lMagique){
+				String effet = m.getEffect();
+				String[] effect = effet.split("E");
+				if (effect[0].equals("piege"))
+					g.setColor(Color.RED);
+				
 				g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
+				g.drawString(effect[0], m.getX(), m.getY());
+				g.setColor(Color.GREEN);
 
+			}
 			if (perso.getPointdevie()==3) {
 				g.drawImage(coeurimage, 0, 0, null);
 				g.drawImage(coeurimage, 25, 0, null);
@@ -300,7 +308,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 			else if (perso.getPointdevie()==2) {
 				g.drawImage(coeurimage, 0, 0, null);
-			    g.drawImage(coeurimage, 25, 0, null);
+				g.drawImage(coeurimage, 25, 0, null);
 			}
 			else if (perso.getPointdevie()==1) {
 				g.drawImage(coeurimage, 0, 0, null);

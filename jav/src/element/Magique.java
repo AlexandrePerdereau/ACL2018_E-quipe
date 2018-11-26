@@ -28,11 +28,11 @@ public class Magique extends Element_marchable{
 			}
 		
 			else if (s[0].equals("soin")){
-				h.setPointdevie(h.getPointdevie() + Integer.parseInt(s[2]));
+				h.setPointdevie(h.getPointdevie() + Integer.parseInt(s[1]));
 			}
 		
 			else if (s[0].equals("piege")){
-				h.setPointdevie(h.getPointdevie() - Integer.parseInt(s[2]));
+				h.setPointdevie(h.getPointdevie() - Integer.parseInt(s[1]));
 			}
 		}
 
