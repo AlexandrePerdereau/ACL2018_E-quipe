@@ -49,6 +49,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	@Override
 	public void run(){
 		System.out.println("Execution");
+		Aetoile Ae = new Aetoile(lMTraqueur);
+		Thread threadetoile = new Thread(Ae);
+		threadetoile.start();
 		while (Visuel.partieencours){
 
 
@@ -165,11 +168,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 
 			for (MonstreTraqueur mT:lMTraqueur){
-				long tps = System.currentTimeMillis();
-				if(mT.getTemps()==0 || tps - mT.getTemps()>3000){
-					mT.actualise();
-					mT.setTemps(System.currentTimeMillis());
-				}
+
 				mT.bouge();
 				int mTRayon = mT.getRayon();
 				if (perso.distanceaucarre(mT)<(rayon+mTRayon)*(rayon+mTRayon)){
@@ -328,9 +327,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			}
 			for (int i=0;i<perso.getPointdevie();i++){
-			
+
 				g.drawImage(coeurimage, 15*i, 0, null);
-				
+
 			}
 		}
 

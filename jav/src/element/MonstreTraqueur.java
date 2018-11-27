@@ -12,18 +12,12 @@ public class MonstreTraqueur extends Personnage{
 	int pixelX , pixelY ; //taille de la map
 	ArrayList<Mur> lMur;
 	Heros cible;
-	long temps;
 	
 	
+	
 
 
-	public long getTemps() {
-		return temps;
-	}
 
-	public void setTemps(long temps) {
-		this.temps = temps;
-	}
 
 	public MonstreTraqueur(int x, int y, int rayon, int facteurdevitesse, int pv ,Dessin dess) {
 		super(x, y, rayon, facteurdevitesse, pv);
@@ -79,7 +73,6 @@ public class MonstreTraqueur extends Personnage{
 			System.out.println(n);
 			ajoutAdjacent(n,openList,closedList);
 		}
-		temps=System.currentTimeMillis();
 		return n;
 	}
 
