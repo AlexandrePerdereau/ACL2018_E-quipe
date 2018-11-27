@@ -54,7 +54,7 @@ public class MonstreTraqueur extends Personnage{
 			chemin.remove(0);
 		}
 		catch(Exception e){
-			System.out.println("il faut actualiser plus vite");
+			//System.out.println("il faut actualiser plus vite");
 		}
 
 	}
