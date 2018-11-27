@@ -36,11 +36,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
 	private ArrayList<Magique> lMagiqueUsed = new ArrayList<Magique>();
 	private ArrayList<Fantome_Patrouilleur> listFantomePatrouilleur = new ArrayList<Fantome_Patrouilleur>();
-	private long temps=0;
+	private long temps=0;  //temps entre les attaques d'epee
+	private long tempsPasMonstre=0;  //temps entre les pas d'un monstre
 	private ArrayList<Fantome_Traqueur> lFTraqueur = new ArrayList<Fantome_Traqueur>();
 	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
 
 	private ArrayList<Teleporteur[]> lTp = new ArrayList<Teleporteur[]>();
+	
 
 
 
@@ -166,10 +168,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
 			}
-
+			
+			long t = System.currentTimeMillis();
 			for (MonstreTraqueur mT:lMTraqueur){
-
-				mT.bouge();
+				if (temps == 0 || t-temps > 100){
+					mT.bouge();
+					temps=t;
+				}
 				int mTRayon = mT.getRayon();
 				if (perso.distanceaucarre(mT)<(rayon+mTRayon)*(rayon+mTRayon)){
 					perso.setPointdevie(0);
@@ -180,7 +185,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			this.repaint();
 			try {
-				Thread.sleep(20);
+				Thread.sleep(15);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
