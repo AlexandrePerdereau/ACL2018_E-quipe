@@ -106,7 +106,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				long t = System.currentTimeMillis();
 
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
-				if (t-timermonstretouche.get(i)>100 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
+				if (t-timermonstretouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
 					m.perdPV(1);
 					perso.perdPV(1);
 					timermonstretouche.set(i, t);
@@ -137,7 +137,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				MonstreTraqueur m = lMTraqueur.get(i);
 				
 
-				if (t-timermonstreTraqueurtouche.get(i)>100 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
+				if (t-timermonstreTraqueurtouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
 					m.perdPV(1);
 					perso.perdPV(1);
 					timermonstreTraqueurtouche.set(i, t);
