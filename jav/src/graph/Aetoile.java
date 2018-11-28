@@ -11,6 +11,7 @@ public class Aetoile implements Runnable{
 
 	@Override
 	public void run() {
+		long temps =1500;
 		// TODO Auto-generated method stub
 		while (true){
 		for (MonstreTraqueur mT:lMTraqueur){
@@ -20,7 +21,7 @@ public class Aetoile implements Runnable{
 			
 		}
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(temps);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

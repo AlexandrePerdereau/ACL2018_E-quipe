@@ -15,9 +15,13 @@ public class MonstreTraqueur extends Personnage{
 	
 	
 	
+	
 
 
 
+	public ArrayList<Integer[]> getChemin() {
+		return chemin;
+	}
 
 	public MonstreTraqueur(int x, int y, int rayon, int facteurdevitesse, int pv ,Dessin dess) {
 		super(x, y, rayon, facteurdevitesse, pv);
