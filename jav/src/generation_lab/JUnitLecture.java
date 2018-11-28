@@ -22,8 +22,8 @@ public class JUnitLecture {
 	static Mur md;
 	static Mur mf;
 	static Heros h2;
-	static Tresor arrivee2;
-	 
+	static Tresor arrivee2; 
+	static Heros h;
 	
 	int nouv = 100;
 
@@ -31,12 +31,13 @@ public class JUnitLecture {
 	public static void SetUpBeforeClass() throws IOException {
 		
 		lecs = new Lecture_lab("fichiertest.txt");
-		h1 = new Heros(205, 205, 1, 50, 20,5);
+		h1 = new Heros(215,215,5,3,20,5);
 		arrivee = new Tresor(200,300,20,20);
-		md = new Mur(205,200,1,1);
-		mf = new Mur(210,205,1,1);
+		md = new Mur(210,200,10,10);
+		mf = new Mur(220,210,10,10);
 		h2 = new Heros(250,250,10,10,20,5);
 		arrivee2 = new Tresor(400,400,10,10);
+		h = lecs.getHeros();
 	} 
 	// Tests de lecture de fichier 
 	
@@ -57,7 +58,7 @@ public class JUnitLecture {
 		}
 	@Test
 	public void testLectureLabHeros() {
-		Heros h=lecs.getHeros();
+		//Heros h=lecs.getHeros();
 		assertEquals(h.getX(),h1.getX());
 		assertEquals(h.getY(),h1.getY());
 		assertEquals(h.getRayon(),h1.getRayon());
@@ -89,27 +90,27 @@ public class JUnitLecture {
 	// Tests de collisions pour les quatres directions possibles
 	@Test
 	public void testPeutAvancerDroite() {
-		h1.setDirectionX(1);
-		assertTrue(!h1.peutAvancer(lecs.getListMur()));
+		h.setDirectionX(1);
+		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
 	}
 	@Test
 	public void testPeutAvancerGauche() {
-		h1.setDirectionX(-1);
-		assertTrue(!h1.peutAvancer(lecs.getListMur()));
+		h.setDirectionX(-1);
+		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
 	}
 	
 	@Test
 	public void testPeutAvancerHaut() {
-		h1.setDirectionY(1);
-		assertTrue(!h1.peutAvancer(lecs.getListMur()));
+		h.setDirectionY(1);
+		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
 	}
 	@Test
 	public void testPeutAvancerBas() {
-		h1.setDirectionY(-1);
-		assertTrue(!h1.peutAvancer(lecs.getListMur()));
+		h.setDirectionY(-1);
+		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
 	}
 }
