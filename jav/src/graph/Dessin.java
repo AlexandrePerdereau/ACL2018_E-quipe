@@ -29,6 +29,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 	private ArrayList<Long> timermonstretouche = new ArrayList<Long>();
+	private ArrayList<Long> timermonstreTraqueurtouche = new ArrayList<Long>();
 	private BufferedImage coeurimage;
 	private ImageIcon image;
 
@@ -129,6 +130,20 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 
 			}
+			
+			ArrayList<Integer> monstreTraqueursupprim = new ArrayList<Integer>();
+			long t = System.currentTimeMillis();
+			for (int i=0;i<this.lMTraqueur.size();i++ ){
+				MonstreTraqueur m = lMTraqueur.get(i);
+				
+
+				if (t-timermonstreTraqueurtouche.get(i)>100 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
+					m.perdPV(1);
+					perso.perdPV(1);
+					timermonstreTraqueurtouche.set(i, t);
+				}
+				if(m.getPointdevie()<=0)monstreTraqueursupprim.add(i);
+			}
 
 			for (Fantome_Patrouilleur m:listFantomePatrouilleur){
 				int mRayon = m.getRayon();
@@ -169,7 +184,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				timermonstretouche.remove(i);
 			}
 			
-			long t = System.currentTimeMillis();
+			for (int i : monstreTraqueursupprim){
+				lMTraqueur.remove(i);
+				timermonstreTraqueurtouche.remove(i);
+				//Ae.lMTraqueur.remove(i);
+			}
+			
+			t = System.currentTimeMillis();
 			for (MonstreTraqueur mT:lMTraqueur){
 				if (temps == 0 || t-temps > 100){
 					mT.bouge();
@@ -214,6 +235,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		for (Integer[] args:argmonstretraqueur){
 			this.lMTraqueur.add(new MonstreTraqueur(args[0],args[1],args[2],args[3],args[4],this));
 		}
+		for (MonstreTraqueur mT:lMTraqueur)timermonstreTraqueurtouche.add((long)0);
+
 
 
 		try {

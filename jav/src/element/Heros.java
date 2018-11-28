@@ -39,7 +39,7 @@ public class Heros extends Personnage {
 	public void setPortee(int portee) {
 		this.portee = portee;
 	}
-	public int monstredroite2points(Monstre m){
+	public int monstredroite2points(Personnage m){
 		int gx = this.getX();
 		int gy = this.getY();
 		if (this.distanceaucarre(m)>portee*portee)return m.distanceaucarre(gx+attaqueX*portee,gy+attaqueY*portee) ;

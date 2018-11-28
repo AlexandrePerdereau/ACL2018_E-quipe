@@ -6,7 +6,7 @@ import element.MonstreTraqueur;
 
 public class Aetoile implements Runnable{
 
-	private ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
+	public ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
 
 
 	@Override
@@ -20,7 +20,7 @@ public class Aetoile implements Runnable{
 			
 		}
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
