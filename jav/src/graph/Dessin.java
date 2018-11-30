@@ -185,6 +185,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 			
 			for (int i : monstreTraqueursupprim){
+				
 				lMTraqueur.remove(i);
 				timermonstreTraqueurtouche.remove(i);
 				//Ae.lMTraqueur.remove(i);
@@ -269,6 +270,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 
 		super.paintComponent(g);
+		g.setColor(Color.green);
+		/*for (int i=0;i<this.getWidth();i+=4){
+			for (int j = 0; j<this.getHeight();j+=4){
+				if (Mur.esthorsmur(i, j, 3, this.lMur)){
+					g.drawOval(i, j,4, 4);
+				}
+			}
+		}*/ // ces lignes permettent de tester esthorsmur
 		if(perso.getPointdevie()==0){
 			g.setColor(Color.red);g.drawString("DEFAITE", pixelX/2, pixelY/2);
 			Visuel.partieencours=false;

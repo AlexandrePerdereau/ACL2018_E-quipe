@@ -11,15 +11,17 @@ public class Aetoile implements Runnable{
 
 	@Override
 	public void run() {
-		long temps =1500;
+		long temps =1000;
 		// TODO Auto-generated method stub
-		while (true){
+		while (lMTraqueur.size()!=0){
+			System.out.print("A*");
 		for (MonstreTraqueur mT:lMTraqueur){
 
 			mT.actualise();
 
 			
 		}
+		System.out.print("finactualisation");
 		try {
 			Thread.sleep(temps);
 		} catch (InterruptedException e) {

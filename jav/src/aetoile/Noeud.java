@@ -10,15 +10,15 @@ public class Noeud implements Comparable<Object>{
 	int heuristique;  // cout + distance au noeud d'arrive
 	Noeud precedent; 
 
-	public Noeud(int x, int y, int pas, Heros cible,Noeud precedent) {
+	public Noeud(int x, int y, int pas,int xcible,int ycible,Noeud precedent) {
 
 		this.x = x;
 		this.y = y;
 		if (precedent!=null){
-			this.cout = precedent.cout+pas;}
+			this.cout = precedent.cout+pas*pas;}
 		else cout=0;
 
-		this.heuristique = cout + (int)Math.sqrt(cible.distanceaucarre(x, y));
+		this.heuristique = cout + (x-xcible)*(x-xcible)+(y-ycible)*(y-ycible);
 		this.precedent=precedent;
 	}
 
