@@ -59,6 +59,7 @@ System.out.println("frame creer");
 
 		System.out.println("test");
 
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);

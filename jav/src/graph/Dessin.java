@@ -30,8 +30,15 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 	private ArrayList<Long> timermonstretouche = new ArrayList<Long>();
 	private ArrayList<Long> timermonstreTraqueurtouche = new ArrayList<Long>();
-	private BufferedImage coeurimage;
-	private ImageIcon image;
+	private Image coeurimage;
+	private Image tresor;
+	private Image soin;
+	private Image hero;
+	private Image monstrephoto;
+	private Image fantomephoto;
+	private Image pieg;
+
+
 
 	private Tresor arivee;
 	private ArrayList<Magique> lMagique = new ArrayList<Magique>();
@@ -43,7 +50,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private int pixelX=400 , pixelY=400 ; //tailleDessin 400 400 par defaut
 
 	private ArrayList<Teleporteur[]> lTp = new ArrayList<Teleporteur[]>();
-	
+
 
 
 
@@ -130,12 +137,12 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				}
 
 			}
-			
+
 			ArrayList<Integer> monstreTraqueursupprim = new ArrayList<Integer>();
 			long t = System.currentTimeMillis();
 			for (int i=0;i<this.lMTraqueur.size();i++ ){
 				MonstreTraqueur m = lMTraqueur.get(i);
-				
+
 
 				if (t-timermonstreTraqueurtouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
 					m.perdPV(1);
@@ -183,14 +190,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				lMonstre.remove(i);
 				timermonstretouche.remove(i);
 			}
-			
+
 			for (int i : monstreTraqueursupprim){
-				
+
 				lMTraqueur.remove(i);
 				timermonstreTraqueurtouche.remove(i);
 				//Ae.lMTraqueur.remove(i);
 			}
-			
+
 			t = System.currentTimeMillis();
 			for (MonstreTraqueur mT:lMTraqueur){
 				if (temps == 0 || t-temps > 100){
@@ -240,13 +247,16 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 
 
-		try {
-			coeurimage=ImageIO.read(new File("Pointdevie.png"));
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		coeurimage=new ImageIcon("Pointdevie.png").getImage();
+		tresor=new ImageIcon("tresor.png").getImage();
+		soin=new ImageIcon("soin.png").getImage();
+		hero=new ImageIcon("hero.png").getImage();
+		monstrephoto=new ImageIcon("monstre.png").getImage();
+		fantomephoto=new ImageIcon("fantome.png").getImage();
+		pieg=new ImageIcon("piege.png").getImage();
+
+
 
 	}
 
@@ -291,7 +301,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 		}
 		else{
-			setBackground(Color.WHITE);
+			setBackground(Color.YELLOW);
 
 			long t = System.currentTimeMillis();
 
@@ -303,9 +313,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			int rayon = perso.getRayon();
 			if (t-temps<=100){
 				if (attX!=0 && attY!=0)
-					g.drawLine(X, Y, X+ (int)(((double)(attX*portee))/1.4142),Y+(int)(((double)(attY*portee))/1.4142));
+					g.drawLine(X+rayon/2, Y+rayon/2, X+rayon/2+ (int)(((double)(attX*portee))/1.4142),Y+rayon/2+(int)(((double)(attY*portee))/1.4142));
 				else
-					g.drawLine(X, Y, X+attX*portee,Y+attY*portee);
+					g.drawLine(X+rayon/2, Y+rayon/2, X+rayon/2+attX*portee,Y+rayon/2+attY*portee);
 
 			}
 
@@ -313,9 +323,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
 			for (Monstre monstre : lMonstre){
-				g.setColor(Color.RED);
-
-				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());
+				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);
 				g.setColor(Color.WHITE);
 				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
 			}
@@ -324,35 +332,35 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.setColor(Color.RED);
 
 				int R = mT.getRayon();
-				g.fillOval(mT.getX()-R, mT.getY()-R, 2*R, 2*R);
+				g.drawImage(monstrephoto, mT.getX()-R/2, mT.getY()-R/2, 2*R, 2*R, null);
 				g.setColor(Color.WHITE);
 				g.drawString(""+mT.getPointdevie(), mT.getX(), mT.getY());
 			}
 
 			g.setColor(Color.GRAY);
 			for (Monstre monstre : listFantomePatrouilleur){
-				g.fillOval(monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon());;
+				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);;
 			}
 			for (Fantome_Traqueur ft : this.lFTraqueur)
-				g.fillOval(ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon());
+				g.drawImage(fantomephoto, ft.getX()-ft.getRayon()/2, ft.getY()-ft.getRayon()/2, 2*ft.getRayon(), 2*ft.getRayon(), null);
 
 
 			g.setColor(Color.BLUE);
-			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
+			g.drawImage(hero, X, Y, null);
 
-			g.setColor(Color.YELLOW);
-			g.fillRect(arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY());
+
+			g.drawImage(tresor, arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY(), null);
 
 			g.setColor(Color.GREEN);
 			for(Magique m:lMagique){
 				String effet = m.getEffect();
 				String[] effect = effet.split("E");
 				if (effect[0].equals("piege"))
-					g.setColor(Color.RED);
+					g.drawImage(pieg, m.getX(), m.getY(), m.getLongX(), m.getLongY(), null);
 
-				g.fillRect(m.getX(), m.getY(), m.getLongX(), m.getLongY());
-				g.drawString(effect[0], m.getX(), m.getY());
-				g.setColor(Color.GREEN);
+
+				else g.drawImage(soin, m.getX(), m.getY(), m.getLongX(), m.getLongY(), null);
+
 
 			}
 			g.setColor(Color.CYAN);
