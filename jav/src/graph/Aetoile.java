@@ -6,21 +6,24 @@ import element.MonstreTraqueur;
 
 public class Aetoile implements Runnable{
 
-	private ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
+	public ArrayList<MonstreTraqueur> lMTraqueur = new ArrayList<MonstreTraqueur>();
 
 
 	@Override
 	public void run() {
+		long temps =1000;
 		// TODO Auto-generated method stub
-		while (true){
+		while (lMTraqueur.size()!=0){
+			System.out.print("A*");
 		for (MonstreTraqueur mT:lMTraqueur){
 
 			mT.actualise();
 
 			
 		}
+		System.out.print("finactualisation");
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(temps);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

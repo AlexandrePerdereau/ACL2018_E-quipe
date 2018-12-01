@@ -29,6 +29,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	protected element.Heros perso;
 	private ArrayList<Monstre> lMonstre = new ArrayList<Monstre>();
 	private ArrayList<Long> timermonstretouche = new ArrayList<Long>();
+	private ArrayList<Long> timermonstreTraqueurtouche = new ArrayList<Long>();
 	private BufferedImage coeurimage;
 	private BufferedImage tresor;
 	private BufferedImage soin;
@@ -112,7 +113,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				long t = System.currentTimeMillis();
 
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
-				if (t-timermonstretouche.get(i)>100 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
+				if (t-timermonstretouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
 					m.perdPV(1);
 					perso.perdPV(1);
 					timermonstretouche.set(i, t);
@@ -135,6 +136,20 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					}
 				}
 
+			}
+			
+			ArrayList<Integer> monstreTraqueursupprim = new ArrayList<Integer>();
+			long t = System.currentTimeMillis();
+			for (int i=0;i<this.lMTraqueur.size();i++ ){
+				MonstreTraqueur m = lMTraqueur.get(i);
+				
+
+				if (t-timermonstreTraqueurtouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
+					m.perdPV(1);
+					perso.perdPV(1);
+					timermonstreTraqueurtouche.set(i, t);
+				}
+				if(m.getPointdevie()<=0)monstreTraqueursupprim.add(i);
 			}
 
 			for (Fantome_Patrouilleur m:listFantomePatrouilleur){
@@ -176,7 +191,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				timermonstretouche.remove(i);
 			}
 			
-			long t = System.currentTimeMillis();
+			for (int i : monstreTraqueursupprim){
+				
+				lMTraqueur.remove(i);
+				timermonstreTraqueurtouche.remove(i);
+				//Ae.lMTraqueur.remove(i);
+			}
+			
+			t = System.currentTimeMillis();
 			for (MonstreTraqueur mT:lMTraqueur){
 				if (temps == 0 || t-temps > 100){
 					mT.bouge();
@@ -221,6 +243,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		for (Integer[] args:argmonstretraqueur){
 			this.lMTraqueur.add(new MonstreTraqueur(args[0],args[1],args[2],args[3],args[4],this));
 		}
+		for (MonstreTraqueur mT:lMTraqueur)timermonstreTraqueurtouche.add((long)0);
+
 
 
 		try {
@@ -259,6 +283,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 
 		super.paintComponent(g);
+		g.setColor(Color.green);
+		/*for (int i=0;i<this.getWidth();i+=4){
+			for (int j = 0; j<this.getHeight();j+=4){
+				if (Mur.esthorsmur(i, j, 3, this.lMur)){
+					g.drawOval(i, j,4, 4);
+				}
+			}
+		}*/ // ces lignes permettent de tester esthorsmur
 		if(perso.getPointdevie()==0){
 			g.setColor(Color.red);g.drawString("DEFAITE", pixelX/2, pixelY/2);
 			Visuel.partieencours=false;

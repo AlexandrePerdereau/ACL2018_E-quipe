@@ -77,6 +77,7 @@ System.out.println("frame creer");
 		comboBox.addItem("niveau2");
 		comboBox.addItem("niveau3");
 		comboBox.addItem("niveau4");
+		comboBox.addItem("fichierTest");
 		comboBox.addItemListener(new combo());
 		
 		//On ajoute le choix du niveau
