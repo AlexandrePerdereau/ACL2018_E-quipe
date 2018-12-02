@@ -17,6 +17,11 @@ public class ElemTestJunit {
 	static Magique spell2;
 	static Monstre shreck1;
 	static Monstre shreck2;
+	static Magique spellPietine;
+	static Teleporteur tp1;
+	static Teleporteur tp2;
+	static Heros hPietine;
+	static Heros hTP;
 	// J'ai un problème avec l'objet Teleporteur.
 	
 	
@@ -26,14 +31,18 @@ public class ElemTestJunit {
 		h1 = new Heros(200,200,10,3,40,10);
 		spell1= new Magique(100,100,10,10,"soinE1");
 		spell2= new Magique(230,100,10,10,"piegeE1");
-		
+		hTP = new Heros(400,100,10,5,20,10);
 		int[] point1= {300,300};
 		int[] distance1= {0,-100};
 		int[] point2= {200,250};
 		int[] distance2= {0,-100};
 		shreck1= new Monstre(10,2,point1,distance1,2) ;
 		shreck2= new Monstre(10,2,point2,distance2,2);
-	} 
+		hPietine = new Heros(400,100,10,5,20,10);
+		spellPietine = new Magique(400,100,10,10,"vitesse");
+		tp1 = lecs.getlTp().get(0)[0];
+		tp2 = lecs.getlTp().get(0)[1];
+	}
 	@Test
 	public void testMagique1(){
 		Magique mag1=lecs.getlMagique().get(0);
@@ -76,4 +85,13 @@ public class ElemTestJunit {
 		assertEquals(mon2.getDistance()[1],shreck2.getDistance()[1]);
 		assertEquals(mon2.getPointdevie(),shreck2.getPointdevie());
 		}
+	@Test
+	public void testPietinee() {
+		assertTrue(spellPietine.pietinee(hPietine));
+	}
+	@Test
+	public void testTP() {
+		tp1.teleportation(hTP);
+		assertTrue(tp2.pietinee(hTP));
+	}
 }
