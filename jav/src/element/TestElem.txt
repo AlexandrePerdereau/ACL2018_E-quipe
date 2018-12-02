@@ -1,0 +1,8 @@
+Magique,100,100,10,10,soinE1
+Monstre,10,2,300,300,0,-100,2
+Monstre,10,2,200,250,0,-100,2
+Heros,200,200,10,3,40,10
+Magique,230,100,10,10,piegeE1
+MonstreTraqueur,300,150,10,5,3
+MonstreTraqueur,150,350,10,5,3
+Teleporteur,400,100,450,450,10,10

@@ -58,9 +58,7 @@ public class Monstre extends MonstreMateriel {
 			}
 		
 		return true;
-		
 			
 	}
-
 
 }
