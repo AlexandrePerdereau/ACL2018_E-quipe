@@ -7,7 +7,7 @@ import aetoile.*;
 import generation_lab.Lecture_lab;
 import graph.Dessin;
 //je me suis inspirer du pseudo code fournit par wikipedia
-public class MonstreTraqueur extends Personnage{
+public class MonstreTraqueur extends MonstreMateriel{
 	ArrayList<Integer[]> chemin = new ArrayList<Integer[]>(); //le chemin des points
 	int pixelX , pixelY ; //taille de la map
 	ArrayList<Mur> lMur;

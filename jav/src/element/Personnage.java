@@ -7,8 +7,8 @@ public abstract class Personnage {
 	protected int x;
 	protected int y;
 	protected int rayon;
-	private int directionX;
-	private int directionY;
+	protected int directionX;
+	protected int directionY;
 	protected int facteurdevitesse=5;
 	private int pointdevie=3;
 	
@@ -80,7 +80,7 @@ public abstract class Personnage {
 		this.rayon = rayon;
 	}
 
-	public Personnage (int x, int y , int rayon , int facteurdevitesse,int pv){
+	protected Personnage (int x, int y , int rayon , int facteurdevitesse,int pv){
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
@@ -88,7 +88,7 @@ public abstract class Personnage {
 		this.pointdevie=pv;
 	}
 	
-	public Personnage (int x, int y , int rayon , int facteurdevitesse,int directionX,	int directionY,int pv){ //utliser par monstre nottament qui a une direction par defaut
+	protected Personnage (int x, int y , int rayon , int facteurdevitesse,int directionX,	int directionY,int pv){ //utliser par monstre nottament qui a une direction par defaut
 		this.x=x;
 		this.y=y;
 		this.rayon=rayon;
@@ -154,6 +154,15 @@ public abstract class Personnage {
 		}
 		
 		return true;
+	}
+	
+	public boolean bouge(ArrayList<Mur> lMur){
+		if  (this.peutAvancer( lMur )){
+			this.setX(x+directionX*facteurdevitesse);
+			this.setY(y+directionY*facteurdevitesse);
+			return true;
+		}
+		return false;
 	}
 	
 	

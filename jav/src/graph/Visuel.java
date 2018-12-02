@@ -30,7 +30,7 @@ public class Visuel extends JFrame {
 	private JPanel contentPane;
 	static Lecture_lab lec;
 	static  String combochoix = "niveau1";
-	static boolean partieencours = false;
+	public static boolean partieencours = false;
 
 	Dessin panel;
 
