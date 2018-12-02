@@ -1,6 +1,8 @@
 package element;
 
-public class Monstre extends Personnage {
+import java.util.ArrayList;
+
+public class Monstre extends MonstreMateriel {
 	protected int[] point; // point de depart
 	protected int[] distance; //distance a parcourir dans chaque direction, peut etre negatif
 
@@ -13,6 +15,8 @@ public class Monstre extends Personnage {
 		if (distance[1]!=0)this.setDirectionY(distance[1]/Math.abs(distance[1]));
 
 	}
+	
+	
 
 
 	public int[] getPoint() {
@@ -34,10 +38,29 @@ public class Monstre extends Personnage {
 		this.distance = distance;
 	}
 	
-	public void traque(Heros h){
+	
+	@Override
+	public boolean bouge(ArrayList<Mur> lMur){
 		
-	}
+			
+			int newX=x+directionX*facteurdevitesse;
+			int newY=y+directionY*facteurdevitesse;
+			if (this.peutAvancer(lMur)
+					&& Math.abs(newX-point[0])<=Math.abs(distance[0])
+					&& Math.abs(newY-point[1])<=Math.abs(distance[1])){
+				x=newX;
+				y=newY;
 
+			}
+			else{
+				directionX=-1*directionX;
+				directionY=-1*directionY;
+			}
+		
+		return true;
+		
+			
+	}
 
 
 }

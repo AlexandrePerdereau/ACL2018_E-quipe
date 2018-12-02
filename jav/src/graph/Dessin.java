@@ -62,11 +62,13 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		Aetoile Ae = new Aetoile(lMTraqueur);
 		Thread threadetoile = new Thread(Ae);
 		threadetoile.start();
+
 		while (Visuel.partieencours){
 
 
 			if (arivee.pietinee(perso))
 				Visuel.partieencours=false;
+
 			for (Magique m:lMagique){
 				if (m.pietinee(perso)){
 					m.appeffect(perso);
@@ -76,18 +78,18 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					lMagiqueUsed.add(m);
 				}
 			}
-			int X = perso.getX() , Y = perso.getY() , attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
-			int rayon = perso.getRayon();
-			int dirX = perso.getDirectionX(), dirY = perso.getDirectionY();
-			int pas = perso.getFacteurdevitesse();
-
-			if  (perso.peutAvancer( lMur )){
-				perso.setX(X+dirX*pas);
-				perso.setY(Y+dirY*pas);
-			}
 			for (Magique m :lMagiqueUsed)lMagique.remove(m);
 
+			int attX = perso.getAttaqueX() , attY = perso.getAttaqueY();
+			int rayon = perso.getRayon();
+
+
+			perso.bouge(lMur);
+
+
+
 			ArrayList<Teleporteur[]> paireasupprimer = new ArrayList<Teleporteur[]>();
+
 			for (Teleporteur[] paireTP : lTp)
 				for(int i =0;i<=1;i++)
 					if (paireTP[i].pietinee(perso)){
@@ -104,37 +106,17 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			for (int i=0;i<lMonstre.size();i++){
 				Monstre m = lMonstre.get(i);
-				int mRayon = m.getRayon();
-				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
-					perso.setPointdevie(0);
-					Visuel.partieencours=false;
+				boolean Collision = m.Collision(perso);
+				if (Collision)
 					break;
-				}
+
 				long t = System.currentTimeMillis();
 
 				//ici on fera bouger les monstres patrouilleurs...s ils survivent
-				if (t-timermonstretouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
-					m.perdPV(1);
-					perso.perdPV(1);
-					timermonstretouche.set(i, t);
-				}
+				perso.attaque(m, t);
 				if(m.getPointdevie()<=0)monstresupprim.add(i);
-				else{
-					int mVitesse = m.getFacteurdevitesse();
-					int newX=m.getX()+m.getDirectionX()*mVitesse;
-					int newY=m.getY()+m.getDirectionY()*mVitesse;
-					if (m.peutAvancer(lMur)
-							&& Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
-							&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
-						m.setX(newX);
-						m.setY(newY);
-
-					}
-					else{
-						m.setDirectionX(-1*m.getDirectionX());
-						m.setDirectionY(-1*m.getDirectionY());
-					}
-				}
+				else
+					m.bouge(lMur);
 
 			}
 
@@ -144,45 +126,22 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				MonstreTraqueur m = lMTraqueur.get(i);
 
 
-				if (t-timermonstreTraqueurtouche.get(i)>500 && (attX!=0 || attY!=0) && perso.monstredroite2points(m) < m.getRayon()){
-					m.perdPV(1);
-					perso.perdPV(1);
-					timermonstreTraqueurtouche.set(i, t);
-				}
+				perso.attaque(m, t);
 				if(m.getPointdevie()<=0)monstreTraqueursupprim.add(i);
 			}
 
 			for (Fantome_Patrouilleur m:listFantomePatrouilleur){
-				int mRayon = m.getRayon();
-				if (perso.distanceaucarre(m)<(rayon+mRayon)*(rayon+mRayon)){
-					perso.setPointdevie(0);
-					Visuel.partieencours=false;
+				
+				if (m.Collision(perso)){
 					break;
 				}
-				int mVitesse = m.getFacteurdevitesse();
-				int newX=m.getX()+m.getDirectionX()*mVitesse;
-				int newY=m.getY()+m.getDirectionY()*mVitesse;
-				if (Math.abs(newX-m.getPoint()[0])<=Math.abs(m.getDistance()[0])
-						&& Math.abs(newY-m.getPoint()[1])<=Math.abs(m.getDistance()[1])){
-					m.setX(newX);
-					m.setY(newY);
-
-				}
-				else{
-					m.setDirectionX(-1*m.getDirectionX());
-					m.setDirectionY(-1*m.getDirectionY());
-				}
-
-
-
+				m.bouge(lMur);
 			}
 
 			for (Fantome_Traqueur ft:lFTraqueur){
-				ft.pos(perso);
-				int ftRayon = ft.getRayon();
-				if (perso.distanceaucarre(ft)<(rayon+ftRayon)*(rayon+ftRayon)){
-					perso.setPointdevie(0);
-					Visuel.partieencours=false;
+				ft.bouge(perso);
+				
+				if (ft.Collision(perso)){
 					break;
 				}
 			}
@@ -198,16 +157,15 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				//Ae.lMTraqueur.remove(i);
 			}
 
-			t = System.currentTimeMillis();
+			
 			for (MonstreTraqueur mT:lMTraqueur){
-				if (temps == 0 || t-temps > 100){
+				
 					mT.bouge();
 					temps=t;
-				}
-				int mTRayon = mT.getRayon();
-				if (perso.distanceaucarre(mT)<(rayon+mTRayon)*(rayon+mTRayon)){
-					perso.setPointdevie(0);
-					Visuel.partieencours=false;
+				
+				
+				if (mT.Collision(perso)){
+					
 					break;
 				}
 			}
@@ -313,9 +271,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			int rayon = perso.getRayon();
 			if (t-temps<=100){
 				if (attX!=0 && attY!=0)
-					g.drawLine(X+rayon/2, Y+rayon/2, X+rayon/2+ (int)(((double)(attX*portee))/1.4142),Y+rayon/2+(int)(((double)(attY*portee))/1.4142));
+					g.drawLine(X, Y, X+ (int)(((double)(attX*portee))/1.4142),Y+(int)(((double)(attY*portee))/1.4142));
 				else
-					g.drawLine(X+rayon/2, Y+rayon/2, X+rayon/2+attX*portee,Y+rayon/2+attY*portee);
+					g.drawLine(X, Y, X+attX*portee,Y+attY*portee);
 
 			}
 
@@ -323,7 +281,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
 			for (Monstre monstre : lMonstre){
-				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);
+				
+				//g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);
+				int mrayon = monstre.getRayon();
+				g.fillOval(monstre.getX()-rayon, monstre.getY()-rayon, 2*rayon, 2*rayon);
 				g.setColor(Color.WHITE);
 				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
 			}
@@ -346,7 +307,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 
 			g.setColor(Color.BLUE);
-			g.drawImage(hero, X, Y, null);
+			//g.drawImage(hero, X, Y, null);
+			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
 
 			g.drawImage(tresor, arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY(), null);
