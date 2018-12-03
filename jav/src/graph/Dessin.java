@@ -282,27 +282,32 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			for (Mur m : lMur){
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
+			g.setColor(Color.RED);
 			for (Monstre monstre : lMonstre){
-				int mrayon = monstre.getRayon();
-				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon(), null);
+				int mX = monstre.getX() , mY = monstre.getY() , mR = monstre.getRayon();
+				g.drawImage(monstrephoto, mX-mR, mY-mR, 2*mR, 2*mR, null);
 				
 				//g.fillOval(monstre.getX()-rayon, monstre.getY()-rayon, 2*rayon, 2*rayon);
-				g.setColor(Color.WHITE);
-				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
+				
+				g.drawString(""+monstre.getPointdevie(), mX, mY+2*mR);
 			}
-
+			g.setColor(Color.RED);
 			for (MonstreTraqueur mT : lMTraqueur){
-				g.setColor(Color.RED);
+				int mX = mT.getX() , mY = mT.getY() , mR = mT.getRayon();
 
-				int R = mT.getRayon();
-				g.drawImage(monstrephoto, mT.getX()-R, mT.getY()-R, 2*R, 2*R, null);
-				g.setColor(Color.WHITE);
-				g.drawString(""+mT.getPointdevie(), mT.getX(), mT.getY());
+				
+
+				
+				g.drawImage(monstrephoto, mT.getX()-mR, mT.getY()-mR, 2*mR, 2*mR, null);
+				
+				g.drawString(""+mT.getPointdevie(), mT.getX(), mT.getY()+2*mR);
 			}
 
 			g.setColor(Color.GRAY);
 			for (Monstre monstre : listFantomePatrouilleur){
-				g.drawImage(fantomephoto, monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon(), null);;
+				int mX = monstre.getX() , mY = monstre.getY() , mR = monstre.getRayon();
+				g.drawImage(fantomephoto, mX-mR, mY-mR, 2*mR, 2*mR, null);;
+				
 			}
 			for (Fantome_Traqueur ft : this.lFTraqueur)
 				g.drawImage(fantomephoto, ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon(), null);
