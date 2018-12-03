@@ -37,6 +37,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 	private Image monstrephoto;
 	private Image fantomephoto;
 	private Image pieg;
+	private Image speed;
 
 
 
@@ -213,6 +214,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		monstrephoto=new ImageIcon("monstre.png").getImage();
 		fantomephoto=new ImageIcon("fantome.png").getImage();
 		pieg=new ImageIcon("piege.png").getImage();
+		speed=new ImageIcon("vitesse.png").getImage();
 
 
 
@@ -307,8 +309,8 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 
 			g.setColor(Color.BLUE);
-			//g.drawImage(hero, X, Y, null);
-			g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
+			g.drawImage(hero, X, Y, null);
+			//g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
 
 			g.drawImage(tresor, arivee.getX(), arivee.getY(), arivee.getLongX(), arivee.getLongY(), null);
