@@ -283,10 +283,10 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.fillRect(m.getPosx(), m.getPosy(), m.getLongx(), m.getLongy());
 			}
 			for (Monstre monstre : lMonstre){
-				
-				//g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);
 				int mrayon = monstre.getRayon();
-				g.fillOval(monstre.getX()-rayon, monstre.getY()-rayon, 2*rayon, 2*rayon);
+				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon(), null);
+				
+				//g.fillOval(monstre.getX()-rayon, monstre.getY()-rayon, 2*rayon, 2*rayon);
 				g.setColor(Color.WHITE);
 				g.drawString(""+monstre.getPointdevie(), monstre.getX(), monstre.getY());
 			}
@@ -295,21 +295,21 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 				g.setColor(Color.RED);
 
 				int R = mT.getRayon();
-				g.drawImage(monstrephoto, mT.getX()-R/2, mT.getY()-R/2, 2*R, 2*R, null);
+				g.drawImage(monstrephoto, mT.getX()-R, mT.getY()-R, 2*R, 2*R, null);
 				g.setColor(Color.WHITE);
 				g.drawString(""+mT.getPointdevie(), mT.getX(), mT.getY());
 			}
 
 			g.setColor(Color.GRAY);
 			for (Monstre monstre : listFantomePatrouilleur){
-				g.drawImage(monstrephoto, monstre.getX()-monstre.getRayon()/2, monstre.getY()-monstre.getRayon()/2, 2*monstre.getRayon(), 2*monstre.getRayon(), null);;
+				g.drawImage(fantomephoto, monstre.getX()-monstre.getRayon(), monstre.getY()-monstre.getRayon(), 2*monstre.getRayon(), 2*monstre.getRayon(), null);;
 			}
 			for (Fantome_Traqueur ft : this.lFTraqueur)
-				g.drawImage(fantomephoto, ft.getX()-ft.getRayon()/2, ft.getY()-ft.getRayon()/2, 2*ft.getRayon(), 2*ft.getRayon(), null);
+				g.drawImage(fantomephoto, ft.getX()-ft.getRayon(), ft.getY()-ft.getRayon(), 2*ft.getRayon(), 2*ft.getRayon(), null);
 
 
 			g.setColor(Color.BLUE);
-			g.drawImage(hero, X, Y, null);
+			g.drawImage(hero, X-rayon, Y-rayon, 2*rayon,2*rayon,null);
 			//g.fillOval(X-rayon, Y-rayon, 2*rayon, 2*rayon);
 
 
