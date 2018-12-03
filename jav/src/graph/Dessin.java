@@ -240,6 +240,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 		//System.out.println("repaint"); //vu la frequence , sa devient trop le flood sur la console
 
 		super.paintComponent(g);
+		setBackground(Color.LIGHT_GRAY);
 		g.setColor(Color.green);
 		/*for (int i=0;i<this.getWidth();i+=4){
 			for (int j = 0; j<this.getHeight();j+=4){
@@ -261,7 +262,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 		}
 		else{
-			setBackground(Color.YELLOW);
+			
 
 			long t = System.currentTimeMillis();
 
