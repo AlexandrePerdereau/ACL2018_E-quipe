@@ -7,24 +7,18 @@ public class Fantome_Traqueur extends MonstreGenerique{
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
 	public void bouge(Heros h){
-		int diffY = h.getY()-this.getY() ;
-		int diffX = h.getX()-this.getX();
-		int v = this.getFacteurdevitesse();
-		if (diffX==0)diffY=v;
-		else if (diffY>diffX) {
-			diffY=v*(diffY/diffX);
-			diffX=v;
-		}
-		else{
-			if (diffY==0)diffX=v;
-			else{
-				diffX=v*(diffX/diffY);
-				diffY=v;}
-		}
-		this.setX(this.getX()-diffX);
-		this.setY(this.getY()-diffY);
+		System.out.println(h.getX());		System.out.println(h.getY());
+
+		int diffY = h.getY()-y ;
+		int diffX = h.getX()-x;
+
+		directionX = (int)Math.signum(diffX);
+		directionY = (int)Math.signum(diffY);
+
+		x=x+directionX*facteurdevitesse;
+		y=y+directionY*facteurdevitesse;
 
 	}
 
