@@ -68,6 +68,7 @@ public class MonstreTraqueur extends MonstreMateriel{
 
 
 	private Noeud methAetoile(){
+		
 		System.out.println("debumethdeaetoile");
 		int SizeChemin = chemin.size();
 		Noeud depart;
@@ -84,11 +85,13 @@ public class MonstreTraqueur extends MonstreMateriel{
 		LinkedList<Noeud> closedList = new LinkedList<Noeud>();
 		double contactcarre = Math.pow(this.getRayon()+cible.getRayon(),2);
 		//System.out.println("cc"+contactcarre);
+		
 		while (Math.pow(n.getX()-cibleX,2)+Math.pow(n.getY()-cibleY,2)>=contactcarre){
 			n=openList.depile();
 			System.out.println(n);
 			ajoutAdjacent(n,openList,closedList,cibleX,cibleY);
 		}
+		
 		System.out.println("finmethdeaetoile");
 		return n;
 
