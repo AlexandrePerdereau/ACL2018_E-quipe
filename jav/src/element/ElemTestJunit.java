@@ -22,7 +22,7 @@ public class ElemTestJunit {
 	static Teleporteur tp2;
 	static Heros hPietine;
 	static Heros hTP;
-	// J'ai un problème avec l'objet Teleporteur.
+	
 	
 	
 	@BeforeClass
