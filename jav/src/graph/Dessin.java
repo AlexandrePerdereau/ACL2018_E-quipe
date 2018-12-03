@@ -247,14 +247,14 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 		}*/ // ces lignes permettent de tester esthorsmur
 		if(perso.getPointdevie()==0){
-			g.setColor(Color.red);g.drawString("DEFAITE", pixelX/2, pixelY/2);
+			g.setColor(Color.red);g.drawString("DEFAITE", pixelX/2-28, pixelY/2);
 			Visuel.partieencours=false;
 		}
 
 		else if (!Visuel.partieencours) {
 			g.setColor(Color.blue);
 
-			g.drawString("VICTOIRE", pixelX/2, pixelY/2);
+			g.drawString("VICTOIRE", pixelX/2-28, pixelY/2);
 
 
 		}
