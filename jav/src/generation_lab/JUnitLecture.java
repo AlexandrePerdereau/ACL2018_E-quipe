@@ -34,7 +34,7 @@ public class JUnitLecture {
 		h1 = new Heros(215,215,5,3,20,5);
 		arrivee = new Tresor(200,300,20,20);
 		md = new Mur(210,200,10,10);
-		mf = new Mur(220,210,10,10);
+		mf = new Mur(220,200,10,10);
 		h2 = new Heros(250,250,10,10,20,5);
 		arrivee2 = new Tresor(400,400,10,10);
 		h = lecs.getHeros();
@@ -89,28 +89,43 @@ public class JUnitLecture {
 	}
 	// Tests de collisions pour les quatres directions possibles
 	@Test
-	public void testPeutAvancerDroite() {
-		h.setDirectionX(1);
+	public void testPeutAvancer() {
+		h.setDirectionX(1);   // A droite
 		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
-	}
-	@Test
-	public void testPeutAvancerGauche() {
-		h.setDirectionX(-1);
-		assertTrue(!h.peutAvancer(lecs.getListMur()));
-		 
-	}
 	
-	@Test
-	public void testPeutAvancerHaut() {
-		h.setDirectionY(1);
+	
+		h.setDirectionX(-1);// A gauche
 		assertTrue(!h.peutAvancer(lecs.getListMur()));
 		 
-	}
-	@Test
-	public void testPeutAvancerBas() {
-		h.setDirectionY(-1);
+	
+	
+	
+		h.setDirectionY(1); // en haut
 		assertTrue(!h.peutAvancer(lecs.getListMur()));
+		 
+	
+	
+		h.setDirectionY(-1); // en bas
+		assertTrue(!h.peutAvancer(lecs.getListMur()));
+		 
+	
+	
+		h.setDirectionX(-1);  
+		h.setDirectionY(1);
+		assertTrue(!h.peutAvancer(lecs.getListMur())); // en haut a gauche
+		
+		h.setDirectionX(1);
+		h.setDirectionY(1);
+		assertTrue(!h.peutAvancer(lecs.getListMur())); // en haut a droite
+		
+		h.setDirectionX(-1);
+		h.setDirectionY(-1);
+		assertTrue(!h.peutAvancer(lecs.getListMur())); // en bas a gauche
+		
+		h.setDirectionX(1);
+		h.setDirectionY(-1);
+		assertTrue(!h.peutAvancer(lecs.getListMur())); // en bas à droite
 		 
 	}
 }
