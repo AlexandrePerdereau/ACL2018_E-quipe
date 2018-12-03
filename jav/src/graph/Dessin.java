@@ -321,9 +321,9 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 					g.drawImage(pieg, m.getX(), m.getY(), m.getLongX(), m.getLongY(), null);
 
 
-				else g.drawImage(soin, m.getX(), m.getY(), m.getLongX(), m.getLongY(), null);
-
-
+				else {g.drawImage(soin, m.getX(), m.getY(), m.getLongX(), m.getLongY(), null);
+g.drawString(effect[0], m.getX(), m.getY()+2*m.getLongY());
+				}
 			}
 			g.setColor(Color.CYAN);
 			for (Teleporteur[] paireTP : lTp){
