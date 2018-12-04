@@ -15,19 +15,23 @@ public class Aetoile implements Runnable{
 		// TODO Auto-generated method stub
 		while (lMTraqueur.size()!=0){
 			System.out.print("A*");
-		for (MonstreTraqueur mT:lMTraqueur){
+			ArrayList<MonstreTraqueur> sefaittuer = new ArrayList<MonstreTraqueur>();
+			for (MonstreTraqueur mT:lMTraqueur){
+				if (mT.getPointdevie()<0)
+					sefaittuer.add(mT);
 
-			mT.actualise();
+				mT.actualise();
 
-			
-		}
-		System.out.print("finactualisation");
-		try {
-			Thread.sleep(temps);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+			}
+			lMTraqueur.removeAll(sefaittuer);
+			System.out.print("finactualisation");
+			try {
+				Thread.sleep(temps);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

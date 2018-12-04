@@ -19,4 +19,4 @@ Magique,300,100,40,40,piegeE1
 Magique,600,100,20,20,soinE2
 Monstre,20,2,600,400,-9999,0,2
 Mur,785,0,15,600
-Fantome_Traqueur,180,350,20,1
+Fantome_Traqueur,180,350,10,1

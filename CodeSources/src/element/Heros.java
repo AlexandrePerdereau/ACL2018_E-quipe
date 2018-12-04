@@ -50,7 +50,7 @@ public class Heros extends Personnage {
 	
 	
 	public void attaque(MonstreMateriel m , long t){
-		if (t-m.getTimermonstretouche()>500 && (attaqueX!=0 || attaqueY!=0) && this.monstredroite2points(m) < m.getRayon()){
+		if (t-m.getTimermonstretouche()>250 && (attaqueX!=0 || attaqueY!=0) && this.monstredroite2points(m) < m.getRayon()){
 			m.perdPV(1);
 			this.perdPV(1);
 			m.setTimermonstretouche(t);

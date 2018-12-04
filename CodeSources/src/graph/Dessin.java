@@ -152,6 +152,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 			}
 
 			for (int i : monstreTraqueursupprim){
+				
 
 				lMTraqueur.remove(i);
 				timermonstreTraqueurtouche.remove(i);
@@ -173,7 +174,7 @@ public class Dessin extends JPanel implements KeyListener, Runnable {
 
 			this.repaint();
 			try {
-				Thread.sleep(15);
+				Thread.sleep(25);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
