@@ -1,4 +1,4 @@
-Pour compiler et executer le programme , executer le Labyrinthe.src dans ACL2018_E-quipe/Executable
+Pour compiler et executer le programme , executer le Labyrinthe.jar dans ACL2018_E-quipe/CodesSources
 PERDEREAU Alexandre
 NSIRI Tarek
 MAGNETTE Guillaume
